@@ -1,0 +1,181 @@
+@using E_learningProject.Core.Enums
+@model E_learningProject.Web.Models.TeacherWorkspaceViewModel
+
+@{
+    ViewData["Title"] = "Modifier le quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Édition de quiz</p>
+            <h1 class="h2 mb-2">Modifier le quiz</h1>
+            <p class="hero-subtitle">Ajustez le titre, le seuil de réussite, le module associé et les questions du quiz.</p>
+        </div>
+        <a class="btn btn-outline-dark" asp-controller="Teacher" asp-action="MyQuizzes">Retour à mes quiz</a>
+    </section>
+
+    <div class="page-panel">
+        <form asp-controller="Teacher" asp-action="EditQuiz" method="post" id="quiz-form" novalidate>
+            @Html.AntiForgeryToken()
+            <input asp-for="QuizForm.QuizId" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
+            <div class="row g-2 mb-3">
+                <div class="col-12 col-md-6">
+                    <label asp-for="QuizForm.Title" class="form-label">Titre du quiz</label>
+                    <input asp-for="QuizForm.Title" class="form-control form-control-lg" />
+                    <span asp-validation-for="QuizForm.Title" class="text-danger small"></span>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label asp-for="QuizForm.PassingScore" class="form-label">Seuil de réussite (%)</label>
+                    <input asp-for="QuizForm.PassingScore" class="form-control form-control-lg" />
+                    <span asp-validation-for="QuizForm.PassingScore" class="text-danger small"></span>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label asp-for="QuizForm.ModuleId" class="form-label">Module</label>
+                    <select asp-for="QuizForm.ModuleId" class="form-select form-select-lg">
+                        @foreach (var module in Model.ModuleOptions)
+                        {
+                            <option value="@module.Id">@module.Label</option>
+                        }
+                    </select>
+                    <span asp-validation-for="QuizForm.ModuleId" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div id="questions-container" class="d-grid gap-3"></div>
+
+            <div class="d-flex gap-2 mt-3 flex-wrap">
+                <button type="button" class="btn btn-outline-dark" id="add-question-btn">
+                    <i class="bi bi-plus-circle me-1"></i>Ajouter une question
+                </button>
+                <button type="submit" class="btn btn-brand">Enregistrer les modifications</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<template id="question-template">
+    <div class="card border question-item">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <strong class="question-title"></strong>
+                <button type="button" class="btn btn-sm btn-outline-danger remove-question-btn">Supprimer</button>
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label">Énoncé</label>
+                <input class="form-control question-statement" type="text" />
+            </div>
+
+            <div class="mb-2">
+                <label class="form-label">Type</label>
+                <select class="form-select question-type">
+                    <option value="MultipleChoice">Choix multiple</option>
+                    <option value="TrueFalse">Vrai / faux</option>
+                    <option value="ShortAnswer">Réponse courte</option>
+                </select>
+            </div>
+
+            <div class="options-container"></div>
+            <button type="button" class="btn btn-sm btn-outline-primary add-option-btn mt-2">Ajouter une option</button>
+        </div>
+    </div>
+</template>
+
+<template id="option-template">
+    <div class="row g-2 align-items-center option-item mt-1">
+        <div class="col-8">
+            <input type="text" class="form-control option-text" placeholder="Texte de l’option" />
+        </div>
+        <div class="col-3 form-check mt-0">
+            <input class="form-check-input option-correct" type="checkbox" />
+            <label class="form-check-label">Bonne réponse</label>
+        </div>
+        <div class="col-1 text-end">
+            <button type="button" class="btn btn-sm btn-link text-danger remove-option-btn">Retirer</button>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            const container = document.getElementById('questions-container');
+            const addQuestionBtn = document.getElementById('add-question-btn');
+            const questionTemplate = document.getElementById('question-template');
+            const optionTemplate = document.getElementById('option-template');
+
+            function addOption(questionEl, optionData) {
+                const optionsContainer = questionEl.querySelector('.options-container');
+                const optionNode = optionTemplate.content.firstElementChild.cloneNode(true);
+                optionNode.querySelector('.option-text').value = optionData?.text || '';
+                optionNode.querySelector('.option-correct').checked = !!optionData?.isCorrect;
+
+                optionNode.querySelector('.remove-option-btn').addEventListener('click', () => {
+                    optionNode.remove();
+                    syncNames();
+                });
+
+                optionsContainer.appendChild(optionNode);
+            }
+
+            function addQuestion(questionData) {
+                const node = questionTemplate.content.firstElementChild.cloneNode(true);
+                const statementInput = node.querySelector('.question-statement');
+                const typeSelect = node.querySelector('.question-type');
+
+                statementInput.value = questionData?.statement || '';
+                typeSelect.value = questionData?.type || 'MultipleChoice';
+
+                node.querySelector('.remove-question-btn').addEventListener('click', () => {
+                    node.remove();
+                    syncNames();
+                });
+
+                node.querySelector('.add-option-btn').addEventListener('click', () => {
+                    addOption(node, null);
+                    syncNames();
+                });
+
+                const options = questionData?.options?.length ? questionData.options : [{ text: '', isCorrect: false }, { text: '', isCorrect: false }];
+                options.forEach(o => addOption(node, o));
+
+                container.appendChild(node);
+                syncNames();
+            }
+
+            function syncNames() {
+                const questions = container.querySelectorAll('.question-item');
+                questions.forEach((q, qi) => {
+                    q.querySelector('.question-title').textContent = `Question ${qi + 1}`;
+                    q.querySelector('.question-statement').name = `Questions[${qi}].Statement`;
+                    q.querySelector('.question-type').name = `Questions[${qi}].Type`;
+
+                    const options = q.querySelectorAll('.option-item');
+                    options.forEach((o, oi) => {
+                        o.querySelector('.option-text').name = `Questions[${qi}].Options[${oi}].Text`;
+                        o.querySelector('.option-correct').name = `Questions[${qi}].Options[${oi}].IsCorrect`;
+                    });
+                });
+            }
+
+            addQuestionBtn.addEventListener('click', () => addQuestion(null));
+
+            const initialQuestions = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.QuizForm.Questions.Select(q => new
+            {
+                statement = q.Statement,
+                type = q.Type.ToString(),
+                options = q.Options.Select(o => new { text = o.Text, isCorrect = o.IsCorrect })
+            })));
+
+            if (initialQuestions.length === 0) {
+                addQuestion(null);
+            } else {
+                initialQuestions.forEach(q => addQuestion(q));
+            }
+        })();
+    </script>
+}

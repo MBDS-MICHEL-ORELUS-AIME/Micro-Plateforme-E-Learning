@@ -1,0 +1,125 @@
+@using E_learningProject.Core.Enums
+@model E_learningProject.Web.Models.QuizQuestionStepViewModel
+
+<div id="question-form-fields">
+    <input type="hidden" name="questionId" value="@Model.Question.QuestionId" />
+
+    <div class="mb-3 quiz-progress-box">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="small fw-semibold">Progression</span>
+            <span class="small text-muted">@(Model.CurrentIndex + 1)/@Model.TotalQuestions</span>
+        </div>
+        <div class="progress" role="progressbar" aria-label="Progression du quiz" aria-valuenow="@Model.ProgressPercent" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+            <div class="progress-bar bg-success" style="width: @Model.ProgressPercent%;"></div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="h5 mb-0">Question @(Model.CurrentIndex + 1) / @Model.TotalQuestions</h2>
+        <span class="status-chip status-chip--neutral">@GetQuestionTypeLabel(Model.Question.Type)</span>
+    </div>
+
+    <div class="quiz-question mb-3">
+        <p class="mb-0">@Model.Question.Statement</p>
+    </div>
+
+    @if (Model.Question.Type == QuestionType.ShortAnswer)
+    {
+        <input class="form-control form-control-lg" type="text" name="answerText" value="@Model.AnswerText" placeholder="Saisissez votre réponse" />
+    }
+    else
+    {
+        foreach (var option in Model.Question.Options)
+        {
+            var isChecked = Model.SelectedOptionId == option.OptionId;
+            <div class="form-check quiz-option mb-2">
+                <input class="form-check-input" type="radio" name="selectedOptionId" id="q@Model.Question.QuestionId-o@option.OptionId" value="@option.OptionId" checked="@isChecked" />
+                <label class="form-check-label" for="q@Model.Question.QuestionId-o@option.OptionId">@option.Text</label>
+            </div>
+        }
+    }
+</div>
+
+@functions {
+    private static string GetQuestionTypeLabel(QuestionType type)
+    {
+        return type switch
+        {
+            QuestionType.MultipleChoice => "Choix multiple",
+            QuestionType.TrueFalse => "Vrai / Faux",
+            QuestionType.ShortAnswer => "Réponse courte",
+            _ => type.ToString()
+        };
+    }
+}
+
+<div class="d-flex justify-content-between mt-4">
+    <div>
+        @if (Model.CurrentIndex > 0)
+        {
+            <button class="btn btn-outline-secondary"
+                    hx-get="@Url.Action("Question", "Quiz", new { quizId = Model.QuizId, index = Model.CurrentIndex - 1, studentId = Model.StudentId })"
+                    hx-target="#quiz-step-container"
+                    hx-swap="innerHTML"
+                    hx-include="#question-form-fields"
+                    type="button">
+                Précédent
+            </button>
+        }
+    </div>
+
+    <div>
+        @if (Model.CurrentIndex < Model.TotalQuestions - 1)
+        {
+            <button class="btn btn-primary"
+                    id="quiz-next-button"
+                    hx-get="@Url.Action("Question", "Quiz", new { quizId = Model.QuizId, index = Model.CurrentIndex + 1, studentId = Model.StudentId })"
+                    hx-target="#quiz-step-container"
+                    hx-swap="innerHTML"
+                    hx-include="#question-form-fields"
+                    disabled="@(!Model.HasAnswer)"
+                    type="button">
+                Question suivante
+            </button>
+        }
+        else
+        {
+            <button class="btn btn-success"
+                    id="quiz-next-button"
+                    hx-get="@Url.Action("Finish", "Quiz", new { quizId = Model.QuizId, studentId = Model.StudentId })"
+                    hx-include="#question-form-fields"
+                    disabled="@(!Model.HasAnswer)"
+                    type="button">
+                Valider le quiz
+            </button>
+        }
+    </div>
+</div>
+
+<script>
+    (function () {
+        var container = document.getElementById('question-form-fields');
+        var nextButton = document.getElementById('quiz-next-button');
+        if (!container || !nextButton) {
+            return;
+        }
+
+        function hasAnswer() {
+            var textInput = container.querySelector('input[name="answerText"]');
+            if (textInput) {
+                return textInput.value.trim().length > 0;
+            }
+
+            var radioInput = container.querySelector('input[name="selectedOptionId"]:checked');
+            return !!radioInput;
+        }
+
+        function updateButtonState() {
+            nextButton.disabled = !hasAnswer();
+        }
+
+        container.addEventListener('input', updateButtonState);
+        container.addEventListener('change', updateButtonState);
+        updateButtonState();
+    })();
+</script>

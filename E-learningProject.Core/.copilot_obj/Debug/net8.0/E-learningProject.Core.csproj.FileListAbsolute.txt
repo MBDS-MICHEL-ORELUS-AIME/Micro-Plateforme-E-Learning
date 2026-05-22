@@ -1,0 +1,4 @@
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\.copilot_obj\Debug\net8.0\E-learningProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\.copilot_obj\Debug\net8.0\E-learningProject.Core.AssemblyInfoInputs.cache
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\.copilot_obj\Debug\net8.0\E-learningProject.Core.AssemblyInfo.cs
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\.copilot_obj\Debug\net8.0\E-learningProject.Core.csproj.CoreCompileInputs.cache

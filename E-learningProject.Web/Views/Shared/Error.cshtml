@@ -1,0 +1,40 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Erreur";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Erreur</p>
+            <h1 class="h2 mb-2">Une erreur est survenue</h1>
+            <p class="hero-subtitle">Le traitement de votre demande n’a pas pu être terminé.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-brand" asp-controller="Home" asp-action="Public">Retour à l’accueil</a>
+            <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Login">Se connecter</a>
+        </div>
+    </section>
+
+    @if (Model.ShowRequestId)
+    {
+        <div class="page-panel">
+            <p class="mb-0"><strong>ID de requête :</strong> <code>@Model.RequestId</code></p>
+        </div>
+    }
+
+    <div class="page-panel page-panel--soft">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Aide rapide</p>
+                <h2 class="h5">Que faire maintenant ?</h2>
+            </div>
+        </div>
+        <ul class="error-help-list">
+            <li>Rafraîchissez la page pour vérifier si l’erreur est temporaire.</li>
+            <li>Revenez à l’accueil et relancez votre action depuis le menu principal.</li>
+            <li>Si l’erreur persiste, notez l’ID de requête et contactez l’administrateur.</li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,328 @@
+@model E_learningProject.Web.Models.AdminDashboardViewModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Tableau de bord administrateur";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Vue d’ensemble</p>
+            <h1 class="h2 mb-2">Tableau de bord administrateur</h1>
+            <p class="hero-subtitle">Suivez l’activité de la plateforme, les cours, les quiz et les discussions dans un seul espace.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Users">
+                <i class="bi bi-people me-1"></i>Gerer les utilisateurs
+            </a>
+            <span class="status-chip status-chip--neutral">Période active: @Model.SelectedPeriodDays jours</span>
+        </div>
+    </section>
+
+    <div class="page-panel page-panel--soft">
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <label class="form-label" for="days">Période</label>
+                <select class="form-select" id="days" name="days">
+                    <option value="7" selected="@(Model.SelectedPeriodDays == 7)">7 derniers jours</option>
+                    <option value="30" selected="@(Model.SelectedPeriodDays == 30)">30 derniers jours</option>
+                    <option value="90" selected="@(Model.SelectedPeriodDays == 90)">90 derniers jours</option>
+                </select>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-2">
+                <button type="submit" class="btn btn-brand w-100">Actualiser</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content-grid content-grid--two">
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Contenu</p>
+                <h2 class="h5 mb-2">Modules</h2>
+                <p class="display-6 mb-0">@Model.TotalModules</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Contenu</p>
+                <h2 class="h5 mb-2">Leçons</h2>
+                <p class="display-6 mb-0">@Model.TotalLessons</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Suivi</p>
+                <h2 class="h5 mb-2">Inscriptions</h2>
+                <p class="display-6 mb-0">@Model.TotalEnrollments</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Attestation</p>
+                <h2 class="h5 mb-2">Certificats</h2>
+                <p class="display-6 mb-0">@Model.CertificatesIssued</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Évaluation</p>
+                <h2 class="h5 mb-2">Quiz</h2>
+                <p class="display-6 mb-0">@Model.TotalQuizzes</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Évaluation</p>
+                <h2 class="h5 mb-2">Tentatives</h2>
+                <p class="display-6 mb-0">@Model.QuizAttempts</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Évaluation</p>
+                <h2 class="h5 mb-2">Taux de réussite quiz</h2>
+                <p class="display-6 mb-0">@Model.QuizPassRate%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-grid content-grid--two">
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Graphique</p>
+                    <h2 class="h5">Inscriptions par module</h2>
+                </div>
+            </div>
+            <div class="chart-scroll-shell">
+                <div class="chart-surface">
+                    <canvas id="enrollmentChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Graphique</p>
+                    <h2 class="h5">Taux de réussite par quiz</h2>
+                </div>
+            </div>
+            <div class="chart-scroll-shell">
+                <div class="chart-surface">
+                    <canvas id="quizChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Modules récents</p>
+                    <h2 class="h5">Derniers contenus publiés</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Leçons</th>
+                            <th>Quiz final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.RecentModules.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-3">Aucun module trouvé.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var module in Model.RecentModules)
+                        {
+                            <tr>
+                                <td>@module.Title</td>
+                                <td>@module.LessonCount</td>
+                                <td>@(module.HasFinalQuiz ? "Oui" : "Non")</td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Tentatives récentes</p>
+                    <h2 class="h5">Derniers quiz effectués</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Quiz</th>
+                            <th>Apprenant</th>
+                            <th>Score</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.RecentQuizAttempts.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">Aucune tentative de quiz pour le moment.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var attempt in Model.RecentQuizAttempts)
+                        {
+                            <tr>
+                                <td>@attempt.QuizTitle</td>
+                                <td>@attempt.StudentId</td>
+                                <td>@attempt.Score</td>
+                                <td>
+                                    <span class="status-chip @(attempt.IsPassed ? "status-chip--success" : "status-chip--warning")">@(attempt.IsPassed ? "Réussi" : "Échec")</span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Discussions récentes</p>
+                    <h2 class="h5">Derniers fils de questions</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Fil</th>
+                            <th>Apprenant</th>
+                            <th>Réponses</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.RecentDiscussionThreads.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">Aucune discussion pour le moment.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var thread in Model.RecentDiscussionThreads)
+                        {
+                            <tr>
+                                <td>@thread.Title</td>
+                                <td>@thread.StudentId</td>
+                                <td>@thread.ReplyCount</td>
+                                <td>
+                                    <span class="status-chip @(thread.IsResolved ? "status-chip--success" : "status-chip--warning")">@(thread.IsResolved ? "Résolu" : "Ouvert")</span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const enrollmentLabels = @Html.Raw(JsonSerializer.Serialize(Model.EnrollmentChartLabels));
+        const enrollmentValues = @Html.Raw(JsonSerializer.Serialize(Model.EnrollmentChartValues));
+        const quizLabels = @Html.Raw(JsonSerializer.Serialize(Model.QuizChartLabels));
+        const quizValues = @Html.Raw(JsonSerializer.Serialize(Model.QuizChartValues));
+        const enrollmentCanvas = document.getElementById('enrollmentChart');
+        const quizCanvas = document.getElementById('quizChart');
+
+        const enrollmentMinWidth = Math.max(520, enrollmentLabels.length * 86);
+        const quizMinWidth = Math.max(520, quizLabels.length * 86);
+
+        enrollmentCanvas.closest('.chart-surface').style.minWidth = `${enrollmentMinWidth}px`;
+        quizCanvas.closest('.chart-surface').style.minWidth = `${quizMinWidth}px`;
+
+        new Chart(enrollmentCanvas, {
+            type: 'bar',
+            data: {
+                labels: enrollmentLabels,
+                datasets: [{
+                    label: 'Inscriptions',
+                    data: enrollmentValues,
+                    backgroundColor: 'rgba(13, 110, 253, 0.45)',
+                    borderColor: 'rgba(13, 110, 253, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            autoSkip: false,
+                            minRotation: 20,
+                            maxRotation: 40
+                        }
+                    },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        new Chart(quizCanvas, {
+            type: 'bar',
+            data: {
+                labels: quizLabels,
+                datasets: [{
+                    label: 'Taux de réussite (%)',
+                    data: quizValues,
+                    backgroundColor: 'rgba(25, 135, 84, 0.45)',
+                    borderColor: 'rgba(25, 135, 84, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            autoSkip: false,
+                            minRotation: 20,
+                            maxRotation: 40
+                        }
+                    },
+                    y: { beginAtZero: true, max: 100 }
+                }
+            }
+        });
+    </script>
+}

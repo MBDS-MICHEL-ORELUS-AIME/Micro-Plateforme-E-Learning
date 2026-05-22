@@ -1,0 +1,87 @@
+@model E_learningProject.Web.Models.DiscussionIndexViewModel
+
+@{
+    ViewData["Title"] = "Discussion";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Espace Q&amp;R</p>
+            <h1 class="h2 mb-2">Une discussion structurée pour poser vos questions.</h1>
+            <p class="hero-subtitle">Créez un fil de discussion, suivez les réponses et marquez les échanges résolus lorsqu’ils sont terminés.</p>
+        </div>
+        <div class="page-hero-actions">
+            <span class="status-chip status-chip--neutral">@Model.Threads.Count fils</span>
+        </div>
+    </section>
+
+    <div class="page-panel page-panel--soft">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Nouveau sujet</p>
+                <h2 class="h5">Créer une question</h2>
+            </div>
+        </div>
+        <form asp-controller="Discussion" asp-action="Create" method="post" class="row g-2 align-items-end">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="studentId" value="@Model.StudentId" />
+            <div class="col-12 col-lg-9">
+                <input class="form-control form-control-lg" name="title" placeholder="Décrivez votre question ou votre blocage..." required />
+            </div>
+            <div class="col-12 col-lg-3 d-grid">
+                <button class="btn btn-brand btn-lg" type="submit">Créer le fil</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="page-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Fils de discussion</p>
+                <h2 class="h5">Suivi des échanges</h2>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-modern align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Fil</th>
+                        <th>Apprenant</th>
+                        <th>Réponses</th>
+                        <th>Statut</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Threads.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">Aucune discussion pour le moment.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var thread in Model.Threads)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@thread.Title</td>
+                                <td>@thread.StudentId</td>
+                                <td>@thread.ReplyCount</td>
+                                <td>
+                                    <span class="status-chip @(thread.IsResolved ? "status-chip--success" : "status-chip--warning")">
+                                        @(thread.IsResolved ? "Résolu" : "Ouvert")
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <a class="btn btn-outline-dark btn-sm" asp-controller="Discussion" asp-action="Details" asp-route-id="@thread.ThreadId" asp-route-studentId="@Model.StudentId">Ouvrir</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

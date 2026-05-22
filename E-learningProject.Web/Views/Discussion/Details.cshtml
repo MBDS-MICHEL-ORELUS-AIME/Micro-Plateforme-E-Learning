@@ -1,0 +1,80 @@
+@model E_learningProject.Web.Models.DiscussionDetailsViewModel
+
+@{
+    ViewData["Title"] = "Fil de discussion";
+    var activeStudentId = (string?)ViewData["ActiveStudentId"] ?? "student.demo";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Discussion</p>
+            <h1 class="h2 mb-2">@Model.Title</h1>
+            <p class="hero-subtitle">Ouvert par @Model.StudentId · @Model.CreatedAt</p>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2">
+            <span class="status-chip @(Model.IsResolved ? "status-chip--success" : "status-chip--warning")">
+                @(Model.IsResolved ? "Résolu" : "Ouvert")
+            </span>
+            <form asp-controller="Discussion" asp-action="ToggleResolved" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="threadId" value="@Model.ThreadId" />
+                <input type="hidden" name="studentId" value="@activeStudentId" />
+                <button type="submit" class="btn btn-outline-dark btn-sm">
+                    @(Model.IsResolved ? "Rouvrir" : "Marquer résolu")
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div class="page-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Réponses</p>
+                <h2 class="h5">Fil de réponses</h2>
+            </div>
+        </div>
+
+        @if (!Model.Replies.Any())
+        {
+            <p class="text-muted mb-0">Aucune réponse pour le moment.</p>
+        }
+        else
+        {
+            <div class="content-grid">
+                @foreach (var reply in Model.Replies)
+                {
+                    <article class="reply-card">
+                        <div class="reply-meta">
+                            <strong>@reply.AuthorId</strong>
+                            <small>@reply.CreatedAt</small>
+                        </div>
+                        <p class="mb-0">@reply.Message</p>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="page-panel page-panel--soft">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Répondre</p>
+                <h2 class="h5">Ajouter une réponse</h2>
+            </div>
+        </div>
+        <form asp-controller="Discussion" asp-action="Reply" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="threadId" value="@Model.ThreadId" />
+            <input type="hidden" name="authorId" value="@activeStudentId" />
+            <div class="mb-3">
+                <textarea class="form-control form-control-lg" name="message" rows="4" placeholder="Rédigez votre réponse..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-brand">Envoyer la réponse</button>
+        </form>
+    </div>
+
+    <div>
+        <a class="btn btn-link ps-0" asp-controller="Discussion" asp-action="Index" asp-route-studentId="@activeStudentId">Retour à la liste</a>
+    </div>
+</div>

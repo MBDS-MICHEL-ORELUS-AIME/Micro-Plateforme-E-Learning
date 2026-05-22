@@ -1,0 +1,32 @@
+@model E_learningProject.Web.Models.QuizTakeViewModel
+
+@{
+    ViewData["Title"] = "Passer le quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Quiz en cours</p>
+            <h1 class="h2 mb-2">@Model.QuizTitle</h1>
+            <p class="hero-subtitle">Seuil de réussite: @Model.PassingScore% · Apprenant: @Model.StudentId</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-outline-dark" asp-controller="Quiz" asp-action="Index">Retour au quiz</a>
+        </div>
+    </section>
+
+    <div class="page-panel quiz-progress-box">
+        <div class="metric-card">
+            <span>Objectif de réussite</span>
+            <strong>@Model.PassingScore%</strong>
+        </div>
+
+        <div class="page-panel page-panel--soft" id="quiz-step-container"
+             hx-get="@Url.Action("Question", "Quiz", new { quizId = Model.QuizId, index = 0, studentId = Model.StudentId })"
+             hx-trigger="load"
+             hx-swap="innerHTML">
+            <div class="text-muted">Chargement de la première question...</div>
+        </div>
+    </div>
+</div>

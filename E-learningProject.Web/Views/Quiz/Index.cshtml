@@ -1,0 +1,71 @@
+@model IReadOnlyList<E_learningProject.Web.Models.QuizListItemViewModel>
+
+@{
+    ViewData["Title"] = "Quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Espace d'évaluation</p>
+            <h1 class="h2 mb-2">Quiz courts, lisibles et pensés pour mesurer l’essentiel.</h1>
+            <p class="hero-subtitle">Choisissez un quiz, répondez pas à pas et obtenez un résultat immédiat dans une interface simple.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-brand" asp-controller="Courses" asp-action="Index">Retour aux cours</a>
+            <a class="btn btn-outline-dark" asp-controller="Discussion" asp-action="Index">Aller à la discussion</a>
+        </div>
+    </section>
+
+    <div class="page-panel page-panel--soft d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <p class="eyebrow mb-1">Évaluation</p>
+            <h2 class="h5 mb-1">Une correction instantanée pour chaque tentative</h2>
+            <p class="mb-0 text-muted">Le score et les réponses corrigées sont affichés à la fin du parcours.</p>
+        </div>
+        <span class="status-chip status-chip--warning">Accès après connexion</span>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="page-panel text-center py-5">
+            <div class="feature-icon mx-auto"><i class="bi bi-patch-question"></i></div>
+            <h2 class="h4">Aucun quiz disponible</h2>
+            <p class="text-muted mb-0">Créez un quiz pour le faire apparaître dans cette liste.</p>
+        </div>
+    }
+    else
+    {
+        <div class="content-grid content-grid--two">
+            @foreach (var quiz in Model)
+            {
+                <article class="content-card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                            <div>
+                                <p class="eyebrow mb-2">Quiz</p>
+                                <h2 class="h5 mb-1">@quiz.QuizTitle</h2>
+                                @if (!string.IsNullOrWhiteSpace(quiz.ModuleTitle))
+                                {
+                                    <p class="text-muted mb-0">@quiz.ModuleTitle</p>
+                                }
+                            </div>
+                            <span class="status-chip status-chip--neutral">@quiz.QuestionCount questions</span>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-3 flex-wrap">
+                            <div class="metric-card">
+                                <span>Seuil</span>
+                                <strong>@quiz.PassingScore%</strong>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto d-flex gap-2 flex-wrap">
+                            <a class="btn btn-brand" asp-controller="Quiz" asp-action="Start" asp-route-id="@quiz.QuizId">Commencer</a>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,66 @@
+@model E_learningProject.Web.Models.AdminUsersViewModel
+
+@{
+    ViewData["Title"] = "Utilisateurs et rôles";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Gestion des comptes</p>
+            <h1 class="h2 mb-2">Utilisateurs et rôles</h1>
+            <p class="hero-subtitle">Créez, modifiez ou supprimez les comptes et gardez une vue claire sur les droits d’accès.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-brand" asp-controller="Admin" asp-action="CreateUser">
+                <i class="bi bi-person-plus me-1"></i>Nouvel utilisateur
+            </a>
+            <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Dashboard">
+                <i class="bi bi-arrow-left me-1"></i>Retour au tableau de bord
+            </a>
+        </div>
+    </section>
+
+    <div class="page-panel">
+        @if (!Model.Users.Any())
+        {
+            <div class="text-center py-5 text-muted">Aucun utilisateur trouvé.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-modern table-hover mb-0 align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nom d’utilisateur</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Rôle</th>
+                            <th scope="col" class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td><span class="status-chip status-chip--neutral">@user.RoleName</span></td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions utilisateur">
+                                        <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.Id">Modifier</a>
+                                        <form asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id" method="post" onsubmit="return confirm('Supprimer cet utilisateur ?');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

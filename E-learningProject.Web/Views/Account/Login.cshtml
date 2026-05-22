@@ -1,0 +1,76 @@
+@model E_learningProject.Web.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Connexion";
+}
+
+<div class="auth-shell">
+    <div class="auth-visual card border-0 shadow-lg">
+        <div class="auth-visual-inner">
+            <p class="eyebrow">MicroLMS</p>
+            <h1>Connectez-vous pour retrouver vos cours, quiz et discussions.</h1>
+            <p>Une interface simple, centrée sur l’essentiel, pensée pour apprendre et enseigner sans friction.</p>
+            <div class="auth-chips">
+                <span>Accès rapide</span>
+                <span>Suivi des progrès</span>
+                <span>Espace apprenant</span>
+            </div>
+            <div class="auth-kpis">
+                <div class="auth-kpi">
+                    <strong>24/7</strong>
+                    <span>Accès plateforme</span>
+                </div>
+                <div class="auth-kpi">
+                    <strong>Quiz</strong>
+                    <span>Correction immédiate</span>
+                </div>
+                <div class="auth-kpi">
+                    <strong>Modules</strong>
+                    <span>Progression continue</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-card card border-0 shadow-lg">
+        <div class="card-body p-4 p-lg-5">
+            <div class="auth-card-topbar" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="mb-4">
+                <p class="eyebrow text-start mb-2">Bienvenue</p>
+                <h2 class="h3 mb-2">Connexion</h2>
+                <p class="text-muted mb-0">Accédez à votre espace personnel en quelques secondes.</p>
+            </div>
+
+            <form asp-action="Login" method="post" novalidate>
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="ReturnUrl" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control form-control-lg" placeholder="Votre nom d'utilisateur" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control form-control-lg" placeholder="Votre mot de passe" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-brand btn-lg w-100">Se connecter</button>
+            </form>
+
+            <div class="auth-footer auth-form-divider mt-4">
+                <span>Acces reserve aux comptes deja actifs.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

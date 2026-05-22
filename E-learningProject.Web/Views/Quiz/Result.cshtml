@@ -1,0 +1,103 @@
+@model E_learningProject.Web.Models.QuizResultViewModel
+
+@{
+    ViewData["Title"] = "Résultat du quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Bilan du quiz</p>
+            <h1 class="h2 mb-2">@Model.QuizTitle</h1>
+            <p class="hero-subtitle">Tenté par @Model.StudentId · @Model.AttemptDate</p>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2">
+            <span class="status-chip @(Model.IsPassed ? "status-chip--success" : "status-chip--warning")">@(Model.IsPassed ? "Réussi" : "À revoir")</span>
+            <div class="metric-card text-end">
+                <span>Score</span>
+                <strong>@Model.Score%</strong>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-grid content-grid--two">
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Résumé</p>
+                    <h2 class="h5">Performances</h2>
+                </div>
+            </div>
+            <div class="d-grid gap-3">
+                <div class="metric-card">
+                    <span>Seuil de réussite</span>
+                    <strong>@Model.PassingScore%</strong>
+                </div>
+                @if (Model.Corrections.Count > 0)
+                {
+                    var correctCount = Model.Corrections.Count(c => c.IsCorrect);
+                    <div class="metric-card">
+                        <span>Réponses correctes</span>
+                        <strong>@correctCount / @Model.Corrections.Count</strong>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="page-panel page-panel--soft">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Action</p>
+                    <h2 class="h5">Retour au quiz</h2>
+                </div>
+            </div>
+            <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">Voir les quiz</a>
+        </div>
+    </div>
+
+    <div class="page-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Correction détaillée</p>
+                <h2 class="h5">Analyse question par question</h2>
+            </div>
+        </div>
+
+        @if (Model.Corrections.Count == 0)
+        {
+            <p class="text-muted mb-0">Aucune correction détaillée n’est disponible pour cette tentative.</p>
+        }
+        else
+        {
+            <div class="content-grid">
+                @for (var i = 0; i < Model.Corrections.Count; i++)
+                {
+                    var item = Model.Corrections[i];
+                    <article class="reply-card">
+                        <div class="reply-meta">
+                            <strong>Question @(i + 1)</strong>
+                            <span class="status-chip @(item.IsCorrect ? "status-chip--success" : "status-chip--warning")">@(item.IsCorrect ? "Correcte" : "Incorrecte")</span>
+                        </div>
+                        <p class="mb-1 fw-semibold">@item.Statement</p>
+                        <p class="mb-1 small text-muted">Type: @GetQuestionTypeLabel(item.QuestionType)</p>
+                        <p class="mb-1"><strong>Votre réponse:</strong> @item.UserAnswer</p>
+                        <p class="mb-0"><strong>Réponse attendue:</strong> @item.CorrectAnswer</p>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@functions {
+    private static string GetQuestionTypeLabel(string questionType)
+    {
+        return questionType switch
+        {
+            "MultipleChoice" => "Choix multiple",
+            "TrueFalse" => "Vrai / Faux",
+            "ShortAnswer" => "Réponse courte",
+            _ => questionType
+        };
+    }
+}

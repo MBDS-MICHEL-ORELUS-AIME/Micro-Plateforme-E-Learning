@@ -1,0 +1,67 @@
+@model E_learningProject.Web.Models.AdminUserUpsertViewModel
+
+@{
+    var isEdit = Model.Id.HasValue;
+    ViewData["Title"] = isEdit ? "Modifier un utilisateur" : "Créer un utilisateur";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Compte utilisateur</p>
+            <h1 class="h2 mb-2">@ViewData["Title"]</h1>
+            <p class="hero-subtitle">Renseignez les informations de connexion et le rôle associé au compte.</p>
+        </div>
+        <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Users">Retour à la liste</a>
+    </section>
+
+    <div class="page-panel">
+        <form asp-action="@(isEdit ? "EditUser" : "CreateUser")" method="post" novalidate>
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label asp-for="UserName" class="form-label">Nom d’utilisateur</label>
+                    <input asp-for="UserName" class="form-control form-control-lg" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label asp-for="Email" class="form-label">E-mail</label>
+                    <input asp-for="Email" class="form-control form-control-lg" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label asp-for="Password" class="form-label">Mot de passe @(isEdit ? "(laisser vide pour conserver l’existant)" : "")</label>
+                    <input asp-for="Password" class="form-control form-control-lg" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label asp-for="RoleId" class="form-label">Rôle</label>
+                    <select asp-for="RoleId" class="form-select form-select-lg">
+                        <option value="">Sélectionnez un rôle</option>
+                        @foreach (var role in Model.RoleOptions)
+                        {
+                            <option value="@role.Id">@role.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="RoleId" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex gap-2 flex-wrap">
+                <button type="submit" class="btn btn-brand">@(isEdit ? "Enregistrer les modifications" : "Créer l’utilisateur")</button>
+                <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Users">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

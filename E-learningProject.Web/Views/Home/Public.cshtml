@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Accueil";
+}
+
+<section class="hero-section mb-4">
+    <div class="hero-copy">
+        <p class="eyebrow" style="font-size: 0.9rem;">Micro-Plateforme d'E-Learning</p>
+        <h1>Un espace moderne pour apprendre, enseigner et suivre la progression.</h1>
+        <p class="hero-text">Une plateforme claire pour diffuser vos cours, lancer des quiz, échanger dans la discussion et piloter l’activité avec une interface professionnelle.</p>
+        <div class="hero-actions">
+            <a class="btn btn-brand btn-lg" asp-controller="Courses" asp-action="Index">Découvrir les cours</a>
+        </div>
+    </div>
+    <div class="hero-panel">
+        <div class="hero-stat">
+            <span>Modules</span>
+            <strong>Cours structurés</strong>
+        </div>
+        <div class="hero-stat">
+            <span>Engagement</span>
+            <strong>Quiz & discussions</strong>
+        </div>
+        <div class="hero-stat">
+            <span>Suivi</span>
+            <strong>Progression visible</strong>
+        </div>
+    </div>
+</section>
+
+<div class="row g-4 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="feature-card h-100">
+            <div class="feature-icon"><i class="bi bi-mortarboard"></i></div>
+            <h2 class="h5">Apprenant</h2>
+            <p class="mb-0">Lecteur de cours épuré, progression par module, quiz et certificats.</p>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="feature-card h-100">
+            <div class="feature-icon"><i class="bi bi-easel2"></i></div>
+            <h2 class="h5">Enseignant</h2>
+            <p class="mb-0">Création de quiz, contenus pédagogiques et ressources multimédia.</p>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="feature-card h-100">
+            <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
+            <h2 class="h5">Coordination</h2>
+            <p class="mb-0">Pilotage des utilisateurs, suivi global et supervision du parcours.</p>
+        </div>
+    </div>
+</div>
+
+<div class="callout-panel">
+    <div>
+        <p class="eyebrow mb-2">Navigation rapide</p>
+        <h2 class="h5 mb-2">Passez directement aux contenus clés</h2>
+        <p class="mb-0">Explorez les cours, le quiz et les discussions sans repasser par la page d’accueil.</p>
+    </div>
+    <div class="callout-actions">
+        <a class="btn btn-brand" asp-controller="Courses" asp-action="Index">Voir les cours</a>
+        <a class="btn btn-outline-dark" asp-controller="Quiz" asp-action="Index">Accéder aux quiz</a>
+    </div>
+</div>

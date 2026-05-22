@@ -1,0 +1,68 @@
+@model E_learningProject.Web.Models.TeacherMyQuizzesViewModel
+
+@{
+    ViewData["Title"] = "Mes Quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Gestion des quiz</p>
+            <h1 class="h2 mb-2">Mes quiz</h1>
+            <p class="hero-subtitle">Consultez vos quiz existants, modifiez-les ou créez-en un nouveau depuis l’espace enseignant.</p>
+        </div>
+        <a class="btn btn-brand" asp-controller="Teacher" asp-action="Workspace">
+            <i class="bi bi-plus-circle me-1"></i>Nouveau quiz
+        </a>
+    </section>
+
+    @if (TempData["TeacherSuccess"] is string successMessage)
+    {
+        <div class="page-panel page-panel--soft status-chip status-chip--success">@successMessage</div>
+    }
+
+    <div class="page-panel">
+        @if (!Model.Quizzes.Any())
+        {
+            <div class="text-center py-5 text-muted">Aucun quiz créé pour le moment.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-modern table-hover mb-0 align-middle">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Titre</th>
+                            <th>Module</th>
+                            <th>Questions</th>
+                            <th>Seuil</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var quiz in Model.Quizzes)
+                        {
+                            <tr>
+                                <td>@quiz.QuizId</td>
+                                <td>@quiz.Title</td>
+                                <td>@(string.IsNullOrWhiteSpace(quiz.ModuleTitle) ? "-" : quiz.ModuleTitle)</td>
+                                <td>@quiz.QuestionCount</td>
+                                <td>@quiz.PassingScore%</td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a class="btn btn-outline-dark" asp-controller="Teacher" asp-action="EditQuiz" asp-route-id="@quiz.QuizId">Modifier</a>
+                                        <form asp-controller="Teacher" asp-action="DeleteQuiz" asp-route-id="@quiz.QuizId" method="post" onsubmit="return confirm('Supprimer ce quiz ?');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-outline-danger">Supprimer</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

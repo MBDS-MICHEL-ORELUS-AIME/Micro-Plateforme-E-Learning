@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Web: E-learningProject.Web",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/E-learningProject.Web/bin/Debug/net8.0/E-learningProject.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/E-learningProject.Web",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "DOTNET_ROLL_FORWARD": "Major"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "PowerShell: Launch Current File",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${file}",
+            "args": []
+        }
+    ]
+}
