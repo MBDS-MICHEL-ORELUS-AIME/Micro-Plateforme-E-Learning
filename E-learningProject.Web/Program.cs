@@ -31,6 +31,11 @@ builder.Services.AddScoped<IModuleRepository, ModuleRepository>();
 builder.Services.AddScoped<IQuizService, QuizService>();
 builder.Services.AddScoped<IProgressService, ProgressService>();
 builder.Services.AddScoped<ICertificateService, CertificateService>();
+builder.Services.AddHttpClient<IOpenContentImportService, OpenContentImportService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(20);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("MicroLMS/1.0 (+academic project)");
+});
 
 var app = builder.Build();
 
@@ -39,6 +44,8 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
     var applyMigrationsOnStartup = builder.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup");
+    var autoSeedAcademicDataOnStartup = builder.Configuration.GetValue("Database:AutoSeedAcademicDataOnStartup", true);
+    var importOpenContentOnStartup = builder.Configuration.GetValue("Database:ImportOpenContentOnStartup", false);
     var seedDemoDataOnStartup = builder.Configuration.GetValue<bool>("Database:SeedDemoDataOnStartup");
 
     try
@@ -57,6 +64,159 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         logger.LogWarning(ex, "Database initialization failed at startup. Check PostgreSQL connection settings.");
+    }
+
+    if (autoSeedAcademicDataOnStartup)
+    {
+        try
+        {
+            if (!await dbContext.Modules.AnyAsync())
+            {
+                var modules = new List<Module>
+                {
+                    new()
+                    {
+                        Title = "Introduction a la comptabilite generale",
+                        Description = "Bases du bilan, du compte de resultat et des ecritures comptables.",
+                        Lessons =
+                        [
+                            new() { Title = "Principes comptables fondamentaux", TextContent = "Le principe de prudence, la continuite d'exploitation et la permanence des methodes.", Order = 1 },
+                            new() { Title = "Bilan et compte de resultat", TextContent = "Comprendre la structure des actifs/passifs et des produits/charges.", Order = 2 },
+                            new() { Title = "Ecritures courantes", TextContent = "Passage des ecritures simples d'achat, vente et tresorerie.", Order = 3 }
+                        ]
+                    },
+                    new()
+                    {
+                        Title = "Administration des organisations",
+                        Description = "Introduction a la gestion administrative et au suivi operationnel.",
+                        Lessons =
+                        [
+                            new() { Title = "Processus administratifs", TextContent = "Cartographier les processus et clarifier les roles.", Order = 1 },
+                            new() { Title = "Gestion documentaire", TextContent = "Organiser, classer et partager l'information de facon fiable.", Order = 2 },
+                            new() { Title = "Indicateurs de pilotage", TextContent = "Mettre en place des KPI simples pour le suivi des activites.", Order = 3 }
+                        ]
+                    },
+                    new()
+                    {
+                        Title = "Diplomatie et relations internationales",
+                        Description = "Panorama des acteurs, institutions et mecanismes diplomatiques.",
+                        Lessons =
+                        [
+                            new() { Title = "Acteurs des relations internationales", TextContent = "Etats, organisations internationales et acteurs non etatiques.", Order = 1 },
+                            new() { Title = "Negociation diplomatique", TextContent = "Principes, preparation et conduite d'une negociation.", Order = 2 },
+                            new() { Title = "Gestion des crises", TextContent = "Coordination, mediation et communication en situation de crise.", Order = 3 }
+                        ]
+                    },
+                    new()
+                    {
+                        Title = "Anglais professionnel",
+                        Description = "Communication ecrite et orale en contexte professionnel.",
+                        Lessons =
+                        [
+                            new() { Title = "Emails professionnels", TextContent = "Structure et ton d'un email formel en anglais.", Order = 1 },
+                            new() { Title = "Presentation orale", TextContent = "Construire une presentation claire et persuasive.", Order = 2 },
+                            new() { Title = "Reunions et compte-rendus", TextContent = "Vocabulaire utile et bonnes pratiques de reunion.", Order = 3 }
+                        ]
+                    },
+                    new()
+                    {
+                        Title = "Initiation a la programmation C#",
+                        Description = "Syntaxe de base, structures de controle et bonnes pratiques de codage.",
+                        Lessons =
+                        [
+                            new() { Title = "Variables et types", TextContent = "Types primitifs, declaration et conversion de donnees.", Order = 1 },
+                            new() { Title = "Conditions et boucles", TextContent = "if, switch, for, while et foreach.", Order = 2 },
+                            new() { Title = "Methodes et classes", TextContent = "Encapsulation, responsabilites et reutilisabilite du code.", Order = 3 }
+                        ]
+                    }
+                };
+
+                dbContext.Modules.AddRange(modules);
+                await dbContext.SaveChangesAsync();
+            }
+
+            if (!await dbContext.Quizzes.AnyAsync())
+            {
+                var targetModules = await dbContext.Modules
+                    .Where(m => m.QuizId == null)
+                    .OrderBy(m => m.Id)
+                    .Take(3)
+                    .ToListAsync();
+
+                foreach (var module in targetModules)
+                {
+                    var quiz = new Quiz
+                    {
+                        Title = $"Quiz - {module.Title}",
+                        PassingScore = 70,
+                        Questions =
+                        [
+                            new()
+                            {
+                                Statement = "Ce module vise-t-il l'acquisition de competences pratiques ?",
+                                Type = QuestionType.TrueFalse,
+                                Options =
+                                [
+                                    new() { Text = "Vrai", IsCorrect = true },
+                                    new() { Text = "Faux", IsCorrect = false }
+                                ]
+                            },
+                            new()
+                            {
+                                Statement = "Quel element est central dans l'apprentissage de ce module ?",
+                                Type = QuestionType.MultipleChoice,
+                                Options =
+                                [
+                                    new() { Text = "La mise en pratique", IsCorrect = true },
+                                    new() { Text = "Le hasard", IsCorrect = false },
+                                    new() { Text = "L'improvisation totale", IsCorrect = false }
+                                ]
+                            },
+                            new()
+                            {
+                                Statement = "Ecrivez le mot-cle principal retenu du module.",
+                                Type = QuestionType.ShortAnswer,
+                                Options =
+                                [
+                                    new() { Text = "pratique", IsCorrect = true }
+                                ]
+                            }
+                        ]
+                    };
+
+                    dbContext.Quizzes.Add(quiz);
+                    await dbContext.SaveChangesAsync();
+
+                    module.QuizId = quiz.Id;
+                    await dbContext.SaveChangesAsync();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Academic data auto-seeding failed at startup. The app will continue running.");
+        }
+    }
+
+    if (importOpenContentOnStartup)
+    {
+        try
+        {
+            var importer = scope.ServiceProvider.GetRequiredService<IOpenContentImportService>();
+            var result = await importer.ImportAsync(20);
+            logger.LogInformation(
+                "Open-content sync done. ImportedModules={ImportedModules}, ImportedLessons={ImportedLessons}, ImportedQuizzes={ImportedQuizzes}, Duplicates={Duplicates}, InvalidLicense={InvalidLicense}, Errors={ErrorsCount}",
+                result.ImportedModules,
+                result.ImportedLessons,
+                result.ImportedQuizzes,
+                result.SkippedDuplicates,
+                result.SkippedInvalidLicense,
+                result.Errors.Count);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Open-content import failed at startup. The app will continue running.");
+        }
     }
 
     if (seedDemoDataOnStartup)

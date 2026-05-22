@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Admin/ContentSync.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ29udGVudFN5bmMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Admin/Users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Certificates/Verify.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2VydGlmaWNhdGVzXFZlcmlmeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Courses/Details.cshtml]
@@ -64,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Learner/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVhcm5lclxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Learner/QuizHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVhcm5lclxRdWl6SGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Donnees/NET MVC/E-learningProject/E-learningProject.Web/Views/Learner/Reader.cshtml]

@@ -34,3 +34,4 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\refint\E-learningProject.Services.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\ref\E-learningProject.Services.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.sourcelink.json

@@ -15,3 +15,4 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\ref
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.genruntimeconfig.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\ref\E-learningProject.Data.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.sourcelink.json

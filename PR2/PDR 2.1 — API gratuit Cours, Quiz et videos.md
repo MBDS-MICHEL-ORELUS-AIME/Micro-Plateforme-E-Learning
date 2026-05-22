@@ -23,6 +23,20 @@ Avant tout import, verifier :
 - Attribution obligatoire (auteur, source, lien original)
 - Restrictions de redistribution
 
+4.1 Registre des sources legales validees (v1)
+| Source | Type d'acces | Licence/Statut | Utilisation autorisee dans le projet | Attribution requise | Niveau de risque |
+|---|---|---|---|---|---|
+| Wikiversity | API/Pages ouvertes | CC BY-SA (selon page) | Import texte pedagogique (resumes, lecons) | Oui (source + lien + licence) | Faible |
+| Wikipedia | API REST/MediaWiki | CC BY-SA | Import de syntheses et definitions, pas de republication brute massive | Oui (source + lien + licence) | Faible |
+| Project Gutenberg | Fichiers publics | Domaine public (majoritaire) | Import d'extraits et references litteraires | Recommandee (source + lien oeuvre) | Faible |
+| OpenEdition | Pages ouvertes (variable) | Variable selon article/revue | Lien et citation; import integral uniquement si licence explicite le permet | Oui | Moyen |
+| YouTube/PeerTube (videos educatives) | URL/embed | Variable selon chaine/video | Referencement par URL externe, sans telechargement local | Oui (chaine + lien) | Moyen |
+
+4.2 Sources non validees par defaut (a exclure tant que non verifiees)
+- Plateformes payantes (catalogues fermes) sans accord explicite.
+- Sites sans mention de licence claire.
+- Contenus necessitant authentification payante ou contournes par scraping.
+
 5. Strategie technique (ASP.NET MVC + PostgreSQL)
 5.1 Pipeline d'import
 - Etape 1 : recuperation (API/flux/fichier)

@@ -24,6 +24,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<DiscussionReply> DiscussionReplies => Set<DiscussionReply>();
     public DbSet<User> AppUsers => Set<User>();
     public DbSet<Role> AppRoles => Set<Role>();
+    public DbSet<ContentImportLog> ContentImportLogs => Set<ContentImportLog>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -113,6 +114,18 @@ public class ApplicationDbContext : IdentityDbContext
                 .WithMany(r => r.Users)
                 .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ContentImportLog>(entity =>
+        {
+            entity.ToTable("ContentImportLogs");
+            entity.Property(x => x.EntityType).HasMaxLength(50).IsRequired();
+            entity.Property(x => x.SourceName).HasMaxLength(200).IsRequired();
+            entity.Property(x => x.SourceUrl).HasMaxLength(1000).IsRequired();
+            entity.Property(x => x.SourceLicense).HasMaxLength(200).IsRequired();
+            entity.Property(x => x.ContentHash).HasMaxLength(128).IsRequired();
+            entity.HasIndex(x => x.ContentHash).IsUnique();
+            entity.HasIndex(x => x.ImportedAt);
         });
     }
 }

@@ -140,3 +140,4 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\refi
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.genruntimeconfig.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\ref\E-learningProject.Web.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.sourcelink.json

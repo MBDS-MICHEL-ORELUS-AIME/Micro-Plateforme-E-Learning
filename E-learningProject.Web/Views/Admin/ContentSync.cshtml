@@ -1,0 +1,100 @@
+@model E_learningProject.Web.Models.AdminContentSyncViewModel
+
+@{
+    ViewData["Title"] = "Synchronisation des contenus";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">PR 2.1</p>
+            <h1 class="h2 mb-2">Synchronisation API-first et legal-first</h1>
+            <p class="hero-subtitle">Import de contenus pedagogiques gratuits avec verification source/licence et deduplication.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Dashboard">Retour dashboard</a>
+        </div>
+    </section>
+
+    @if (TempData["SyncSummary"] is string syncSummary)
+    {
+        <div class="alert alert-success" role="alert">@syncSummary</div>
+    }
+
+    @if (TempData["SyncErrors"] is string syncErrors)
+    {
+        <div class="alert alert-warning" role="alert">Erreurs detectees: @syncErrors</div>
+    }
+
+    <div class="page-panel page-panel--soft mb-4">
+        <form asp-controller="Admin" asp-action="RunContentSync" method="post" class="row g-2 align-items-end">
+            @Html.AntiForgeryToken()
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="maxModules">Volume d'import</label>
+                <select class="form-select" id="maxModules" name="maxModules">
+                    <option value="10">10 modules</option>
+                    <option value="20" selected>20 modules</option>
+                    <option value="40">40 modules</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-3 d-grid">
+                <button class="btn btn-brand" type="submit">Lancer la synchronisation</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="content-grid content-grid--two mb-4">
+        <article class="metric-card">
+            <span>Modules importes</span>
+            <strong>@Model.TotalImportedModules</strong>
+        </article>
+        <article class="metric-card">
+            <span>Sources distinctes</span>
+            <strong>@Model.DistinctSources</strong>
+        </article>
+        <article class="metric-card">
+            <span>Dernier import</span>
+            <strong>@(Model.LastImportAt?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</strong>
+        </article>
+    </div>
+
+    <div class="page-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Traçabilite</p>
+                <h2 class="h5">Registre des sources importees</h2>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-modern align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Imports</th>
+                        <th>Derniere synchro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Sources.Any())
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center text-muted py-3">Aucune synchronisation effectuee.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var source in Model.Sources)
+                        {
+                            <tr>
+                                <td>@source.SourceName</td>
+                                <td>@source.ImportsCount</td>
+                                <td>@source.LastImportedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
