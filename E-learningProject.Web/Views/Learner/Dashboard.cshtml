@@ -27,6 +27,25 @@
     </div>
 
     <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Modules termines</span>
+            <strong>@Model.CompletedModules / @Model.Modules.Count</strong>
+        </article>
+        <article class="metric-card">
+            <span>Certificats obtenus</span>
+            <strong>@Model.CertificatesEarned</strong>
+        </article>
+        <article class="metric-card">
+            <span>Tentatives de quiz</span>
+            <strong>@Model.QuizAttempts</strong>
+        </article>
+        <article class="metric-card">
+            <span>Quiz reussis</span>
+            <strong>@Model.PassedQuizzes</strong>
+        </article>
+    </div>
+
+    <div class="content-grid content-grid--two">
         @foreach (var module in Model.Modules)
         {
             <article class="content-card h-100">

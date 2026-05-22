@@ -1,64 +1,160 @@
+@model HomePublicViewModel
+
 @{
     ViewData["Title"] = "Accueil";
 }
 
-<section class="hero-section mb-4">
-    <div class="hero-copy">
-        <p class="eyebrow" style="font-size: 0.9rem;">Micro-Plateforme d'E-Learning</p>
-        <h1>Un espace moderne pour apprendre, enseigner et suivre la progression.</h1>
-        <p class="hero-text">Une plateforme claire pour diffuser vos cours, lancer des quiz, échanger dans la discussion et piloter l’activité avec une interface professionnelle.</p>
-        <div class="hero-actions">
-            <a class="btn btn-brand btn-lg" asp-controller="Courses" asp-action="Index">Découvrir les cours</a>
+<section class="classroom-hero mb-4">
+    <div class="classroom-hero__copy">
+        <p class="eyebrow classroom-hero__eyebrow">MicroLMS Campus</p>
+        <h1>Un accueil qui donne envie d'apprendre des la premiere minute.</h1>
+        <p class="classroom-hero__text">
+            Inspire de l'esprit Classroom: des cours clairs, des activites visibles, des discussions utiles
+            et un parcours qui motive les etudiants comme les enseignants.
+        </p>
+        <div class="classroom-hero__actions">
+            <a class="btn btn-brand btn-lg" asp-controller="Courses" asp-action="Index">Explorer les classes</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="Discussion" asp-action="Index">Entrer dans la discussion</a>
+        </div>
+        <div class="classroom-hero__chips">
+            <span><i class="bi bi-collection-play"></i> @Model.TotalModules modules</span>
+            <span><i class="bi bi-ui-checks-grid"></i> @Model.TotalQuizzes quiz</span>
+            <span><i class="bi bi-people"></i> @Model.TotalUsers utilisateurs</span>
         </div>
     </div>
-    <div class="hero-panel">
-        <div class="hero-stat">
-            <span>Modules</span>
-            <strong>Cours structurés</strong>
+
+    <aside class="classroom-hero__board" aria-label="Apercu classe">
+        <article class="class-mini-card class-mini-card--primary">
+            <p class="class-mini-card__label">Dernier module publie</p>
+            @if (Model.RecentModules.Any())
+            {
+                var module = Model.RecentModules.First();
+                <h2>@module.Title</h2>
+                <p>@module.LessonCount lecon(s) - @(module.HasQuiz ? "quiz associe" : "sans quiz")</p>
+            }
+            else
+            {
+                <h2>Aucun module</h2>
+                <p>Publiez votre premier module pour le voir ici.</p>
+            }
+            <div class="class-mini-card__meta">
+                <span>@Model.TotalThreads fil(s)</span>
+                <span>@Model.OpenThreads ouvert(s)</span>
+            </div>
+        </article>
+        <article class="class-mini-card">
+            <p class="class-mini-card__label">A faire aujourd'hui</p>
+            <ul>
+                <li>Consulter un module recent</li>
+                <li>Participer a une discussion</li>
+                <li>Lancer un quiz</li>
+            </ul>
+        </article>
+    </aside>
+</section>
+
+<section class="classroom-lanes mb-4" aria-label="Acces rapides par profil">
+    <article class="classroom-lane">
+        <div class="classroom-lane__icon"><i class="bi bi-mortarboard-fill"></i></div>
+        <h2>Etudiant</h2>
+        <p>Suivre les cours, marquer les lecons terminees et progresser semaine apres semaine.</p>
+        <a class="btn btn-sm btn-outline-dark" asp-controller="Learner" asp-action="Dashboard">Continuer mon parcours</a>
+    </article>
+    <article class="classroom-lane">
+        <div class="classroom-lane__icon"><i class="bi bi-easel2-fill"></i></div>
+        <h2>Enseignant</h2>
+        <p>Creer des modules, lancer des quiz intelligents et animer la discussion de la classe.</p>
+        <a class="btn btn-sm btn-outline-dark" asp-controller="Teacher" asp-action="Workspace">Gerer ma classe</a>
+    </article>
+    <article class="classroom-lane">
+        <div class="classroom-lane__icon"><i class="bi bi-shield-lock-fill"></i></div>
+        <h2>Administration</h2>
+        <p>Piloter les roles, les comptes et les indicateurs globaux depuis un tableau de bord unique.</p>
+        <a class="btn btn-sm btn-outline-dark" asp-controller="Admin" asp-action="Dashboard">Voir le dashboard</a>
+    </article>
+</section>
+
+<section class="classroom-showcase mb-4" aria-label="Parcours recommends">
+    <div class="classroom-showcase__heading">
+        <div>
+            <p class="eyebrow mb-2">Parcours du moment</p>
+            <h2 class="h4 mb-0">Des classes qui donnent envie de revenir</h2>
         </div>
-        <div class="hero-stat">
-            <span>Engagement</span>
-            <strong>Quiz & discussions</strong>
-        </div>
-        <div class="hero-stat">
-            <span>Suivi</span>
-            <strong>Progression visible</strong>
-        </div>
+        <a class="btn btn-outline-dark" asp-controller="Courses" asp-action="Index">Voir tous les cours</a>
+    </div>
+    <div class="classroom-showcase__grid">
+        @if (!Model.RecentModules.Any() && !Model.RecentQuizzes.Any() && !Model.RecentThreads.Any())
+        {
+            <article class="showcase-card">
+                <p class="showcase-card__kicker">Aucune donnee</p>
+                <h3>Commencez par publier un module</h3>
+                <p>La page d'accueil affichera automatiquement vos vraies donnees.</p>
+                <div class="showcase-card__footer">
+                    <span>Base connectee</span>
+                    <span>Live</span>
+                </div>
+            </article>
+        }
+
+        @foreach (var module in Model.RecentModules)
+        {
+            <article class="showcase-card">
+                <p class="showcase-card__kicker">Module</p>
+                <h3>@module.Title</h3>
+                <p>Contenu recent publie dans la plateforme.</p>
+                <div class="showcase-card__footer">
+                    <span>@module.LessonCount lecon(s)</span>
+                    <span>@(module.HasQuiz ? "Quiz lie" : "Sans quiz")</span>
+                </div>
+            </article>
+        }
+
+        @foreach (var quiz in Model.RecentQuizzes)
+        {
+            <article class="showcase-card">
+                <p class="showcase-card__kicker">Quiz</p>
+                <h3>@quiz.Title</h3>
+                <p>Evaluation disponible pour la classe.</p>
+                <div class="showcase-card__footer">
+                    <span>@quiz.QuestionCount question(s)</span>
+                    <span>Seuil @quiz.PassingScore%</span>
+                </div>
+            </article>
+        }
+
+        @foreach (var thread in Model.RecentThreads)
+        {
+            <article class="showcase-card">
+                <p class="showcase-card__kicker">Discussion</p>
+                <h3>@thread.Title</h3>
+                <p>Fil recent de la communaute.</p>
+                <div class="showcase-card__footer">
+                    <span>@thread.ReplyCount reponse(s)</span>
+                    <span>@(thread.IsResolved ? "Resolue" : "Ouverte")</span>
+                </div>
+            </article>
+        }
     </div>
 </section>
 
-<div class="row g-4 mb-4">
-    <div class="col-12 col-md-4">
-        <div class="feature-card h-100">
-            <div class="feature-icon"><i class="bi bi-mortarboard"></i></div>
-            <h2 class="h5">Apprenant</h2>
-            <p class="mb-0">Lecteur de cours épuré, progression par module, quiz et certificats.</p>
-        </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="feature-card h-100">
-            <div class="feature-icon"><i class="bi bi-easel2"></i></div>
-            <h2 class="h5">Enseignant</h2>
-            <p class="mb-0">Création de quiz, contenus pédagogiques et ressources multimédia.</p>
-        </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="feature-card h-100">
-            <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
-            <h2 class="h5">Coordination</h2>
-            <p class="mb-0">Pilotage des utilisateurs, suivi global et supervision du parcours.</p>
-        </div>
-    </div>
-</div>
-
-<div class="callout-panel">
+<section class="classroom-activity callout-panel" aria-label="Activites recentes">
     <div>
-        <p class="eyebrow mb-2">Navigation rapide</p>
-        <h2 class="h5 mb-2">Passez directement aux contenus clés</h2>
-        <p class="mb-0">Explorez les cours, le quiz et les discussions sans repasser par la page d’accueil.</p>
+        <p class="eyebrow mb-2">Activite en direct</p>
+        <h2 class="h5 mb-2">Une plateforme qui bouge tous les jours</h2>
+        <p class="mb-0">Nouveaux modules publies, quiz completes, discussions resolues: tout est visible en un coup d'oeil.</p>
     </div>
-    <div class="callout-actions">
-        <a class="btn btn-brand" asp-controller="Courses" asp-action="Index">Voir les cours</a>
-        <a class="btn btn-outline-dark" asp-controller="Quiz" asp-action="Index">Accéder aux quiz</a>
+    <div class="classroom-activity__stats">
+        <div>
+            <strong>@Model.TotalUsers</strong>
+            <span>utilisateurs</span>
+        </div>
+        <div>
+            <strong>@Model.TotalQuizAttempts</strong>
+            <span>tentatives quiz</span>
+        </div>
+        <div>
+            <strong>@Model.OpenThreads</strong>
+            <span>threads ouverts</span>
+        </div>
     </div>
-</div>
+</section>

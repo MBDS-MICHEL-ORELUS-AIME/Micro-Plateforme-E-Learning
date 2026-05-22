@@ -3,6 +3,10 @@ namespace E_learningProject.Web.Models;
 public class DiscussionIndexViewModel
 {
     public string StudentId { get; set; } = string.Empty;
+    public int TotalThreads { get; set; }
+    public int OpenThreads { get; set; }
+    public int ResolvedThreads { get; set; }
+    public int TotalReplies { get; set; }
     public List<DiscussionThreadListItemViewModel> Threads { get; set; } = new();
 }
 

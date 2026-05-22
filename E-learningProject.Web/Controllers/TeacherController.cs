@@ -51,8 +51,19 @@ public class TeacherController : Controller
             })
             .ToListAsync(cancellationToken);
 
+        var quizIds = quizzes.Select(q => q.QuizId).ToList();
+        var quizResultsQuery = _dbContext.QuizResults.AsNoTracking().Where(r => quizIds.Contains(r.QuizId));
+        var totalAttempts = await quizResultsQuery.CountAsync(cancellationToken);
+        var passedAttempts = await quizResultsQuery.CountAsync(r => r.IsPassed, cancellationToken);
+        var averageScore = totalAttempts == 0
+            ? 0
+            : await quizResultsQuery.AverageAsync(r => r.Score, cancellationToken);
+
         var viewModel = new TeacherMyQuizzesViewModel
         {
+            TotalAttempts = totalAttempts,
+            PassedAttempts = passedAttempts,
+            AverageScore = Math.Round(averageScore, 1),
             Quizzes = quizzes
         };
 
@@ -403,6 +414,24 @@ public class TeacherController : Controller
             })
             .ToListAsync(cancellationToken);
 
+        var totalModules = await _dbContext.Modules.AsNoTracking().CountAsync(cancellationToken);
+        var totalLessons = await _dbContext.Lessons.AsNoTracking().CountAsync(cancellationToken);
+        var totalQuizzes = await _dbContext.Quizzes.AsNoTracking().CountAsync(cancellationToken);
+        var openDiscussions = await _dbContext.DiscussionThreads.AsNoTracking().CountAsync(t => !t.IsResolved, cancellationToken);
+
+        var recentDiscussionThreads = await _dbContext.DiscussionThreads
+            .AsNoTracking()
+            .OrderByDescending(t => t.CreatedAt)
+            .Take(5)
+            .Select(t => new TeacherDiscussionSnapshotViewModel
+            {
+                ThreadId = t.Id,
+                Title = t.Title,
+                ReplyCount = t.Replies.Count,
+                IsResolved = t.IsResolved
+            })
+            .ToListAsync(cancellationToken);
+
         return new TeacherWorkspaceViewModel
         {
             ModuleForm = new TeacherModuleCreateViewModel(),
@@ -413,6 +442,11 @@ public class TeacherController : Controller
             },
             QuizForm = BuildDefaultQuizForm(modules),
             MediaForm = new TeacherMediaUploadViewModel(),
+            TotalModules = totalModules,
+            TotalLessons = totalLessons,
+            TotalQuizzes = totalQuizzes,
+            OpenDiscussions = openDiscussions,
+            RecentDiscussionThreads = recentDiscussionThreads,
             ModuleOptions = modules,
             LessonOptions = lessons,
             ExistingQuizzes = quizzes

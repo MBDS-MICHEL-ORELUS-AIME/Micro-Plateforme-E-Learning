@@ -3,6 +3,12 @@
 @{
     ViewData["Title"] = "Fil de discussion";
     var activeStudentId = (string?)ViewData["ActiveStudentId"] ?? "student.demo";
+    var replyCount = Model.Replies.Count;
+    var participants = Model.Replies
+        .Select(r => r.AuthorId)
+        .Append(Model.StudentId)
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .Count();
 }
 
 <div class="page-shell">
@@ -10,7 +16,7 @@
         <div>
             <p class="eyebrow mb-2">Discussion</p>
             <h1 class="h2 mb-2">@Model.Title</h1>
-            <p class="hero-subtitle">Ouvert par @Model.StudentId · @Model.CreatedAt</p>
+            <p class="hero-subtitle">Ouvert par @Model.StudentId · @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
         </div>
         <div class="d-flex flex-column align-items-end gap-2">
             <span class="status-chip @(Model.IsResolved ? "status-chip--success" : "status-chip--warning")">
@@ -26,6 +32,25 @@
             </form>
         </div>
     </section>
+
+    <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Réponses</span>
+            <strong>@replyCount</strong>
+        </article>
+        <article class="metric-card">
+            <span>Participants</span>
+            <strong>@participants</strong>
+        </article>
+        <article class="metric-card">
+            <span>Dernière activité</span>
+            <strong>@((replyCount == 0 ? Model.CreatedAt : Model.Replies.Last().CreatedAt).ToString("dd/MM HH:mm"))</strong>
+        </article>
+        <article class="metric-card">
+            <span>Statut</span>
+            <strong>@(Model.IsResolved ? "Résolu" : "Ouvert")</strong>
+        </article>
+    </div>
 
     <div class="page-panel">
         <div class="section-heading">
@@ -47,7 +72,7 @@
                     <article class="reply-card">
                         <div class="reply-meta">
                             <strong>@reply.AuthorId</strong>
-                            <small>@reply.CreatedAt</small>
+                            <small>@reply.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small>
                         </div>
                         <p class="mb-0">@reply.Message</p>
                     </article>

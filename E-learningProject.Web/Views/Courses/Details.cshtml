@@ -2,6 +2,11 @@
 
 @{
     ViewData["Title"] = "Détail du module";
+    var totalLessons = Model.Lessons.Count;
+    var readLessons = Model.Lessons.Count(l => l.IsRead);
+    var unreadLessons = totalLessons - readLessons;
+    var lessonsWithVideo = Model.Lessons.Count(l => !string.IsNullOrWhiteSpace(l.VideoUrl));
+    var lessonsWithPdf = Model.Lessons.Count(l => !string.IsNullOrWhiteSpace(l.PdfPath));
 }
 
 <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
@@ -32,6 +37,25 @@
             <span>Avancement global</span>
             <span>@Model.Lessons.Count leçons</span>
         </div>
+    </div>
+
+    <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Leçons lues</span>
+            <strong>@readLessons / @totalLessons</strong>
+        </article>
+        <article class="metric-card">
+            <span>Leçons restantes</span>
+            <strong>@unreadLessons</strong>
+        </article>
+        <article class="metric-card">
+            <span>Leçons avec vidéo</span>
+            <strong>@lessonsWithVideo</strong>
+        </article>
+        <article class="metric-card">
+            <span>Leçons avec PDF</span>
+            <strong>@lessonsWithPdf</strong>
+        </article>
     </div>
 
     <div class="content-grid">

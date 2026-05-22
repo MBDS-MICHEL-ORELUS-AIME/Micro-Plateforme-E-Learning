@@ -18,22 +18,28 @@ public class DiscussionController : Controller
 
     public async Task<IActionResult> Index(string studentId = DemoStudentId, CancellationToken cancellationToken = default)
     {
+        var threads = await _dbContext.DiscussionThreads
+            .AsNoTracking()
+            .OrderByDescending(t => t.CreatedAt)
+            .Select(t => new DiscussionThreadListItemViewModel
+            {
+                ThreadId = t.Id,
+                Title = t.Title,
+                StudentId = t.StudentId,
+                ReplyCount = t.Replies.Count,
+                IsResolved = t.IsResolved,
+                CreatedAt = t.CreatedAt
+            })
+            .ToListAsync(cancellationToken);
+
         var viewModel = new DiscussionIndexViewModel
         {
             StudentId = studentId,
-            Threads = await _dbContext.DiscussionThreads
-                .AsNoTracking()
-                .OrderByDescending(t => t.CreatedAt)
-                .Select(t => new DiscussionThreadListItemViewModel
-                {
-                    ThreadId = t.Id,
-                    Title = t.Title,
-                    StudentId = t.StudentId,
-                    ReplyCount = t.Replies.Count,
-                    IsResolved = t.IsResolved,
-                    CreatedAt = t.CreatedAt
-                })
-                .ToListAsync(cancellationToken)
+            TotalThreads = threads.Count,
+            OpenThreads = threads.Count(t => !t.IsResolved),
+            ResolvedThreads = threads.Count(t => t.IsResolved),
+            TotalReplies = threads.Sum(t => t.ReplyCount),
+            Threads = threads
         };
 
         return View(viewModel);

@@ -1,4 +1,4 @@
-@model IReadOnlyList<E_learningProject.Core.Entities.Module>
+@model E_learningProject.Web.Models.CourseCatalogViewModel
 
 @{
     ViewData["Title"] = "Cours";
@@ -29,7 +29,26 @@
         </div>
     </div>
 
-    @if (!Model.Any())
+    <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Modules disponibles</span>
+            <strong>@Model.TotalModules</strong>
+        </article>
+        <article class="metric-card">
+            <span>Lecons publiees</span>
+            <strong>@Model.TotalLessons</strong>
+        </article>
+        <article class="metric-card">
+            <span>Modules avec quiz</span>
+            <strong>@Model.TotalQuizzes</strong>
+        </article>
+        <article class="metric-card">
+            <span>Inscriptions completees</span>
+            <strong>@Model.CompletedEnrollments / @Model.TotalEnrollments</strong>
+        </article>
+    </div>
+
+    @if (!Model.Modules.Any())
     {
         <div class="page-panel text-center py-5">
             <div class="feature-icon mx-auto"><i class="bi bi-journal-x"></i></div>
@@ -40,7 +59,7 @@
     else
     {
         <div class="content-grid content-grid--two">
-            @foreach (var module in Model)
+            @foreach (var module in Model.Modules)
             {
                 <article class="content-card h-100">
                     <div class="card-body d-flex flex-column">

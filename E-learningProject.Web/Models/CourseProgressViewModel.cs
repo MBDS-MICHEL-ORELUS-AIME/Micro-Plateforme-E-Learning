@@ -1,5 +1,15 @@
 namespace E_learningProject.Web.Models;
 
+public class CourseCatalogViewModel
+{
+    public int TotalModules { get; set; }
+    public int TotalLessons { get; set; }
+    public int TotalQuizzes { get; set; }
+    public int TotalEnrollments { get; set; }
+    public int CompletedEnrollments { get; set; }
+    public IReadOnlyList<E_learningProject.Core.Entities.Module> Modules { get; set; } = [];
+}
+
 public class CourseProgressViewModel
 {
     public int ModuleId { get; set; }

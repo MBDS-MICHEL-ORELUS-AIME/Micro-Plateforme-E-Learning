@@ -21,6 +21,25 @@
         <div class="page-panel page-panel--soft status-chip status-chip--success">@successMessage</div>
     }
 
+    <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Tentatives (vos quiz)</span>
+            <strong>@Model.TotalAttempts</strong>
+        </article>
+        <article class="metric-card">
+            <span>Reussites</span>
+            <strong>@Model.PassedAttempts</strong>
+        </article>
+        <article class="metric-card">
+            <span>Score moyen</span>
+            <strong>@Model.AverageScore%</strong>
+        </article>
+        <article class="metric-card">
+            <span>Taux de reussite</span>
+            <strong>@(Model.TotalAttempts == 0 ? 0 : Math.Round((double)Model.PassedAttempts * 100 / Model.TotalAttempts, 1))%</strong>
+        </article>
+    </div>
+
     <div class="page-panel">
         @if (!Model.Quizzes.Any())
         {

@@ -29,7 +29,22 @@ public class CoursesController : Controller
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
         var modules = await _moduleRepository.GetAllAsync(cancellationToken);
-        return View(modules);
+        var totalLessons = modules.Sum(m => m.Lessons.Count);
+        var totalQuizzes = modules.Count(m => m.QuizId.HasValue);
+        var totalEnrollments = await _dbContext.Enrollments.AsNoTracking().CountAsync(cancellationToken);
+        var completedEnrollments = await _dbContext.Enrollments.AsNoTracking().CountAsync(e => e.IsCompleted, cancellationToken);
+
+        var viewModel = new CourseCatalogViewModel
+        {
+            TotalModules = modules.Count,
+            TotalLessons = totalLessons,
+            TotalQuizzes = totalQuizzes,
+            TotalEnrollments = totalEnrollments,
+            CompletedEnrollments = completedEnrollments,
+            Modules = modules
+        };
+
+        return View(viewModel);
     }
 
     public async Task<IActionResult> Details(int id, CancellationToken cancellationToken = default)

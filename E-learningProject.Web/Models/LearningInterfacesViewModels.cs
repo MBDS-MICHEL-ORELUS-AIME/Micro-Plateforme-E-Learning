@@ -8,6 +8,11 @@ public class LearnerDashboardViewModel
 {
     public string StudentId { get; set; } = string.Empty;
     public decimal OverallProgress { get; set; }
+    public int CompletedModules { get; set; }
+    public int CertificatesEarned { get; set; }
+    public int QuizAttempts { get; set; }
+    public int PassedQuizzes { get; set; }
+    public int DiscussionsOpened { get; set; }
     public List<LearnerModuleCardViewModel> Modules { get; set; } = new();
 }
 
@@ -48,6 +53,11 @@ public class TeacherWorkspaceViewModel
     public TeacherLessonCreateViewModel LessonForm { get; set; } = new();
     public TeacherQuizCreateViewModel QuizForm { get; set; } = new();
     public TeacherMediaUploadViewModel MediaForm { get; set; } = new();
+    public int TotalModules { get; set; }
+    public int TotalLessons { get; set; }
+    public int TotalQuizzes { get; set; }
+    public int OpenDiscussions { get; set; }
+    public List<TeacherDiscussionSnapshotViewModel> RecentDiscussionThreads { get; set; } = new();
     public List<TeacherOptionViewModel> ModuleOptions { get; set; } = new();
     public List<TeacherLessonOptionViewModel> LessonOptions { get; set; } = new();
     public List<TeacherQuizSummaryViewModel> ExistingQuizzes { get; set; } = new();
@@ -83,7 +93,18 @@ public class TeacherLessonCreateViewModel
 
 public class TeacherMyQuizzesViewModel
 {
+    public int TotalAttempts { get; set; }
+    public int PassedAttempts { get; set; }
+    public double AverageScore { get; set; }
     public List<TeacherQuizManageItemViewModel> Quizzes { get; set; } = new();
+}
+
+public class TeacherDiscussionSnapshotViewModel
+{
+    public int ThreadId { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public int ReplyCount { get; set; }
+    public bool IsResolved { get; set; }
 }
 
 public class TeacherQuizManageItemViewModel

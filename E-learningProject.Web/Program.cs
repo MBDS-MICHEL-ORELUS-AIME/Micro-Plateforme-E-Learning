@@ -193,7 +193,7 @@ using (var scope = app.Services.CreateScope())
 
             foreach (var defaultUser in defaultUsers)
             {
-                var userExists = await dbContext.AppUsers.AnyAsync(u => u.UserName == defaultUser.UserName);
+                var userExists = await dbContext.AppUsers.AnyAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
                 if (userExists)
                 {
                     continue;

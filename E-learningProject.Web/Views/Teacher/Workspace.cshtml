@@ -28,6 +28,25 @@
     }
 
     <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Modules publies</span>
+            <strong>@Model.TotalModules</strong>
+        </article>
+        <article class="metric-card">
+            <span>Lecons disponibles</span>
+            <strong>@Model.TotalLessons</strong>
+        </article>
+        <article class="metric-card">
+            <span>Quiz actifs</span>
+            <strong>@Model.TotalQuizzes</strong>
+        </article>
+        <article class="metric-card">
+            <span>Discussions ouvertes</span>
+            <strong>@Model.OpenDiscussions</strong>
+        </article>
+    </div>
+
+    <div class="content-grid content-grid--two">
         <div class="page-panel">
             <div class="section-heading">
                 <div>
@@ -204,6 +223,33 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                             <span>@q.Title</span>
                             <span class="status-chip status-chip--neutral">@q.QuestionCount question(s)</span>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Communaute</p>
+                    <h2 class="h5">Derniers fils de discussion</h2>
+                </div>
+            </div>
+            @if (!Model.RecentDiscussionThreads.Any())
+            {
+                <p class="text-muted mb-0">Aucune discussion pour le moment.</p>
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var thread in Model.RecentDiscussionThreads)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            <a class="text-decoration-none" asp-controller="Discussion" asp-action="Details" asp-route-id="@thread.ThreadId">@thread.Title</a>
+                            <span class="status-chip @(thread.IsResolved ? "status-chip--success" : "status-chip--warning")">
+                                @thread.ReplyCount rep.
+                            </span>
                         </li>
                     }
                 </ul>

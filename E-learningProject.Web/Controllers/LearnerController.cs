@@ -54,11 +54,33 @@ public class LearnerController : Controller
 
         var overallTotal = moduleCards.Sum(m => m.TotalLessons);
         var overallRead = moduleCards.Sum(m => m.ReadLessons);
+        var completedModules = moduleCards.Count(m => m.ProgressPercent >= 100m);
+
+        var certificatesEarned = await _dbContext.Certificates
+            .AsNoTracking()
+            .CountAsync(c => c.StudentId == studentId, cancellationToken);
+
+        var quizAttempts = await _dbContext.QuizResults
+            .AsNoTracking()
+            .CountAsync(r => r.StudentId == studentId, cancellationToken);
+
+        var passedQuizzes = await _dbContext.QuizResults
+            .AsNoTracking()
+            .CountAsync(r => r.StudentId == studentId && r.IsPassed, cancellationToken);
+
+        var discussionsOpened = await _dbContext.DiscussionThreads
+            .AsNoTracking()
+            .CountAsync(t => t.StudentId == studentId, cancellationToken);
 
         var viewModel = new LearnerDashboardViewModel
         {
             StudentId = studentId,
             OverallProgress = _progressService.CalculateCompletion(overallRead, overallTotal),
+            CompletedModules = completedModules,
+            CertificatesEarned = certificatesEarned,
+            QuizAttempts = quizAttempts,
+            PassedQuizzes = passedQuizzes,
+            DiscussionsOpened = discussionsOpened,
             Modules = moduleCards
         };
 

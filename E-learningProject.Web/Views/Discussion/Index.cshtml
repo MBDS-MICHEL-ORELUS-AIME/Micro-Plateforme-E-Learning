@@ -12,9 +12,28 @@
             <p class="hero-subtitle">Créez un fil de discussion, suivez les réponses et marquez les échanges résolus lorsqu’ils sont terminés.</p>
         </div>
         <div class="page-hero-actions">
-            <span class="status-chip status-chip--neutral">@Model.Threads.Count fils</span>
+            <span class="status-chip status-chip--neutral">@Model.TotalThreads fils</span>
         </div>
     </section>
+
+    <div class="content-grid content-grid--two">
+        <article class="metric-card">
+            <span>Fils ouverts</span>
+            <strong>@Model.OpenThreads</strong>
+        </article>
+        <article class="metric-card">
+            <span>Fils resolus</span>
+            <strong>@Model.ResolvedThreads</strong>
+        </article>
+        <article class="metric-card">
+            <span>Total reponses</span>
+            <strong>@Model.TotalReplies</strong>
+        </article>
+        <article class="metric-card">
+            <span>Taux de resolution</span>
+            <strong>@(Model.TotalThreads == 0 ? 0 : Math.Round((double)Model.ResolvedThreads * 100 / Model.TotalThreads, 1))%</strong>
+        </article>
+    </div>
 
     <div class="page-panel page-panel--soft">
         <div class="section-heading">
