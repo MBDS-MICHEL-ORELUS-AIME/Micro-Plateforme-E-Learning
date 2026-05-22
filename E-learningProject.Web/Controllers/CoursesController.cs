@@ -26,17 +26,53 @@ public class CoursesController : Controller
         _certificateService = certificateService;
     }
 
-    public async Task<IActionResult> Index(CancellationToken cancellationToken)
+    public async Task<IActionResult> Index(string? q, string quiz = "all", int page = 1, int pageSize = 6, CancellationToken cancellationToken = default)
     {
-        var modules = await _moduleRepository.GetAllAsync(cancellationToken);
-        var totalLessons = modules.Sum(m => m.Lessons.Count);
-        var totalQuizzes = modules.Count(m => m.QuizId.HasValue);
+        page = page <= 0 ? 1 : page;
+        pageSize = pageSize is < 1 or > 24 ? 6 : pageSize;
+        quiz = string.IsNullOrWhiteSpace(quiz) ? "all" : quiz.Trim().ToLowerInvariant();
+
+        var baseModulesQuery = _dbContext.Modules
+            .AsNoTracking()
+            .Include(m => m.Lessons)
+            .AsQueryable();
+
+        var totalModules = await baseModulesQuery.CountAsync(cancellationToken);
+        var totalLessons = await baseModulesQuery.SelectMany(m => m.Lessons).CountAsync(cancellationToken);
+        var totalQuizzes = await baseModulesQuery.CountAsync(m => m.QuizId.HasValue, cancellationToken);
         var totalEnrollments = await _dbContext.Enrollments.AsNoTracking().CountAsync(cancellationToken);
         var completedEnrollments = await _dbContext.Enrollments.AsNoTracking().CountAsync(e => e.IsCompleted, cancellationToken);
 
+        var filteredQuery = baseModulesQuery;
+
+        if (!string.IsNullOrWhiteSpace(q))
+        {
+            var search = q.Trim().ToLower();
+            filteredQuery = filteredQuery.Where(m => m.Title.ToLower().Contains(search) || m.Description.ToLower().Contains(search));
+        }
+
+        filteredQuery = quiz switch
+        {
+            "withquiz" => filteredQuery.Where(m => m.QuizId.HasValue),
+            "withoutquiz" => filteredQuery.Where(m => !m.QuizId.HasValue),
+            _ => filteredQuery
+        };
+
+        var totalItems = await filteredQuery.CountAsync(cancellationToken);
+        var modules = await filteredQuery
+            .OrderBy(m => m.Title)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
         var viewModel = new CourseCatalogViewModel
         {
-            TotalModules = modules.Count,
+            SearchTerm = q?.Trim() ?? string.Empty,
+            QuizFilter = quiz,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalItems = totalItems,
+            TotalModules = totalModules,
             TotalLessons = totalLessons,
             TotalQuizzes = totalQuizzes,
             TotalEnrollments = totalEnrollments,

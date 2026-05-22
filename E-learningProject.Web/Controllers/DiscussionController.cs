@@ -16,11 +16,40 @@ public class DiscussionController : Controller
         _dbContext = dbContext;
     }
 
-    public async Task<IActionResult> Index(string studentId = DemoStudentId, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> Index(string studentId = DemoStudentId, string? q = null, string status = "all", int page = 1, int pageSize = 8, CancellationToken cancellationToken = default)
     {
-        var threads = await _dbContext.DiscussionThreads
+        page = page <= 0 ? 1 : page;
+        pageSize = pageSize is < 1 or > 40 ? 8 : pageSize;
+        status = string.IsNullOrWhiteSpace(status) ? "all" : status.Trim().ToLowerInvariant();
+
+        var baseQuery = _dbContext.DiscussionThreads
             .AsNoTracking()
+            .AsQueryable();
+
+        var totalThreads = await baseQuery.CountAsync(cancellationToken);
+        var openThreads = await baseQuery.CountAsync(t => !t.IsResolved, cancellationToken);
+        var resolvedThreads = await baseQuery.CountAsync(t => t.IsResolved, cancellationToken);
+        var totalReplies = await baseQuery.Select(t => t.Replies.Count).SumAsync(cancellationToken);
+
+        if (!string.IsNullOrWhiteSpace(q))
+        {
+            var search = q.Trim().ToLower();
+            baseQuery = baseQuery.Where(t => t.Title.ToLower().Contains(search) || t.StudentId.ToLower().Contains(search));
+        }
+
+        baseQuery = status switch
+        {
+            "open" => baseQuery.Where(t => !t.IsResolved),
+            "resolved" => baseQuery.Where(t => t.IsResolved),
+            _ => baseQuery
+        };
+
+        var totalItems = await baseQuery.CountAsync(cancellationToken);
+
+        var threads = await baseQuery
             .OrderByDescending(t => t.CreatedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
             .Select(t => new DiscussionThreadListItemViewModel
             {
                 ThreadId = t.Id,
@@ -35,10 +64,15 @@ public class DiscussionController : Controller
         var viewModel = new DiscussionIndexViewModel
         {
             StudentId = studentId,
-            TotalThreads = threads.Count,
-            OpenThreads = threads.Count(t => !t.IsResolved),
-            ResolvedThreads = threads.Count(t => t.IsResolved),
-            TotalReplies = threads.Sum(t => t.ReplyCount),
+            SearchTerm = q?.Trim() ?? string.Empty,
+            StatusFilter = status,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalItems = totalItems,
+            TotalThreads = totalThreads,
+            OpenThreads = openThreads,
+            ResolvedThreads = resolvedThreads,
+            TotalReplies = totalReplies,
             Threads = threads
         };
 

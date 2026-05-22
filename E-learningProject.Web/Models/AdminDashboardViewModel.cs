@@ -2,6 +2,7 @@ namespace E_learningProject.Web.Models;
 
 public class AdminDashboardViewModel
 {
+    public bool IsSuperAdminView { get; set; }
     public int SelectedPeriodDays { get; set; }
     public int TotalModules { get; set; }
     public int TotalLessons { get; set; }
@@ -15,6 +16,8 @@ public class AdminDashboardViewModel
     public List<ModuleOverviewItem> RecentModules { get; set; } = new();
     public List<QuizAttemptItem> RecentQuizAttempts { get; set; } = new();
     public List<DiscussionThreadItem> RecentDiscussionThreads { get; set; } = new();
+    public List<UserRoleBreakdownItem> UsersByRole { get; set; } = new();
+    public List<CertificateIssueItem> RecentCertificates { get; set; } = new();
     public List<string> EnrollmentChartLabels { get; set; } = new();
     public List<int> EnrollmentChartValues { get; set; } = new();
     public List<string> QuizChartLabels { get; set; } = new();
@@ -44,4 +47,18 @@ public class DiscussionThreadItem
     public int ReplyCount { get; set; }
     public bool IsResolved { get; set; }
     public DateTime CreatedAt { get; set; }
+}
+
+public class UserRoleBreakdownItem
+{
+    public string RoleName { get; set; } = string.Empty;
+    public int Count { get; set; }
+}
+
+public class CertificateIssueItem
+{
+    public string StudentId { get; set; } = string.Empty;
+    public string ModuleTitle { get; set; } = string.Empty;
+    public DateTime IssueDate { get; set; }
+    public string UniqueCode { get; set; } = string.Empty;
 }

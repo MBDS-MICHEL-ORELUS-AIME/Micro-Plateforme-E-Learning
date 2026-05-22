@@ -2,12 +2,19 @@ namespace E_learningProject.Web.Models;
 
 public class CourseCatalogViewModel
 {
+    public string SearchTerm { get; set; } = string.Empty;
+    public string QuizFilter { get; set; } = "all";
+    public int CurrentPage { get; set; } = 1;
+    public int PageSize { get; set; } = 6;
+    public int TotalItems { get; set; }
     public int TotalModules { get; set; }
     public int TotalLessons { get; set; }
     public int TotalQuizzes { get; set; }
     public int TotalEnrollments { get; set; }
     public int CompletedEnrollments { get; set; }
     public IReadOnlyList<E_learningProject.Core.Entities.Module> Modules { get; set; } = [];
+
+    public int TotalPages => Math.Max(1, (int)Math.Ceiling(TotalItems / (double)PageSize));
 }
 
 public class CourseProgressViewModel

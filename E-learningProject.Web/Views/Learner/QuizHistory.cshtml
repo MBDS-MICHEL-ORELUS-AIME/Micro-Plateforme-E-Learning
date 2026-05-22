@@ -1,0 +1,76 @@
+@model E_learningProject.Web.Models.LearnerQuizHistoryViewModel
+
+@{
+    ViewData["Title"] = "Historique des quiz";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Evaluation</p>
+            <h1 class="h2 mb-2">Historique des tentatives</h1>
+            <p class="hero-subtitle">@Model.StudentId, suivez vos performances quiz dans le temps.</p>
+        </div>
+        <a class="btn btn-outline-dark" asp-controller="Learner" asp-action="Dashboard">
+            <i class="bi bi-arrow-left me-1"></i>Retour dashboard
+        </a>
+    </section>
+
+    <div class="content-grid content-grid--two mb-3">
+        <article class="metric-card">
+            <span>Tentatives</span>
+            <strong>@Model.TotalAttempts</strong>
+        </article>
+        <article class="metric-card">
+            <span>Reussites</span>
+            <strong>@Model.PassedAttempts</strong>
+        </article>
+        <article class="metric-card">
+            <span>Taux de reussite</span>
+            <strong>@(Model.TotalAttempts == 0 ? 0 : Math.Round((double)Model.PassedAttempts * 100 / Model.TotalAttempts, 1))%</strong>
+        </article>
+        <article class="metric-card">
+            <span>Score moyen</span>
+            <strong>@Model.AverageScore%</strong>
+        </article>
+    </div>
+
+    <div class="page-panel">
+        <div class="table-responsive">
+            <table class="table table-modern align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Quiz</th>
+                        <th>Score</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Attempts.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">Aucune tentative enregistree pour le moment.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var attempt in Model.Attempts)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@attempt.QuizTitle</td>
+                                <td>@Math.Round(attempt.Score, 1)%</td>
+                                <td>
+                                    <span class="status-chip @(attempt.IsPassed ? "status-chip--success" : "status-chip--warning")">
+                                        @(attempt.IsPassed ? "Reussi" : "Echoue")
+                                    </span>
+                                </td>
+                                <td>@attempt.AttemptDate.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

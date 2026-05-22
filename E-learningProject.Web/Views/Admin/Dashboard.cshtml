@@ -3,19 +3,23 @@
 
 @{
     ViewData["Title"] = "Tableau de bord administrateur";
+    var dashboardTitle = Model.IsSuperAdminView ? "Tableau de bord administrateur" : "Tableau de bord coordinateur";
 }
 
 <div class="page-shell">
     <section class="page-hero">
         <div>
             <p class="eyebrow mb-2">Vue d’ensemble</p>
-            <h1 class="h2 mb-2">Tableau de bord administrateur</h1>
+            <h1 class="h2 mb-2">@dashboardTitle</h1>
             <p class="hero-subtitle">Suivez l’activité de la plateforme, les cours, les quiz et les discussions dans un seul espace.</p>
         </div>
         <div class="page-hero-actions">
-            <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Users">
-                <i class="bi bi-people me-1"></i>Gerer les utilisateurs
-            </a>
+            @if (Model.IsSuperAdminView)
+            {
+                <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Users">
+                    <i class="bi bi-people me-1"></i>Gerer les utilisateurs
+                </a>
+            }
             <span class="status-chip status-chip--neutral">Période active: @Model.SelectedPeriodDays jours</span>
         </div>
     </section>
@@ -84,6 +88,13 @@
                 <p class="eyebrow mb-1">Évaluation</p>
                 <h2 class="h5 mb-2">Taux de réussite quiz</h2>
                 <p class="display-6 mb-0">@Model.QuizPassRate%</p>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-body">
+                <p class="eyebrow mb-1">Discussion</p>
+                <h2 class="h5 mb-2">Fils actifs</h2>
+                <p class="display-6 mb-0">@Model.RecentDiscussionThreads.Count(x => !x.IsResolved)</p>
             </div>
         </div>
     </div>
@@ -234,6 +245,84 @@
                                 <td>
                                     <span class="status-chip @(thread.IsResolved ? "status-chip--success" : "status-chip--warning")">@(thread.IsResolved ? "Résolu" : "Ouvert")</span>
                                 </td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Utilisateurs</p>
+                    <h2 class="h5">Répartition par rôle</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Rôle</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.UsersByRole.Any())
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center text-muted py-3">Aucune donnée utilisateur.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var role in Model.UsersByRole)
+                        {
+                            <tr>
+                                <td>@role.RoleName</td>
+                                <td>@role.Count</td>
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Certificats</p>
+                    <h2 class="h5">Dernières émissions</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Apprenant</th>
+                            <th>Module</th>
+                            <th>Date</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @if (!Model.RecentCertificates.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-3">Aucun certificat récent.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var certificate in Model.RecentCertificates)
+                        {
+                            <tr>
+                                <td>@certificate.StudentId</td>
+                                <td>@certificate.ModuleTitle</td>
+                                <td>@certificate.IssueDate.ToString("dd/MM/yyyy")</td>
+                                <td>@certificate.UniqueCode</td>
                             </tr>
                         }
                     }

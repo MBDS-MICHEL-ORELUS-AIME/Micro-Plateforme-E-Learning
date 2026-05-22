@@ -11,9 +11,14 @@
             <h1 class="h2 mb-2">Tableau de bord apprenant</h1>
             <p class="hero-subtitle">Bonjour, @Model.StudentId. Retrouvez votre progression et reprenez vos modules en un clic.</p>
         </div>
-        <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">
-            <i class="bi bi-patch-question me-1"></i>Aller aux quiz
-        </a>
+        <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">
+                <i class="bi bi-patch-question me-1"></i>Aller aux quiz
+            </a>
+            <a class="btn btn-outline-dark" asp-controller="Learner" asp-action="QuizHistory">
+                <i class="bi bi-clock-history me-1"></i>Voir mon historique
+            </a>
+        </div>
     </section>
 
     <div class="page-panel">

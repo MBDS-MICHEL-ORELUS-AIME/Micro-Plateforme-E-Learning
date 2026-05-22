@@ -150,6 +150,41 @@ public class LearnerController : Controller
         return View(viewModel);
     }
 
+    public async Task<IActionResult> QuizHistory(CancellationToken cancellationToken = default)
+    {
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(QuizHistory), "Learner") });
+        }
+
+        var attempts = await _dbContext.QuizResults
+            .AsNoTracking()
+            .Where(r => r.StudentId == studentId)
+            .Include(r => r.Quiz)
+            .OrderByDescending(r => r.AttemptDate)
+            .Select(r => new LearnerQuizHistoryItemViewModel
+            {
+                AttemptId = r.Id,
+                QuizTitle = r.Quiz != null ? r.Quiz.Title : "Quiz",
+                Score = r.Score,
+                IsPassed = r.IsPassed,
+                AttemptDate = r.AttemptDate
+            })
+            .ToListAsync(cancellationToken);
+
+        var viewModel = new LearnerQuizHistoryViewModel
+        {
+            StudentId = studentId,
+            TotalAttempts = attempts.Count,
+            PassedAttempts = attempts.Count(a => a.IsPassed),
+            AverageScore = attempts.Count == 0 ? 0 : Math.Round(attempts.Average(a => a.Score), 1),
+            Attempts = attempts
+        };
+
+        return View(viewModel);
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkRead(int moduleId, int lessonId, CancellationToken cancellationToken)

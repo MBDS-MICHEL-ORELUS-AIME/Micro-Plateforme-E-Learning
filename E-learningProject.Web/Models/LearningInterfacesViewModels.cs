@@ -16,6 +16,24 @@ public class LearnerDashboardViewModel
     public List<LearnerModuleCardViewModel> Modules { get; set; } = new();
 }
 
+public class LearnerQuizHistoryViewModel
+{
+    public string StudentId { get; set; } = string.Empty;
+    public int TotalAttempts { get; set; }
+    public int PassedAttempts { get; set; }
+    public double AverageScore { get; set; }
+    public List<LearnerQuizHistoryItemViewModel> Attempts { get; set; } = new();
+}
+
+public class LearnerQuizHistoryItemViewModel
+{
+    public int AttemptId { get; set; }
+    public string QuizTitle { get; set; } = string.Empty;
+    public double Score { get; set; }
+    public bool IsPassed { get; set; }
+    public DateTime AttemptDate { get; set; }
+}
+
 public class LearnerModuleCardViewModel
 {
     public int ModuleId { get; set; }

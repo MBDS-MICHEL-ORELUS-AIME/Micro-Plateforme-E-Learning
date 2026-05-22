@@ -9,6 +9,11 @@ namespace E_learningProject.Web.Controllers;
 
 public class TeacherController : Controller
 {
+    private const long MaxPdfSizeBytes = 10 * 1024 * 1024;
+    private const long MaxVideoSizeBytes = 100 * 1024 * 1024;
+    private static readonly HashSet<string> AllowedPdfExtensions = new(StringComparer.OrdinalIgnoreCase) { ".pdf" };
+    private static readonly HashSet<string> AllowedVideoExtensions = new(StringComparer.OrdinalIgnoreCase) { ".mp4", ".webm", ".mov", ".avi", ".mkv" };
+
     private readonly ApplicationDbContext _dbContext;
     private readonly IWebHostEnvironment _environment;
 
@@ -350,6 +355,30 @@ public class TeacherController : Controller
             ModelState.AddModelError(nameof(form.LessonId), "La leçon sélectionnée n'existe pas.");
         }
 
+        if (form.PdfFile is not null)
+        {
+            ValidateFileUpload(form.PdfFile, AllowedPdfExtensions, MaxPdfSizeBytes, nameof(form.PdfFile), "PDF");
+        }
+
+        if (form.VideoFile is not null)
+        {
+            ValidateFileUpload(form.VideoFile, AllowedVideoExtensions, MaxVideoSizeBytes, nameof(form.VideoFile), "vidéo");
+        }
+
+        Uri? parsedUrl = null;
+        if (!string.IsNullOrWhiteSpace(form.ExternalVideoUrl)
+            && !Uri.TryCreate(form.ExternalVideoUrl.Trim(), UriKind.Absolute, out parsedUrl))
+        {
+            ModelState.AddModelError(nameof(form.ExternalVideoUrl), "L'URL vidéo n'est pas valide.");
+        }
+        else if (!string.IsNullOrWhiteSpace(form.ExternalVideoUrl)
+            && parsedUrl is not null
+            && parsedUrl.Scheme != Uri.UriSchemeHttp
+            && parsedUrl.Scheme != Uri.UriSchemeHttps)
+        {
+            ModelState.AddModelError(nameof(form.ExternalVideoUrl), "L'URL vidéo doit commencer par http:// ou https://.");
+        }
+
         if (!ModelState.IsValid)
         {
             var invalidViewModel = await BuildWorkspaceViewModel(cancellationToken);
@@ -570,6 +599,26 @@ public class TeacherController : Controller
         await file.CopyToAsync(stream, cancellationToken);
 
         return Path.Combine(relativeFolder, safeFileName);
+    }
+
+    private void ValidateFileUpload(IFormFile file, HashSet<string> allowedExtensions, long maxSizeBytes, string modelKey, string label)
+    {
+        if (file.Length <= 0)
+        {
+            ModelState.AddModelError(modelKey, $"Le fichier {label} est vide.");
+            return;
+        }
+
+        if (file.Length > maxSizeBytes)
+        {
+            ModelState.AddModelError(modelKey, $"Le fichier {label} dépasse la taille maximale autorisée ({maxSizeBytes / (1024 * 1024)} MB).");
+        }
+
+        var extension = Path.GetExtension(file.FileName);
+        if (string.IsNullOrWhiteSpace(extension) || !allowedExtensions.Contains(extension))
+        {
+            ModelState.AddModelError(modelKey, $"Format de fichier {label} non autorisé.");
+        }
     }
 
     private bool CanTeach()

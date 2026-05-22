@@ -240,3 +240,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Public}/{id?}");
 
 app.Run();
+
+public partial class Program;

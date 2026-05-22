@@ -80,6 +80,32 @@ public class AdminController : Controller
             })
             .ToListAsync(cancellationToken);
 
+        var usersByRole = await _dbContext.AppUsers
+            .AsNoTracking()
+            .Join(_dbContext.AppRoles, u => u.RoleId, r => r.Id, (u, r) => r.Name)
+            .GroupBy(name => name)
+            .Select(group => new UserRoleBreakdownItem
+            {
+                RoleName = group.Key,
+                Count = group.Count()
+            })
+            .OrderByDescending(x => x.Count)
+            .ToListAsync(cancellationToken);
+
+        var recentCertificates = await _dbContext.Certificates
+            .AsNoTracking()
+            .Include(c => c.Module)
+            .OrderByDescending(c => c.IssueDate)
+            .Take(8)
+            .Select(c => new CertificateIssueItem
+            {
+                StudentId = c.StudentId,
+                ModuleTitle = c.Module != null ? c.Module.Title : $"Module #{c.ModuleId}",
+                IssueDate = c.IssueDate,
+                UniqueCode = c.UniqueCode
+            })
+            .ToListAsync(cancellationToken);
+
         var enrollmentByModule = await _dbContext.Enrollments
             .AsNoTracking()
             .Where(e => e.EnrollmentDate >= sinceDate)
@@ -110,6 +136,7 @@ public class AdminController : Controller
 
         var viewModel = new AdminDashboardViewModel
         {
+            IsSuperAdminView = IsSuperAdmin(),
             SelectedPeriodDays = days,
             TotalModules = totalModules,
             TotalLessons = totalLessons,
@@ -122,6 +149,8 @@ public class AdminController : Controller
             RecentModules = recentModules,
             RecentQuizAttempts = recentQuizAttempts,
             RecentDiscussionThreads = recentDiscussionThreads,
+            UsersByRole = usersByRole,
+            RecentCertificates = recentCertificates,
             EnrollmentChartLabels = enrollmentByModule.Select(x => x.ModuleTitle).ToList(),
             EnrollmentChartValues = enrollmentByModule.Select(x => x.Count).ToList(),
             QuizChartLabels = quizPassRateByQuiz.Select(x => x.QuizTitle).ToList(),

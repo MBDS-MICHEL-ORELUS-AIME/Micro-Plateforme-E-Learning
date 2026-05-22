@@ -29,6 +29,34 @@
         </div>
     </div>
 
+    <div class="page-panel">
+        <form method="get" class="row g-2 align-items-end">
+            <div class="col-12 col-lg-5">
+                <label class="form-label" for="q">Recherche</label>
+                <input class="form-control" id="q" name="q" value="@Model.SearchTerm" placeholder="Titre ou description du module" />
+            </div>
+            <div class="col-12 col-lg-3">
+                <label class="form-label" for="quiz">Filtre quiz</label>
+                <select class="form-select" id="quiz" name="quiz">
+                    <option value="all" selected="@(Model.QuizFilter == "all")">Tous</option>
+                    <option value="withquiz" selected="@(Model.QuizFilter == "withquiz")">Avec quiz</option>
+                    <option value="withoutquiz" selected="@(Model.QuizFilter == "withoutquiz")">Sans quiz</option>
+                </select>
+            </div>
+            <div class="col-6 col-lg-2">
+                <label class="form-label" for="pageSize">Par page</label>
+                <select class="form-select" id="pageSize" name="pageSize">
+                    <option value="6" selected="@(Model.PageSize == 6)">6</option>
+                    <option value="12" selected="@(Model.PageSize == 12)">12</option>
+                    <option value="24" selected="@(Model.PageSize == 24)">24</option>
+                </select>
+            </div>
+            <div class="col-6 col-lg-2 d-grid">
+                <button class="btn btn-brand" type="submit">Filtrer</button>
+            </div>
+        </form>
+    </div>
+
     <div class="content-grid content-grid--two">
         <article class="metric-card">
             <span>Modules disponibles</span>
@@ -79,5 +107,19 @@
                 </article>
             }
         </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav aria-label="Pagination des modules" class="mt-3">
+                <ul class="pagination mb-0">
+                    @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : string.Empty)">
+                            <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-q="@Model.SearchTerm" asp-route-quiz="@Model.QuizFilter" asp-route-pageSize="@Model.PageSize" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
     }
 </div>

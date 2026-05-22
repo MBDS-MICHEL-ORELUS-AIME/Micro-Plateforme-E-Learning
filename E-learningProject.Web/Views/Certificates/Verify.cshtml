@@ -1,0 +1,49 @@
+@model E_learningProject.Web.Models.CertificateVerificationViewModel
+
+@{
+    ViewData["Title"] = "Verification de certificat";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Certificats</p>
+            <h1 class="h2 mb-2">Verification publique d'un certificat</h1>
+            <p class="hero-subtitle">Saisissez un code certificat pour verifier son authenticite.</p>
+        </div>
+    </section>
+
+    <div class="page-panel page-panel--soft">
+        <form asp-controller="Certificates" asp-action="Verify" method="get" class="row g-2 align-items-end">
+            <div class="col-12 col-lg-9">
+                <label for="code" class="form-label">Code du certificat</label>
+                <input id="code" name="code" value="@Model.SearchCode" class="form-control form-control-lg" placeholder="Ex: 2a4f..." required />
+            </div>
+            <div class="col-12 col-lg-3 d-grid">
+                <button class="btn btn-brand btn-lg" type="submit">Verifier</button>
+            </div>
+        </form>
+    </div>
+
+    @if (Model.Searched)
+    {
+        <div class="page-panel">
+            @if (Model.IsValid)
+            {
+                <div class="alert alert-success mb-0">
+                    <h2 class="h5">Certificat valide</h2>
+                    <p class="mb-1"><strong>Code:</strong> @Model.CertificateCode</p>
+                    <p class="mb-1"><strong>Etudiant:</strong> @Model.StudentId</p>
+                    <p class="mb-1"><strong>Module:</strong> @Model.ModuleTitle</p>
+                    <p class="mb-0"><strong>Date d'emission:</strong> @Model.IssueDate?.ToString("dd/MM/yyyy")</p>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger mb-0">
+                    Code introuvable. Verifiez le code saisi puis reessayez.
+                </div>
+            }
+        </div>
+    }
+</div>
