@@ -3,6 +3,14 @@
 
 @{
     ViewData["Title"] = "Espace enseignant";
+    var successMessage = TempData["TeacherSuccess"] as string;
+    var hasModule = Model.TotalModules > 0;
+    var hasLesson = Model.TotalLessons > 0;
+    var hasMedia = Model.HasMediaSupport;
+    var activeStep = !hasModule ? 1 : !hasLesson ? 2 : 3;
+    var hasLatestModule = !string.IsNullOrWhiteSpace(Model.LatestModuleTitle);
+    var hasLatestLesson = !string.IsNullOrWhiteSpace(Model.LatestLessonLabel);
+    var progressPercent = !hasModule ? 0 : !hasLesson ? 33 : !hasMedia ? 66 : 100;
 }
 
 <div class="page-shell">
@@ -22,10 +30,108 @@
         </div>
     </section>
 
-    @if (TempData["TeacherSuccess"] is string successMessage)
+    @if (!string.IsNullOrWhiteSpace(successMessage))
     {
         <div class="page-panel page-panel--soft status-chip status-chip--success">@successMessage</div>
     }
+
+    <div class="page-panel page-panel--soft mb-4">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Parcours guidé</p>
+                <h2 class="h5 mb-1">Assistant de création en 3 étapes</h2>
+                <p class="text-muted mb-0">Suivez le parcours: module, leçon, support. Vous pouvez revenir à tout moment.</p>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="d-flex justify-content-between small text-muted mb-1">
+                <span>Progression du parcours</span>
+                <strong>@progressPercent%</strong>
+            </div>
+            <div class="progress" role="progressbar" aria-label="Progression parcours enseignant" aria-valuenow="@progressPercent" aria-valuemin="0" aria-valuemax="100" style="height:10px;">
+                <div class="progress-bar bg-dark" style="width:@progressPercent%"></div>
+            </div>
+        </div>
+
+        <div class="row g-2 mt-1 mb-2">
+            <div class="col-12 col-md-6">
+                <div class="status-chip status-chip--neutral w-100">
+                    <strong>Dernier module:</strong> @(hasLatestModule ? Model.LatestModuleTitle : "Aucun module créé")
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="status-chip status-chip--neutral w-100">
+                    <strong>Dernière leçon:</strong> @(hasLatestLesson ? Model.LatestLessonLabel : "Aucune leçon créée")
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-12 col-md-4">
+                <div class="metric-card h-100 @(activeStep == 1 ? "border border-2 border-dark" : string.Empty)">
+                    <span>Étape 1</span>
+                    <strong>Créer un module</strong>
+                    <p class="text-muted small mb-0 mt-2">Donnez un titre et une description pour structurer votre cours.</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <a class="btn btn-sm btn-outline-dark" href="#step-module">Aller à l'étape 1</a>
+                        <span class="status-chip @(hasModule ? "status-chip--success" : "status-chip--warning")">
+                            @(hasModule ? "OK" : "À faire")
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="metric-card h-100 @(activeStep == 2 ? "border border-2 border-dark" : string.Empty)">
+                    <span>Étape 2</span>
+                    <strong>Ajouter une leçon</strong>
+                    <p class="text-muted small mb-0 mt-2">Sélectionnez le module puis saisissez le contenu texte de la leçon.</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        @if (hasModule)
+                        {
+                            <a class="btn btn-sm btn-outline-dark" href="#step-lesson">Aller à l'étape 2</a>
+                        }
+                        else
+                        {
+                            <span class="btn btn-sm btn-outline-secondary disabled">Débloquez étape 1</span>
+                        }
+                        <span class="status-chip @(hasLesson ? "status-chip--success" : "status-chip--warning")">
+                            @(hasLesson ? "OK" : hasModule ? "À faire" : "Verrouillée")
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="metric-card h-100 @(activeStep == 3 ? "border border-2 border-dark" : string.Empty)">
+                    <span>Étape 3</span>
+                    <strong>Joindre un support</strong>
+                    <p class="text-muted small mb-0 mt-2">Importez un PDF, une vidéo ou collez une URL externe.</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        @if (hasLesson)
+                        {
+                            <a class="btn btn-sm btn-outline-dark" href="#step-media">Aller à l'étape 3</a>
+                        }
+                        else
+                        {
+                            <span class="btn btn-sm btn-outline-secondary disabled">Débloquez étape 2</span>
+                        }
+                        @if (!hasLesson)
+                        {
+                            <span class="status-chip status-chip--warning">Verrouillée</span>
+                        }
+                        else if (hasMedia)
+                        {
+                            <span class="status-chip status-chip--success">OK</span>
+                        }
+                        else
+                        {
+                            <span class="status-chip status-chip--neutral">Finalisation</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="content-grid content-grid--two">
         <article class="metric-card">
@@ -47,11 +153,12 @@
     </div>
 
     <div class="content-grid content-grid--two">
-        <div class="page-panel">
+        <div class="page-panel" id="step-module">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow mb-1">Cours</p>
-                    <h2 class="h5">Créer un module</h2>
+                    <h2 class="h5">Étape 1 - Créer un module</h2>
+                    <p class="text-muted small mb-0">Ce module apparaîtra ensuite dans la liste de leçons et de quiz.</p>
                 </div>
             </div>
             <form asp-controller="Teacher" asp-action="CreateModule" method="post" novalidate>
@@ -71,18 +178,25 @@
                 <button type="submit" class="btn btn-brand mt-3">
                     <i class="bi bi-journal-plus me-1"></i>Créer le module
                 </button>
+                <a class="btn btn-link mt-3" href="#step-lesson">Passer à l'étape 2</a>
             </form>
         </div>
 
-        <div class="page-panel">
+        <div class="page-panel" id="step-lesson">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow mb-1">Cours</p>
-                    <h2 class="h5">Ajouter une leçon</h2>
+                    <h2 class="h5">Étape 2 - Ajouter une leçon</h2>
+                    <p class="text-muted small mb-0">Le dernier module créé est déjà sélectionné automatiquement.</p>
                 </div>
             </div>
             <form asp-controller="Teacher" asp-action="CreateLesson" method="post" novalidate>
                 @Html.AntiForgeryToken()
+                @if (!hasModule)
+                {
+                    <div class="alert alert-warning" role="alert">Créez d'abord un module pour débloquer cette étape.</div>
+                }
+                <fieldset disabled="@(!hasModule)">
                 <div class="row g-2">
                     <div class="col-12">
                         <label asp-for="LessonForm.ModuleId" class="form-label">Module</label>
@@ -113,6 +227,8 @@
                 <button type="submit" class="btn btn-outline-dark mt-3">
                     <i class="bi bi-plus-square me-1"></i>Ajouter la leçon
                 </button>
+                </fieldset>
+                <a class="btn btn-link mt-3" href="#step-media">Passer à l'étape 3</a>
             </form>
         </div>
 
@@ -161,15 +277,21 @@
             </form>
         </div>
 
-        <div class="page-panel">
+        <div class="page-panel" id="step-media">
             <div class="section-heading">
                 <div>
                     <p class="eyebrow mb-1">Médias</p>
-                    <h2 class="h5">Ajouter un support</h2>
+                    <h2 class="h5">Étape 3 - Ajouter un support</h2>
+                    <p class="text-muted small mb-0">Associez le PDF ou la vidéo à une leçon précise.</p>
                 </div>
             </div>
             <form asp-controller="Teacher" asp-action="UploadMedia" method="post" enctype="multipart/form-data" novalidate>
                 @Html.AntiForgeryToken()
+                @if (!hasLesson)
+                {
+                    <div class="alert alert-warning" role="alert">Ajoutez d'abord une leçon pour débloquer l'ajout de support.</div>
+                }
+                <fieldset disabled="@(!hasLesson)">
                 <div class="row g-2">
                     <div class="col-12">
                         <label asp-for="MediaForm.LessonId" class="form-label">Leçon cible</label>
@@ -201,6 +323,8 @@
                 <button type="submit" class="btn btn-outline-dark mt-3">
                     <i class="bi bi-cloud-upload me-1"></i>Importer ou lier le média
                 </button>
+                </fieldset>
+                <a class="btn btn-link mt-3" href="#step-module">Revenir à l'étape 1</a>
             </form>
         </div>
 
@@ -354,13 +478,13 @@
                 const questions = container.querySelectorAll('.question-item');
                 questions.forEach((q, qi) => {
                     q.querySelector('.question-title').textContent = `Question ${qi + 1}`;
-                    q.querySelector('.question-statement').name = `Questions[${qi}].Statement`;
-                    q.querySelector('.question-type').name = `Questions[${qi}].Type`;
+                    q.querySelector('.question-statement').name = `QuizForm.Questions[${qi}].Statement`;
+                    q.querySelector('.question-type').name = `QuizForm.Questions[${qi}].Type`;
 
                     const options = q.querySelectorAll('.option-item');
                     options.forEach((o, oi) => {
-                        o.querySelector('.option-text').name = `Questions[${qi}].Options[${oi}].Text`;
-                        o.querySelector('.option-correct').name = `Questions[${qi}].Options[${oi}].IsCorrect`;
+                        o.querySelector('.option-text').name = `QuizForm.Questions[${qi}].Options[${oi}].Text`;
+                        o.querySelector('.option-correct').name = `QuizForm.Questions[${qi}].Options[${oi}].IsCorrect`;
                     });
                 });
             }

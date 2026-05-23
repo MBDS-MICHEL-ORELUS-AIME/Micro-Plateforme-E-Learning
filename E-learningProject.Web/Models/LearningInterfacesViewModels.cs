@@ -71,6 +71,9 @@ public class TeacherWorkspaceViewModel
     public TeacherLessonCreateViewModel LessonForm { get; set; } = new();
     public TeacherQuizCreateViewModel QuizForm { get; set; } = new();
     public TeacherMediaUploadViewModel MediaForm { get; set; } = new();
+    public string? LatestModuleTitle { get; set; }
+    public string? LatestLessonLabel { get; set; }
+    public bool HasMediaSupport { get; set; }
     public int TotalModules { get; set; }
     public int TotalLessons { get; set; }
     public int TotalQuizzes { get; set; }

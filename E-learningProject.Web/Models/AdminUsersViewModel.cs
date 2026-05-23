@@ -45,10 +45,12 @@ public class AdminRoleOptionViewModel
 
 public class LoginViewModel
 {
-    [Required]
+    [Required(ErrorMessage = "Le nom d'utilisateur est requis.")]
+    [Display(Name = "Nom d'utilisateur")]
     public string UserName { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "Le mot de passe est requis.")]
+    [Display(Name = "Mot de passe")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
@@ -57,21 +59,25 @@ public class LoginViewModel
 
 public class RegisterViewModel
 {
-    [Required]
-    [StringLength(100)]
+    [Required(ErrorMessage = "Le nom d'utilisateur est requis.")]
+    [StringLength(100, ErrorMessage = "Le nom d'utilisateur ne peut pas depasser 100 caracteres.")]
+    [Display(Name = "Nom d'utilisateur")]
     public string UserName { get; set; } = string.Empty;
 
-    [Required]
-    [EmailAddress]
-    [StringLength(200)]
+    [Required(ErrorMessage = "L'adresse e-mail est requise.")]
+    [EmailAddress(ErrorMessage = "Le format de l'adresse e-mail est invalide.")]
+    [StringLength(200, ErrorMessage = "L'adresse e-mail ne peut pas depasser 200 caracteres.")]
+    [Display(Name = "Adresse e-mail")]
     public string Email { get; set; } = string.Empty;
 
-    [Required]
-    [StringLength(100, MinimumLength = 6)]
+    [Required(ErrorMessage = "Le mot de passe est requis.")]
+    [StringLength(100, MinimumLength = 6, ErrorMessage = "Le mot de passe doit contenir entre 6 et 100 caracteres.")]
+    [Display(Name = "Mot de passe")]
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "La confirmation du mot de passe est requise.")]
+    [Display(Name = "Confirmation du mot de passe")]
     [DataType(DataType.Password)]
     [Compare(nameof(Password), ErrorMessage = "Le mot de passe et sa confirmation ne correspondent pas.")]
     public string ConfirmPassword { get; set; } = string.Empty;

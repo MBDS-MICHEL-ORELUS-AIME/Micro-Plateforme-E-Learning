@@ -44,7 +44,7 @@
                             <a class="nav-link nav-pill @(isActive("Discussion", "Index") ? "active" : string.Empty)" asp-area="" asp-controller="Discussion" asp-action="Index"><i class="bi bi-chat-dots me-1"></i>Discussion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-pill @(isActive("Certificates", "Verify") ? "active" : string.Empty)" asp-area="" asp-controller="Certificates" asp-action="Verify"><i class="bi bi-shield-check me-1"></i>Verifier certificat</a>
+                            <a class="nav-link nav-pill @(isActive("Certificates", "Verify") ? "active" : string.Empty)" asp-area="" asp-controller="Certificates" asp-action="Verify"><i class="bi bi-shield-check me-1"></i>Vérifier certificat</a>
                         </li>
                         @if (canAccessAdminDashboard)
                         {
@@ -69,7 +69,7 @@
                                 <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <button type="submit" class="nav-link nav-pill btn btn-link border-0 p-0 px-3">
-                                        <i class="bi bi-box-arrow-right me-1"></i>Se deconnecter
+                                        <i class="bi bi-box-arrow-right me-1"></i>Se déconnecter
                                     </button>
                                 </form>
                             </li>

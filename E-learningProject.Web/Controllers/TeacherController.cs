@@ -24,14 +24,14 @@ public class TeacherController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Workspace(CancellationToken cancellationToken)
+    public async Task<IActionResult> Workspace(int? selectedModuleId = null, CancellationToken cancellationToken = default)
     {
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
         }
 
-        var viewModel = await BuildWorkspaceViewModel(cancellationToken);
+        var viewModel = await BuildWorkspaceViewModel(cancellationToken, selectedModuleId);
         return View(viewModel);
     }
 
@@ -77,7 +77,7 @@ public class TeacherController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateModule(TeacherModuleCreateViewModel form, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateModule([Bind(Prefix = "ModuleForm")] TeacherModuleCreateViewModel form, CancellationToken cancellationToken)
     {
         if (!CanTeach())
         {
@@ -91,20 +91,22 @@ public class TeacherController : Controller
             return View("Workspace", invalidViewModel);
         }
 
-        _dbContext.Modules.Add(new Module
+        var module = new Module
         {
             Title = form.Title.Trim(),
             Description = form.Description.Trim()
-        });
+        };
+
+        _dbContext.Modules.Add(module);
 
         await _dbContext.SaveChangesAsync(cancellationToken);
         TempData["TeacherSuccess"] = "Module créé avec succès.";
-        return RedirectToAction(nameof(Workspace));
+        return RedirectToAction(nameof(Workspace), new { selectedModuleId = module.Id });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateLesson(TeacherLessonCreateViewModel form, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateLesson([Bind(Prefix = "LessonForm")] TeacherLessonCreateViewModel form, CancellationToken cancellationToken)
     {
         if (!CanTeach())
         {
@@ -139,7 +141,7 @@ public class TeacherController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateQuiz(TeacherQuizCreateViewModel form, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateQuiz([Bind(Prefix = "QuizForm")] TeacherQuizCreateViewModel form, CancellationToken cancellationToken)
     {
         if (!CanTeach())
         {
@@ -337,7 +339,7 @@ public class TeacherController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> UploadMedia(TeacherMediaUploadViewModel form, CancellationToken cancellationToken)
+    public async Task<IActionResult> UploadMedia([Bind(Prefix = "MediaForm")] TeacherMediaUploadViewModel form, CancellationToken cancellationToken)
     {
         if (!CanTeach())
         {
@@ -409,11 +411,11 @@ public class TeacherController : Controller
         return RedirectToAction(nameof(Workspace));
     }
 
-    private async Task<TeacherWorkspaceViewModel> BuildWorkspaceViewModel(CancellationToken cancellationToken)
+    private async Task<TeacherWorkspaceViewModel> BuildWorkspaceViewModel(CancellationToken cancellationToken, int? selectedModuleId = null)
     {
         var modules = await _dbContext.Modules
             .AsNoTracking()
-            .OrderBy(m => m.Title)
+            .OrderByDescending(m => m.Id)
             .Select(m => new TeacherOptionViewModel { Id = m.Id, Label = m.Title })
             .ToListAsync(cancellationToken);
 
@@ -447,6 +449,22 @@ public class TeacherController : Controller
         var totalLessons = await _dbContext.Lessons.AsNoTracking().CountAsync(cancellationToken);
         var totalQuizzes = await _dbContext.Quizzes.AsNoTracking().CountAsync(cancellationToken);
         var openDiscussions = await _dbContext.DiscussionThreads.AsNoTracking().CountAsync(t => !t.IsResolved, cancellationToken);
+        var hasMediaSupport = await _dbContext.Lessons
+            .AsNoTracking()
+            .AnyAsync(l => !string.IsNullOrWhiteSpace(l.VideoUrl) || !string.IsNullOrWhiteSpace(l.PdfPath), cancellationToken);
+
+        var latestModuleTitle = await _dbContext.Modules
+            .AsNoTracking()
+            .OrderByDescending(m => m.Id)
+            .Select(m => m.Title)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        var latestLessonLabel = await _dbContext.Lessons
+            .AsNoTracking()
+            .Include(l => l.Module)
+            .OrderByDescending(l => l.Id)
+            .Select(l => (l.Module != null ? l.Module.Title : "Module") + " - " + l.Title)
+            .FirstOrDefaultAsync(cancellationToken);
 
         var recentDiscussionThreads = await _dbContext.DiscussionThreads
             .AsNoTracking()
@@ -466,11 +484,14 @@ public class TeacherController : Controller
             ModuleForm = new TeacherModuleCreateViewModel(),
             LessonForm = new TeacherLessonCreateViewModel
             {
-                ModuleId = modules.FirstOrDefault()?.Id ?? 0,
+                ModuleId = selectedModuleId ?? modules.FirstOrDefault()?.Id ?? 0,
                 Order = 1
             },
-            QuizForm = BuildDefaultQuizForm(modules),
+            QuizForm = BuildDefaultQuizForm(modules, selectedModuleId),
             MediaForm = new TeacherMediaUploadViewModel(),
+            LatestModuleTitle = latestModuleTitle,
+            LatestLessonLabel = latestLessonLabel,
+            HasMediaSupport = hasMediaSupport,
             TotalModules = totalModules,
             TotalLessons = totalLessons,
             TotalQuizzes = totalQuizzes,
@@ -482,11 +503,11 @@ public class TeacherController : Controller
         };
     }
 
-    private static TeacherQuizCreateViewModel BuildDefaultQuizForm(List<TeacherOptionViewModel> modules)
+    private static TeacherQuizCreateViewModel BuildDefaultQuizForm(List<TeacherOptionViewModel> modules, int? selectedModuleId = null)
     {
         return new TeacherQuizCreateViewModel
         {
-            ModuleId = modules.FirstOrDefault()?.Id ?? 0,
+            ModuleId = selectedModuleId ?? modules.FirstOrDefault()?.Id ?? 0,
             Questions = new List<TeacherQuestionInputViewModel>
             {
                 new()

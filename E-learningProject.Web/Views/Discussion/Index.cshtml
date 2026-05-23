@@ -22,15 +22,15 @@
             <strong>@Model.OpenThreads</strong>
         </article>
         <article class="metric-card">
-            <span>Fils resolus</span>
+            <span>Fils résolus</span>
             <strong>@Model.ResolvedThreads</strong>
         </article>
         <article class="metric-card">
-            <span>Total reponses</span>
+            <span>Total réponses</span>
             <strong>@Model.TotalReplies</strong>
         </article>
         <article class="metric-card">
-            <span>Taux de resolution</span>
+            <span>Taux de résolution</span>
             <strong>@(Model.TotalThreads == 0 ? 0 : Math.Round((double)Model.ResolvedThreads * 100 / Model.TotalThreads, 1))%</strong>
         </article>
     </div>

@@ -2,37 +2,11 @@
 
 @{
     ViewData["Title"] = "Connexion";
+    Layout = "_AuthLayout";
 }
 
-<div class="auth-shell">
-    <div class="auth-visual card border-0 shadow-lg">
-        <div class="auth-visual-inner">
-            <p class="eyebrow">MicroLMS</p>
-            <h1>Connectez-vous pour retrouver vos cours, quiz et discussions.</h1>
-            <p>Une interface simple, centrée sur l’essentiel, pensée pour apprendre et enseigner sans friction.</p>
-            <div class="auth-chips">
-                <span>Accès rapide</span>
-                <span>Suivi des progrès</span>
-                <span>Espace apprenant</span>
-            </div>
-            <div class="auth-kpis">
-                <div class="auth-kpi">
-                    <strong>24/7</strong>
-                    <span>Accès plateforme</span>
-                </div>
-                <div class="auth-kpi">
-                    <strong>Quiz</strong>
-                    <span>Correction immédiate</span>
-                </div>
-                <div class="auth-kpi">
-                    <strong>Modules</strong>
-                    <span>Progression continue</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="auth-card card border-0 shadow-lg">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="auth-card card border-0 shadow-lg" style="max-width: 520px; width: 100%;">
         <div class="card-body p-4 p-lg-5">
             <div class="auth-card-topbar" aria-hidden="true">
                 <span></span><span></span><span></span>
@@ -50,13 +24,13 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                 <div class="mb-3">
-                    <label asp-for="UserName" class="form-label"></label>
+                    <label asp-for="UserName" class="form-label">Nom d'utilisateur</label>
                     <input asp-for="UserName" class="form-control form-control-lg" placeholder="Votre nom d'utilisateur" />
                     <span asp-validation-for="UserName" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-4">
-                    <label asp-for="Password" class="form-label"></label>
+                    <label asp-for="Password" class="form-label">Mot de passe</label>
                     <input asp-for="Password" class="form-control form-control-lg" placeholder="Votre mot de passe" />
                     <span asp-validation-for="Password" class="text-danger small"></span>
                 </div>
@@ -65,7 +39,7 @@
             </form>
 
             <div class="auth-footer auth-form-divider mt-4">
-                <span>Acces reserve aux comptes deja actifs.</span>
+                <span>Accès réservé aux comptes déjà actifs.</span>
             </div>
         </div>
     </div>

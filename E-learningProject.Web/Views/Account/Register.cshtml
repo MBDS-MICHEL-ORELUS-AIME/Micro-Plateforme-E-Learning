@@ -9,7 +9,7 @@
         <div class="auth-visual-inner">
             <p class="eyebrow">Rejoignez la plateforme</p>
             <h1>Créez un compte pour accéder à votre parcours d'apprentissage.</h1>
-            <p>Inscrivez-vous en tant qu'etudiant. Un superadmin pourra ensuite ajuster votre rôle si nécessaire.</p>
+            <p>Inscrivez-vous en tant qu'étudiant. Un superadmin pourra ensuite ajuster votre rôle si nécessaire.</p>
             <div class="auth-chips">
                 <span>Compte sécurisé</span>
                 <span>Rôle dédié</span>
@@ -40,7 +40,7 @@
             <div class="mb-4">
                 <p class="eyebrow text-start mb-2">Nouvel utilisateur</p>
                 <h2 class="h3 mb-2">Inscription</h2>
-                <p class="text-muted mb-0">Le rôle etudiant est appliqué automatiquement à l'inscription.</p>
+                <p class="text-muted mb-0">Le rôle étudiant est appliqué automatiquement à l'inscription.</p>
             </div>
 
             <form asp-action="Register" method="post" novalidate>
@@ -58,13 +58,13 @@
 
                 <div class="mb-3">
                     <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control form-control-lg" placeholder="Adresse email" />
+                    <input asp-for="Email" class="form-control form-control-lg" placeholder="Adresse e-mail" />
                     <span asp-validation-for="Email" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Rôle</label>
-                    <input class="form-control form-control-lg" value="etudiant" disabled />
+                    <input class="form-control form-control-lg" value="Étudiant" disabled />
                 </div>
 
                 <div class="mb-3">

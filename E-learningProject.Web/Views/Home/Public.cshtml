@@ -7,10 +7,10 @@
 <section class="classroom-hero mb-4">
     <div class="classroom-hero__copy">
         <p class="eyebrow classroom-hero__eyebrow">MicroLMS Campus</p>
-        <h1>Un accueil qui donne envie d'apprendre des la premiere minute.</h1>
+        <h1>Un accueil qui donne envie d'apprendre dès la première minute.</h1>
         <p class="classroom-hero__text">
-            Inspire de l'esprit Classroom: des cours clairs, des activites visibles, des discussions utiles
-            et un parcours qui motive les etudiants comme les enseignants.
+            Inspiré de l'esprit Classroom: des cours clairs, des activités visibles, des discussions utiles
+            et un parcours qui motive les étudiants comme les enseignants.
         </p>
         <div class="classroom-hero__actions">
             <a class="btn btn-brand btn-lg" asp-controller="Courses" asp-action="Index">Explorer les classes</a>
@@ -23,14 +23,14 @@
         </div>
     </div>
 
-    <aside class="classroom-hero__board" aria-label="Apercu classe">
+    <aside class="classroom-hero__board" aria-label="Aperçu classe">
         <article class="class-mini-card class-mini-card--primary">
-            <p class="class-mini-card__label">Dernier module publie</p>
+            <p class="class-mini-card__label">Dernier module publié</p>
             @if (Model.RecentModules.Any())
             {
                 var module = Model.RecentModules.First();
                 <h2>@module.Title</h2>
-                <p>@module.LessonCount lecon(s) - @(module.HasQuiz ? "quiz associe" : "sans quiz")</p>
+                <p>@module.LessonCount leçon(s) - @(module.HasQuiz ? "quiz associé" : "sans quiz")</p>
             }
             else
             {
@@ -43,38 +43,38 @@
             </div>
         </article>
         <article class="class-mini-card">
-            <p class="class-mini-card__label">A faire aujourd'hui</p>
+            <p class="class-mini-card__label">À faire aujourd'hui</p>
             <ul>
-                <li>Consulter un module recent</li>
-                <li>Participer a une discussion</li>
+                <li>Consulter un module récent</li>
+                <li>Participer à une discussion</li>
                 <li>Lancer un quiz</li>
             </ul>
         </article>
     </aside>
 </section>
 
-<section class="classroom-lanes mb-4" aria-label="Acces rapides par profil">
+<section class="classroom-lanes mb-4" aria-label="Accès rapides par profil">
     <article class="classroom-lane">
         <div class="classroom-lane__icon"><i class="bi bi-mortarboard-fill"></i></div>
-        <h2>Etudiant</h2>
-        <p>Suivre les cours, marquer les lecons terminees et progresser semaine apres semaine.</p>
+        <h2>Étudiant</h2>
+        <p>Suivre les cours, marquer les leçons terminées et progresser semaine après semaine.</p>
         <a class="btn btn-sm btn-outline-dark" asp-controller="Learner" asp-action="Dashboard">Continuer mon parcours</a>
     </article>
     <article class="classroom-lane">
         <div class="classroom-lane__icon"><i class="bi bi-easel2-fill"></i></div>
         <h2>Enseignant</h2>
-        <p>Creer des modules, lancer des quiz intelligents et animer la discussion de la classe.</p>
-        <a class="btn btn-sm btn-outline-dark" asp-controller="Teacher" asp-action="Workspace">Gerer ma classe</a>
+        <p>Créer des modules, lancer des quiz intelligents et animer la discussion de la classe.</p>
+        <a class="btn btn-sm btn-outline-dark" asp-controller="Teacher" asp-action="Workspace">Gérer ma classe</a>
     </article>
     <article class="classroom-lane">
         <div class="classroom-lane__icon"><i class="bi bi-shield-lock-fill"></i></div>
         <h2>Administration</h2>
-        <p>Piloter les roles, les comptes et les indicateurs globaux depuis un tableau de bord unique.</p>
+        <p>Piloter les rôles, les comptes et les indicateurs globaux depuis un tableau de bord unique.</p>
         <a class="btn btn-sm btn-outline-dark" asp-controller="Admin" asp-action="Dashboard">Voir le dashboard</a>
     </article>
 </section>
 
-<section class="classroom-showcase mb-4" aria-label="Parcours recommends">
+<section class="classroom-showcase mb-4" aria-label="Parcours recommandés">
     <div class="classroom-showcase__heading">
         <div>
             <p class="eyebrow mb-2">Parcours du moment</p>
@@ -86,11 +86,11 @@
         @if (!Model.RecentModules.Any() && !Model.RecentQuizzes.Any() && !Model.RecentThreads.Any())
         {
             <article class="showcase-card">
-                <p class="showcase-card__kicker">Aucune donnee</p>
+                <p class="showcase-card__kicker">Aucune donnée</p>
                 <h3>Commencez par publier un module</h3>
-                <p>La page d'accueil affichera automatiquement vos vraies donnees.</p>
+                <p>La page d'accueil affichera automatiquement vos vraies données.</p>
                 <div class="showcase-card__footer">
-                    <span>Base connectee</span>
+                    <span>Base connectée</span>
                     <span>Live</span>
                 </div>
             </article>
@@ -101,10 +101,10 @@
             <article class="showcase-card">
                 <p class="showcase-card__kicker">Module</p>
                 <h3>@module.Title</h3>
-                <p>Contenu recent publie dans la plateforme.</p>
+                <p>Contenu récent publié dans la plateforme.</p>
                 <div class="showcase-card__footer">
-                    <span>@module.LessonCount lecon(s)</span>
-                    <span>@(module.HasQuiz ? "Quiz lie" : "Sans quiz")</span>
+                    <span>@module.LessonCount leçon(s)</span>
+                    <span>@(module.HasQuiz ? "Quiz lié" : "Sans quiz")</span>
                 </div>
             </article>
         }
@@ -127,21 +127,21 @@
             <article class="showcase-card">
                 <p class="showcase-card__kicker">Discussion</p>
                 <h3>@thread.Title</h3>
-                <p>Fil recent de la communaute.</p>
+                <p>Fil récent de la communauté.</p>
                 <div class="showcase-card__footer">
-                    <span>@thread.ReplyCount reponse(s)</span>
-                    <span>@(thread.IsResolved ? "Resolue" : "Ouverte")</span>
+                    <span>@thread.ReplyCount réponse(s)</span>
+                    <span>@(thread.IsResolved ? "Résolue" : "Ouverte")</span>
                 </div>
             </article>
         }
     </div>
 </section>
 
-<section class="classroom-activity callout-panel" aria-label="Activites recentes">
+<section class="classroom-activity callout-panel" aria-label="Activités récentes">
     <div>
-        <p class="eyebrow mb-2">Activite en direct</p>
+        <p class="eyebrow mb-2">Activité en direct</p>
         <h2 class="h5 mb-2">Une plateforme qui bouge tous les jours</h2>
-        <p class="mb-0">Nouveaux modules publies, quiz completes, discussions resolues: tout est visible en un coup d'oeil.</p>
+        <p class="mb-0">Nouveaux modules publiés, quiz complétés, discussions résolues: tout est visible en un coup d'œil.</p>
     </div>
     <div class="classroom-activity__stats">
         <div>
