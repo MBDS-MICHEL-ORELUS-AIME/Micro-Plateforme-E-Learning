@@ -4,6 +4,7 @@ using E_learningProject.Web.Models;
 using E_learningProject.Web.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace E_learningProject.Web.Controllers;
 
@@ -414,6 +415,55 @@ public class AdminController : Controller
         return RedirectToAction(nameof(ContentSync));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> LessonPdfSources(CancellationToken cancellationToken = default)
+    {
+        if (!CanAccessAdmin())
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(LessonPdfSources), "Admin") });
+        }
+
+        var lessons = await _dbContext.Lessons
+            .AsNoTracking()
+            .Include(l => l.Module)
+            .OrderBy(l => l.Module!.Title)
+            .ThenBy(l => l.Order)
+            .Select(l => new AdminLessonPdfSourceItemViewModel
+            {
+                LessonId = l.Id,
+                ModuleTitle = l.Module != null ? l.Module.Title : "Module inconnu",
+                LessonTitle = l.Title,
+                PdfPath = l.PdfPath,
+                IsOpenSourcePdf = IsOpenSourcePdfPath(l.PdfPath),
+                SourceLabel = ResolveSourceLabel(l.PdfPath)
+            })
+            .ToListAsync(cancellationToken);
+
+        var model = new AdminLessonPdfSourcesViewModel
+        {
+            TotalLessons = lessons.Count,
+            OpenSourcePdfCount = lessons.Count(l => l.IsOpenSourcePdf),
+            NonOpenSourcePdfCount = lessons.Count(l => !l.IsOpenSourcePdf),
+            Lessons = lessons
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> RefreshLessonPdfSources(CancellationToken cancellationToken = default)
+    {
+        if (!CanAccessAdmin())
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(LessonPdfSources), "Admin") });
+        }
+
+        var replacedCount = await ReplaceNonOpenLessonPdfsAsync(cancellationToken);
+        TempData["PdfSourceSyncSummary"] = $"Remplacement terminé: {replacedCount} leçon(s) ont reçu un PDF de source ouverte.";
+        return RedirectToAction(nameof(LessonPdfSources));
+    }
+
     private async Task EnsureContentImportLogsTableAsync(CancellationToken cancellationToken)
     {
         const string sql = """
@@ -436,6 +486,116 @@ public class AdminController : Controller
             """;
 
         await _dbContext.Database.ExecuteSqlRawAsync(sql, cancellationToken);
+    }
+
+    private async Task<int> ReplaceNonOpenLessonPdfsAsync(CancellationToken cancellationToken)
+    {
+        using var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(15) };
+        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MicroLMS/1.0 (+academic project)");
+
+        var lessons = await _dbContext.Lessons
+            .Include(l => l.Module)
+            .ToListAsync(cancellationToken);
+
+        var replaced = 0;
+        foreach (var lesson in lessons)
+        {
+            if (IsOpenSourcePdfPath(lesson.PdfPath))
+            {
+                continue;
+            }
+
+            var query = string.IsNullOrWhiteSpace(lesson.Module?.Title)
+                ? lesson.Title
+                : $"{lesson.Title} {lesson.Module!.Title}";
+
+            var wikiPdfUrl = await TryResolveWikipediaPdfUrlAsync(httpClient, query);
+            if (wikiPdfUrl is null)
+            {
+                wikiPdfUrl = await TryResolveWikipediaPdfUrlAsync(httpClient, lesson.Title);
+            }
+
+            if (wikiPdfUrl is null)
+            {
+                continue;
+            }
+
+            lesson.PdfPath = wikiPdfUrl;
+            replaced++;
+        }
+
+        if (replaced > 0)
+        {
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        return replaced;
+    }
+
+    private static async Task<string?> TryResolveWikipediaPdfUrlAsync(HttpClient httpClient, string query)
+    {
+        try
+        {
+            var searchEndpoint = $"https://fr.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&format=json&srsearch={Uri.EscapeDataString(query)}";
+            using var searchResponse = await httpClient.GetAsync(searchEndpoint);
+            if (!searchResponse.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            await using var searchStream = await searchResponse.Content.ReadAsStreamAsync(cancellationToken: default);
+            using var searchDoc = await JsonDocument.ParseAsync(searchStream);
+
+            var rootSearch = searchDoc.RootElement;
+            if (!rootSearch.TryGetProperty("query", out var queryElement)
+                || !queryElement.TryGetProperty("search", out var searchArray)
+                || searchArray.GetArrayLength() == 0)
+            {
+                return null;
+            }
+
+            var pageTitle = searchArray[0].GetProperty("title").GetString();
+            if (string.IsNullOrWhiteSpace(pageTitle))
+            {
+                return null;
+            }
+
+            return $"https://fr.wikipedia.org/api/rest_v1/page/pdf/{Uri.EscapeDataString(pageTitle)}";
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static bool IsOpenSourcePdfPath(string? pdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(pdfPath))
+        {
+            return false;
+        }
+
+        return pdfPath.Contains("fr.wikipedia.org/api/rest_v1/page/pdf/", StringComparison.OrdinalIgnoreCase)
+            || pdfPath.Contains("wikipedia.org", StringComparison.OrdinalIgnoreCase)
+            || pdfPath.Contains("wikiversity.org", StringComparison.OrdinalIgnoreCase)
+            || pdfPath.Contains("wikimedia.org", StringComparison.OrdinalIgnoreCase)
+            || pdfPath.Contains("gutenberg.org", StringComparison.OrdinalIgnoreCase)
+            || pdfPath.Contains("openedition.org", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string ResolveSourceLabel(string? pdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(pdfPath))
+        {
+            return "Aucune source";
+        }
+
+        if (Uri.TryCreate(pdfPath, UriKind.Absolute, out var uri))
+        {
+            return uri.Host;
+        }
+
+        return "Source locale";
     }
 
     private bool CanAccessAdmin()

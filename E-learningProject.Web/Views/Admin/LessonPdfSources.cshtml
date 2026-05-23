@@ -1,0 +1,101 @@
+@model E_learningProject.Web.Models.AdminLessonPdfSourcesViewModel
+
+@{
+    ViewData["Title"] = "Sources PDF des leçons";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Traçabilité des supports</p>
+            <h1 class="h2 mb-2">Leçon -> source PDF</h1>
+            <p class="hero-subtitle">Visualisez la source de chaque PDF et remplacez les liens non ouverts par des sources ouvertes.</p>
+        </div>
+        <div class="page-hero-actions">
+            <a class="btn btn-outline-dark" asp-controller="Admin" asp-action="Dashboard">Retour dashboard</a>
+            <form asp-controller="Admin" asp-action="RefreshLessonPdfSources" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button class="btn btn-brand" type="submit">
+                    <i class="bi bi-arrow-repeat me-1"></i>Remplacer les PDF non ouverts
+                </button>
+            </form>
+        </div>
+    </section>
+
+    @if (TempData["PdfSourceSyncSummary"] is string summary)
+    {
+        <div class="alert alert-success" role="alert">@summary</div>
+    }
+
+    <div class="content-grid content-grid--two mb-4">
+        <article class="metric-card">
+            <span>Total leçons</span>
+            <strong>@Model.TotalLessons</strong>
+        </article>
+        <article class="metric-card">
+            <span>PDF source ouverte</span>
+            <strong>@Model.OpenSourcePdfCount</strong>
+        </article>
+        <article class="metric-card">
+            <span>PDF non ouverts</span>
+            <strong>@Model.NonOpenSourcePdfCount</strong>
+        </article>
+    </div>
+
+    <div class="page-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow mb-1">Registre</p>
+                <h2 class="h5">Sources PDF par leçon</h2>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-modern align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Leçon</th>
+                        <th>Source</th>
+                        <th>Statut</th>
+                        <th>Lien</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Lessons.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-3">Aucune leçon trouvée.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var lesson in Model.Lessons)
+                        {
+                            <tr>
+                                <td>@lesson.ModuleTitle</td>
+                                <td>@lesson.LessonTitle</td>
+                                <td>@lesson.SourceLabel</td>
+                                <td>
+                                    <span class="status-chip @(lesson.IsOpenSourcePdf ? "status-chip--success" : "status-chip--warning")">
+                                        @(lesson.IsOpenSourcePdf ? "Source ouverte" : "À remplacer")
+                                    </span>
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrWhiteSpace(lesson.PdfPath))
+                                    {
+                                        <a class="btn btn-outline-dark btn-sm" href="@lesson.PdfPath" target="_blank" rel="noopener">Ouvrir</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

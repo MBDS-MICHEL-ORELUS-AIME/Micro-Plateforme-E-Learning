@@ -3,8 +3,8 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\bin\Debug\net8.0\E-l
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.csproj.CoreCompileInputs.cache
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.sourcelink.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\refint\E-learningProject.Core.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\ref\E-learningProject.Core.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.sourcelink.json

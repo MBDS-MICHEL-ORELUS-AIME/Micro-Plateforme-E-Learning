@@ -110,6 +110,12 @@ public class TeacherLessonCreateViewModel
 
     [Range(1, 200)]
     public int Order { get; set; } = 1;
+
+    public IFormFile? PdfFile { get; set; }
+    public IFormFile? VideoFile { get; set; }
+
+    [StringLength(500)]
+    public string? ExternalVideoUrl { get; set; }
 }
 
 public class TeacherMyQuizzesViewModel

@@ -6,6 +6,7 @@ using E_learningProject.Services;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Security;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -375,6 +376,88 @@ using (var scope = app.Services.CreateScope())
             logger.LogWarning(ex, "Demo data seeding failed at startup. The app will continue running.");
         }
     }
+
+    try
+    {
+        using var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(15) };
+        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("MicroLMS/1.0 (+academic project)");
+
+        var lessonsToCompletePdf = await dbContext.Lessons
+            .Include(l => l.Module)
+            .ToListAsync();
+
+        if (lessonsToCompletePdf.Count > 0)
+        {
+            var updatedCount = 0;
+
+            foreach (var lesson in lessonsToCompletePdf)
+            {
+                if (IsOpenSourcePdfPath(lesson.PdfPath))
+                {
+                    continue;
+                }
+
+                var query = string.IsNullOrWhiteSpace(lesson.Module?.Title)
+                    ? lesson.Title
+                    : $"{lesson.Title} {lesson.Module!.Title}";
+
+
+static bool IsOpenSourcePdfPath(string? pdfPath)
+{
+    if (string.IsNullOrWhiteSpace(pdfPath))
+    {
+        return false;
+    }
+
+    return pdfPath.Contains("fr.wikipedia.org/api/rest_v1/page/pdf/", StringComparison.OrdinalIgnoreCase)
+        || pdfPath.Contains("wikipedia.org", StringComparison.OrdinalIgnoreCase)
+        || pdfPath.Contains("wikiversity.org", StringComparison.OrdinalIgnoreCase)
+        || pdfPath.Contains("wikimedia.org", StringComparison.OrdinalIgnoreCase)
+        || pdfPath.Contains("gutenberg.org", StringComparison.OrdinalIgnoreCase)
+        || pdfPath.Contains("openedition.org", StringComparison.OrdinalIgnoreCase);
+}
+                var wikiPdfUrl = await TryResolveWikipediaPdfUrlAsync(httpClient, query);
+                if (wikiPdfUrl is null)
+                {
+                    wikiPdfUrl = await TryResolveWikipediaPdfUrlAsync(httpClient, lesson.Title);
+                }
+
+                if (wikiPdfUrl is null)
+                {
+                    continue;
+                }
+
+                lesson.PdfPath = wikiPdfUrl;
+                updatedCount++;
+            }
+
+            if (updatedCount > 0)
+            {
+                await dbContext.SaveChangesAsync();
+            }
+            logger.LogInformation("Backfill PDF Internet: {Count} lecon(s) ont recu un lien PDF web reel.", updatedCount);
+        }
+
+        const string fallbackVideoUrl = "https://samplelib.com/lib/preview/mp4/sample-5s.mp4";
+        var lessonsWithPlaceholderVideo = await dbContext.Lessons
+            .Where(l => l.VideoUrl == fallbackVideoUrl)
+            .ToListAsync();
+
+        if (lessonsWithPlaceholderVideo.Count > 0)
+        {
+            foreach (var lesson in lessonsWithPlaceholderVideo)
+            {
+                lesson.VideoUrl = null;
+            }
+
+            await dbContext.SaveChangesAsync();
+            logger.LogInformation("Nettoyage video: {Count} lecon(s) avec video placeholder ont ete nettoyees.", lessonsWithPlaceholderVideo.Count);
+        }
+    }
+    catch (Exception ex)
+    {
+        logger.LogWarning(ex, "Backfill PDF/vidéo des lecons echoue au demarrage. L'application continue sans interruption.");
+    }
 }
 
 // Configure the HTTP request pipeline.
@@ -400,5 +483,41 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Public}/{id?}");
 
 app.Run();
+
+static async Task<string?> TryResolveWikipediaPdfUrlAsync(HttpClient httpClient, string query)
+{
+    try
+    {
+        var searchEndpoint = $"https://fr.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&format=json&srsearch={Uri.EscapeDataString(query)}";
+        using var searchResponse = await httpClient.GetAsync(searchEndpoint);
+        if (!searchResponse.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
+        await using var searchStream = await searchResponse.Content.ReadAsStreamAsync();
+        using var searchDoc = await JsonDocument.ParseAsync(searchStream);
+
+        var rootSearch = searchDoc.RootElement;
+        if (!rootSearch.TryGetProperty("query", out var queryElement)
+            || !queryElement.TryGetProperty("search", out var searchArray)
+            || searchArray.GetArrayLength() == 0)
+        {
+            return null;
+        }
+
+        var pageTitle = searchArray[0].GetProperty("title").GetString();
+        if (string.IsNullOrWhiteSpace(pageTitle))
+        {
+            return null;
+        }
+
+        return $"https://fr.wikipedia.org/api/rest_v1/page/pdf/{Uri.EscapeDataString(pageTitle)}";
+    }
+    catch
+    {
+        return null;
+    }
+}
 
 public partial class Program;

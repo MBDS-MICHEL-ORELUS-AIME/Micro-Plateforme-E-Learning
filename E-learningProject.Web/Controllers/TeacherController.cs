@@ -119,6 +119,30 @@ public class TeacherController : Controller
             ModelState.AddModelError(nameof(form.ModuleId), "Veuillez sélectionner un module valide.");
         }
 
+        if (form.PdfFile is not null)
+        {
+            ValidateFileUpload(form.PdfFile, AllowedPdfExtensions, MaxPdfSizeBytes, nameof(form.PdfFile), "PDF");
+        }
+
+        if (form.VideoFile is not null)
+        {
+            ValidateFileUpload(form.VideoFile, AllowedVideoExtensions, MaxVideoSizeBytes, nameof(form.VideoFile), "vidéo");
+        }
+
+        Uri? parsedUrl = null;
+        if (!string.IsNullOrWhiteSpace(form.ExternalVideoUrl)
+            && !Uri.TryCreate(form.ExternalVideoUrl.Trim(), UriKind.Absolute, out parsedUrl))
+        {
+            ModelState.AddModelError(nameof(form.ExternalVideoUrl), "L'URL vidéo n'est pas valide.");
+        }
+        else if (!string.IsNullOrWhiteSpace(form.ExternalVideoUrl)
+            && parsedUrl is not null
+            && parsedUrl.Scheme != Uri.UriSchemeHttp
+            && parsedUrl.Scheme != Uri.UriSchemeHttps)
+        {
+            ModelState.AddModelError(nameof(form.ExternalVideoUrl), "L'URL vidéo doit commencer par http:// ou https://.");
+        }
+
         if (!ModelState.IsValid)
         {
             var invalidViewModel = await BuildWorkspaceViewModel(cancellationToken);
@@ -126,16 +150,38 @@ public class TeacherController : Controller
             return View("Workspace", invalidViewModel);
         }
 
-        _dbContext.Lessons.Add(new Lesson
+        var lesson = new Lesson
         {
             ModuleId = form.ModuleId,
             Title = form.Title.Trim(),
             TextContent = form.TextContent.Trim(),
             Order = form.Order
-        });
+        };
+
+        if (form.PdfFile is not null)
+        {
+            var pdfRelativePath = await SaveFile(form.PdfFile, "uploads/pdfs", cancellationToken);
+            lesson.PdfPath = "/" + pdfRelativePath.Replace("\\", "/");
+        }
+
+        if (form.VideoFile is not null)
+        {
+            var videoRelativePath = await SaveFile(form.VideoFile, "uploads/videos", cancellationToken);
+            lesson.VideoUrl = "/" + videoRelativePath.Replace("\\", "/");
+        }
+
+        if (!string.IsNullOrWhiteSpace(form.ExternalVideoUrl))
+        {
+            lesson.VideoUrl = form.ExternalVideoUrl.Trim();
+        }
+
+        _dbContext.Lessons.Add(lesson);
 
         await _dbContext.SaveChangesAsync(cancellationToken);
-        TempData["TeacherSuccess"] = "Leçon créée avec succès.";
+        var hasAnyMedia = form.PdfFile is not null || form.VideoFile is not null || !string.IsNullOrWhiteSpace(form.ExternalVideoUrl);
+        TempData["TeacherSuccess"] = hasAnyMedia
+            ? "Leçon créée avec succès avec ses supports."
+            : "Leçon créée avec succès.";
         return RedirectToAction(nameof(Workspace));
     }
 

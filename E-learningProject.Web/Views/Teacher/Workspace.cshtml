@@ -190,7 +190,7 @@
                     <p class="text-muted small mb-0">Le dernier module créé est déjà sélectionné automatiquement.</p>
                 </div>
             </div>
-            <form asp-controller="Teacher" asp-action="CreateLesson" method="post" novalidate>
+            <form asp-controller="Teacher" asp-action="CreateLesson" method="post" enctype="multipart/form-data" novalidate>
                 @Html.AntiForgeryToken()
                 @if (!hasModule)
                 {
@@ -222,6 +222,21 @@
                         <label asp-for="LessonForm.TextContent" class="form-label">Contenu texte</label>
                         <textarea asp-for="LessonForm.TextContent" class="form-control" rows="5"></textarea>
                         <span asp-validation-for="LessonForm.TextContent" class="text-danger small"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="LessonForm.PdfFile" class="form-label">PDF (optionnel)</label>
+                        <input asp-for="LessonForm.PdfFile" class="form-control" type="file" accept="application/pdf" />
+                        <span asp-validation-for="LessonForm.PdfFile" class="text-danger small"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="LessonForm.VideoFile" class="form-label">Vidéo locale (optionnel)</label>
+                        <input asp-for="LessonForm.VideoFile" class="form-control" type="file" accept="video/*" />
+                        <span asp-validation-for="LessonForm.VideoFile" class="text-danger small"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label asp-for="LessonForm.ExternalVideoUrl" class="form-label">URL vidéo (optionnel)</label>
+                        <input asp-for="LessonForm.ExternalVideoUrl" class="form-control" placeholder="https://..." />
+                        <span asp-validation-for="LessonForm.ExternalVideoUrl" class="text-danger small"></span>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-dark mt-3">
