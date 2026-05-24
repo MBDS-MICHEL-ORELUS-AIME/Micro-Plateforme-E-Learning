@@ -1,0 +1,31 @@
+@model eLearning_Project.Models.Course
+
+@{
+    ViewData["Title"] = "Delete course";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card border-danger shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 text-danger">Delete course</h1>
+                <p>Cette action supprimera definitivement le cours suivant.</p>
+
+                <dl class="row">
+                    <dt class="col-sm-4">Title</dt>
+                    <dd class="col-sm-8">@Model.Title</dd>
+                    <dt class="col-sm-4">Instructor</dt>
+                    <dd class="col-sm-8">@Model.Instructor</dd>
+                    <dt class="col-sm-4">Category</dt>
+                    <dd class="col-sm-8">@Model.Category</dd>
+                </dl>
+
+                <form asp-action="Delete" method="post" class="d-flex gap-2">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

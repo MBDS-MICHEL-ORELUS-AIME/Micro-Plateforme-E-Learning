@@ -1,0 +1,76 @@
+@model IReadOnlyList<eLearning_Project.Models.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Courses</h1>
+        <p class="text-muted mb-0">Gerez les premiers cours de votre plateforme eLearning.</p>
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary" asp-action="Create">Add course</a>
+    }
+    else if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <span class="badge bg-secondary">Role Student</span>
+    }
+    else
+    {
+        <a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Login">Sign in to add course</a>
+    }
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">
+        Aucun cours n'est encore enregistre. Commencez par en ajouter un.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Instructor</th>
+                    <th>Category</th>
+                    <th>Duration</th>
+                    <th>Created</th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th class="text-end">Actions</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="fw-semibold">@course.Title</div>
+                        @if (!string.IsNullOrWhiteSpace(course.Description))
+                        {
+                            <div class="text-muted small">@course.Description</div>
+                        }
+                    </td>
+                    <td>@course.Instructor</td>
+                    <td>@course.Category</td>
+                    <td>@course.DurationHours h</td>
+                    <td>@course.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@course.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@course.Id">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
