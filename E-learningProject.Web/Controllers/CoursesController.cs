@@ -1,4 +1,4 @@
-using E_learningProject.Data.Context;
+﻿using E_learningProject.Data.Context;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Models;
 using Microsoft.EntityFrameworkCore;
@@ -194,14 +194,14 @@ public class CoursesController : Controller
                 StudentId = studentId,
                 LessonId = lessonId,
                 IsRead = true,
-                ReadDate = DateTime.Now
+                ReadDate = DateTime.UtcNow
             };
             _dbContext.LessonProgressions.Add(progression);
         }
         else
         {
             progression.IsRead = true;
-            progression.ReadDate = DateTime.Now;
+            progression.ReadDate = DateTime.UtcNow;
         }
 
         var enrollment = await _dbContext.Enrollments
@@ -213,7 +213,7 @@ public class CoursesController : Controller
             {
                 StudentId = studentId,
                 ModuleId = moduleId,
-                EnrollmentDate = DateTime.Now,
+                EnrollmentDate = DateTime.UtcNow,
                 IsCompleted = false
             };
             _dbContext.Enrollments.Add(enrollment);
@@ -270,7 +270,7 @@ public class CoursesController : Controller
                 ModuleId = moduleId,
                 StudentId = studentId,
                 UniqueCode = _certificateService.GenerateCertificateNumber(studentId, moduleId),
-                IssueDate = DateTime.Now
+                IssueDate = DateTime.UtcNow
             };
 
             _dbContext.Certificates.Add(certificate);

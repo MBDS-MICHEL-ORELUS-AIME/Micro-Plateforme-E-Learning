@@ -212,14 +212,14 @@ public class LearnerController : Controller
                 StudentId = studentId,
                 LessonId = lessonId,
                 IsRead = true,
-                ReadDate = DateTime.Now
+                ReadDate = DateTime.UtcNow
             };
             _dbContext.LessonProgressions.Add(progression);
         }
         else
         {
             progression.IsRead = true;
-            progression.ReadDate = DateTime.Now;
+            progression.ReadDate = DateTime.UtcNow;
         }
 
         await _dbContext.SaveChangesAsync(cancellationToken);

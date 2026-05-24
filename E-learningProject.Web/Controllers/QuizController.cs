@@ -1,4 +1,4 @@
-using E_learningProject.Core.Enums;
+﻿using E_learningProject.Core.Enums;
 using E_learningProject.Data.Context;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Models;
@@ -228,7 +228,7 @@ public class QuizController : Controller
             QuizId = quiz.Id,
             Score = score,
             IsPassed = isPassed,
-            AttemptDate = DateTime.Now
+            AttemptDate = DateTime.UtcNow
         };
 
         _dbContext.QuizResults.Add(result);

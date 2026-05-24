@@ -60,7 +60,7 @@ public class DiscussionController : Controller
         var studentId = ResolveCurrentUserId();
         if (studentId is null) return RedirectToAction("Login", "Account");
         if (string.IsNullOrWhiteSpace(title)) return RedirectToAction(nameof(Index));
-        var thread = new DiscussionThread { Title = title.Trim(), StudentId = studentId, CreatedAt = DateTime.Now, IsResolved = false };
+        var thread = new DiscussionThread { Title = title.Trim(), StudentId = studentId, CreatedAt = DateTime.UtcNow, IsResolved = false };
         _dbContext.DiscussionThreads.Add(thread);
         await _dbContext.SaveChangesAsync(cancellationToken);
         return RedirectToAction(nameof(Details), new { id = thread.Id });
@@ -90,7 +90,7 @@ public class DiscussionController : Controller
         var thread = await _dbContext.DiscussionThreads.FirstOrDefaultAsync(t => t.Id == threadId, cancellationToken);
         if (thread is null) return NotFound();
         if (string.IsNullOrWhiteSpace(message)) return RedirectToAction(nameof(Details), new { id = threadId });
-        _dbContext.DiscussionReplies.Add(new DiscussionReply { DiscussionThreadId = threadId, AuthorId = authorId, Message = message.Trim(), CreatedAt = DateTime.Now });
+        _dbContext.DiscussionReplies.Add(new DiscussionReply { DiscussionThreadId = threadId, AuthorId = authorId, Message = message.Trim(), CreatedAt = DateTime.UtcNow });
         await _dbContext.SaveChangesAsync(cancellationToken);
         return RedirectToAction(nameof(Details), new { id = threadId });
     }
@@ -132,3 +132,4 @@ public class DiscussionController : Controller
         return string.IsNullOrWhiteSpace(name) ? null : name;
     }
 }
+
