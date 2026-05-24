@@ -27,6 +27,8 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\E-le
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\E-learningProject.Web.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\E-learningProject.Web.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Humanizer.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -38,7 +40,15 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Micr
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Npgsql.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
@@ -123,6 +133,7 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-le
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.RazorAssemblyInfo.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.RazorAssemblyInfo.cs
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.sourcelink.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -140,14 +151,3 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\refi
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.genruntimeconfig.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\ref\E-learningProject.Web.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learningProject.Web.sourcelink.json
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

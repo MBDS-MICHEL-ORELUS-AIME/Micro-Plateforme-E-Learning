@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "xs3GS6Kg/xU=",
+  "dgSpecHash": "8ZZDAbiIVXo=",
   "success": true,
   "projectFilePath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512"
   ],
   "logs": []
 }

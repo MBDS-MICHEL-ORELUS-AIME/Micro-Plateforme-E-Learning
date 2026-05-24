@@ -1,4 +1,4 @@
-using E_learningProject.Core.Entities;
+﻿using E_learningProject.Core.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +25,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<User> AppUsers => Set<User>();
     public DbSet<Role> AppRoles => Set<Role>();
     public DbSet<ContentImportLog> ContentImportLogs => Set<ContentImportLog>();
+    public DbSet<StudentBadge> StudentBadges => Set<StudentBadge>();
+    public DbSet<DiscussionReport> DiscussionReports => Set<DiscussionReport>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -126,6 +128,28 @@ public class ApplicationDbContext : IdentityDbContext
             entity.Property(x => x.ContentHash).HasMaxLength(128).IsRequired();
             entity.HasIndex(x => x.ContentHash).IsUnique();
             entity.HasIndex(x => x.ImportedAt);
+        });
+
+        modelBuilder.Entity<StudentBadge>(entity =>
+        {
+            entity.ToTable("StudentBadges");
+            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
+            entity.Property(x => x.BadgeName).HasMaxLength(100).IsRequired();
+            entity.Property(x => x.Description).HasMaxLength(300).IsRequired();
+            entity.Property(x => x.IconCss).HasMaxLength(100).IsRequired();
+            entity.HasIndex(x => new { x.StudentId, x.BadgeName }).IsUnique();
+        });
+
+        modelBuilder.Entity<DiscussionReport>(entity =>
+        {
+            entity.ToTable("DiscussionReports");
+            entity.Property(x => x.ReporterStudentId).HasMaxLength(450).IsRequired();
+            entity.Property(x => x.Reason).HasMaxLength(500).IsRequired();
+            entity.Property(x => x.HandlerNote).HasMaxLength(500);
+            entity.HasOne(x => x.Thread)
+                .WithMany()
+                .HasForeignKey(x => x.ThreadId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

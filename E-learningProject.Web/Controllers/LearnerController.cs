@@ -1,4 +1,4 @@
-using E_learningProject.Data.Context;
+﻿using E_learningProject.Data.Context;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -81,7 +81,8 @@ public class LearnerController : Controller
             QuizAttempts = quizAttempts,
             PassedQuizzes = passedQuizzes,
             DiscussionsOpened = discussionsOpened,
-            Modules = moduleCards
+            Modules = moduleCards,
+            Badges = await _dbContext.StudentBadges.AsNoTracking().Where(b => b.StudentId == studentId).OrderByDescending(b => b.AwardedAt).Select(b => new BadgeViewModel { Name = b.BadgeName, Description = b.Description, IconCss = b.IconCss, AwardedAt = b.AwardedAt }).Take(4).ToListAsync(cancellationToken)
         };
 
         return View(viewModel);
@@ -222,6 +223,7 @@ public class LearnerController : Controller
         }
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+        await AwardBadgesAfterReadAsync(studentId, moduleId, cancellationToken);
         return RedirectToAction(nameof(Reader), new { moduleId, lessonId });
     }
 
@@ -237,5 +239,60 @@ public class LearnerController : Controller
         }
 
         return null;
+    }
+    public async Task<IActionResult> Badges(CancellationToken cancellationToken = default)
+    {
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+            return RedirectToAction("Login", "Account");
+
+        var badges = await _dbContext.StudentBadges
+            .AsNoTracking()
+            .Where(b => b.StudentId == studentId)
+            .OrderByDescending(b => b.AwardedAt)
+            .Select(b => new BadgeViewModel
+            {
+                Name = b.BadgeName,
+                Description = b.Description,
+                IconCss = b.IconCss,
+                AwardedAt = b.AwardedAt
+            })
+            .ToListAsync(cancellationToken);
+
+        return View(new LearnerBadgesViewModel { StudentId = studentId, Badges = badges });
+    }
+
+    private async Task AwardBadgesAfterReadAsync(string studentId, int moduleId, CancellationToken cancellationToken)
+    {
+        var module = await _dbContext.Modules.AsNoTracking().Include(m => m.Lessons).FirstOrDefaultAsync(m => m.Id == moduleId, cancellationToken);
+        if (module is null) return;
+
+        var readLessonIds = await _dbContext.LessonProgressions.AsNoTracking()
+            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Select(lp => lp.LessonId)
+            .ToListAsync(cancellationToken);
+
+        if (readLessonIds.Count >= 1)
+            await TryAwardBadgeAsync(studentId, "Premiere Lecon", "Vous avez lu votre premiere lecon !", "bi-star-fill", cancellationToken);
+
+        if (module.Lessons.Count > 0 && module.Lessons.All(l => readLessonIds.Contains(l.Id)))
+            await TryAwardBadgeAsync(studentId, "Module: " + module.Title, "Module completement lu: " + module.Title, "bi-trophy-fill", cancellationToken);
+    }
+
+    private async Task TryAwardBadgeAsync(string studentId, string badgeName, string description, string iconCss, CancellationToken cancellationToken)
+    {
+        var exists = await _dbContext.StudentBadges.AnyAsync(b => b.StudentId == studentId && b.BadgeName == badgeName, cancellationToken);
+        if (!exists)
+        {
+            _dbContext.StudentBadges.Add(new Core.Entities.StudentBadge
+            {
+                StudentId = studentId,
+                BadgeName = badgeName,
+                Description = description,
+                IconCss = iconCss,
+                AwardedAt = DateTime.UtcNow
+            });
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
     }
 }

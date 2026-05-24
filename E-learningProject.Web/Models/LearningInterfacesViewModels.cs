@@ -1,4 +1,4 @@
-using E_learningProject.Core.Enums;
+﻿using E_learningProject.Core.Enums;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,6 +14,7 @@ public class LearnerDashboardViewModel
     public int PassedQuizzes { get; set; }
     public int DiscussionsOpened { get; set; }
     public List<LearnerModuleCardViewModel> Modules { get; set; } = new();
+    public List<BadgeViewModel> Badges { get; set; } = new();
 }
 
 public class LearnerQuizHistoryViewModel
@@ -210,4 +211,18 @@ public class TeacherMediaUploadViewModel
 
     [StringLength(500)]
     public string? ExternalVideoUrl { get; set; }
+}
+
+public class BadgeViewModel
+{
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string IconCss { get; set; } = string.Empty;
+    public DateTime AwardedAt { get; set; }
+}
+
+public class LearnerBadgesViewModel
+{
+    public string StudentId { get; set; } = string.Empty;
+    public List<BadgeViewModel> Badges { get; set; } = new();
 }

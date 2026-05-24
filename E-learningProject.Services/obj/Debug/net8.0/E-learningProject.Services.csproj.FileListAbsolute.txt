@@ -29,9 +29,9 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.AssemblyInfoInputs.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.AssemblyInfo.cs
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.csproj.CoreCompileInputs.cache
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.sourcelink.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learni.2C3FDB82.Up2Date
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\refint\E-learningProject.Services.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\ref\E-learningProject.Services.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Services\obj\Debug\net8.0\E-learningProject.Services.sourcelink.json

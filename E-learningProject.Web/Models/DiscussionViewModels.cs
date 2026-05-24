@@ -1,4 +1,4 @@
-namespace E_learningProject.Web.Models;
+﻿namespace E_learningProject.Web.Models;
 
 public class DiscussionIndexViewModel
 {
@@ -42,4 +42,23 @@ public class DiscussionReplyItemViewModel
     public string AuthorId { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+}
+
+public class ModerationIndexViewModel
+{
+    public int PendingCount { get; set; }
+    public int HandledCount { get; set; }
+    public List<ModerationReportItemViewModel> Reports { get; set; } = new();
+}
+
+public class ModerationReportItemViewModel
+{
+    public int ReportId { get; set; }
+    public int ThreadId { get; set; }
+    public string ThreadTitle { get; set; } = string.Empty;
+    public string ReporterStudentId { get; set; } = string.Empty;
+    public string Reason { get; set; } = string.Empty;
+    public DateTime ReportedAt { get; set; }
+    public bool IsHandled { get; set; }
+    public string HandlerNote { get; set; } = string.Empty;
 }

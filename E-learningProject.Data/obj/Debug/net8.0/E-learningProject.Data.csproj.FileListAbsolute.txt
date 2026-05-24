@@ -9,10 +9,10 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-l
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.AssemblyInfoInputs.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.AssemblyInfo.cs
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.csproj.CoreCompileInputs.cache
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.sourcelink.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learni.A050D15E.Up2Date
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\refint\E-learningProject.Data.dll
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.pdb
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.genruntimeconfig.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\ref\E-learningProject.Data.dll
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Data\obj\Debug\net8.0\E-learningProject.Data.sourcelink.json

@@ -1,0 +1,106 @@
+@model E_learningProject.Web.Models.ModerationIndexViewModel
+@{
+    ViewData["Title"] = "Modération des discussions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var filter = ViewData["Filter"]?.ToString() ?? "pending";
+}
+
+<div class="container-fluid py-4">
+    <h2 class="h4 fw-bold mb-4"><i class="bi bi-shield-check me-2 text-danger"></i>Modération des discussions</h2>
+
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="fs-2 fw-bold text-danger">@Model.PendingCount</div>
+                    <div class="small text-muted">En attente</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="fs-2 fw-bold text-success">@Model.HandledCount</div>
+                    <div class="small text-muted">Traités</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link @(filter == "pending" ? "active" : "")" href="@Url.Action("Moderation","Admin",new{filter="pending"})">
+                En attente <span class="badge bg-danger ms-1">@Model.PendingCount</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(filter == "handled" ? "active" : "")" href="@Url.Action("Moderation","Admin",new{filter="handled"})">
+                Traités <span class="badge bg-secondary ms-1">@Model.HandledCount</span>
+            </a>
+        </li>
+    </ul>
+
+    @if (!Model.Reports.Any())
+    {
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-check-circle display-3 text-success"></i>
+            <p class="mt-3">Aucun signalement dans cette catégorie.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Fil de discussion</th>
+                        <th>Signalé par</th>
+                        <th>Motif</th>
+                        <th>Date</th>
+                        @if (filter == "handled") { <th>Note</th> }
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Reports)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details","Discussion",new{id=r.ThreadId})" class="text-decoration-none">
+                                    @r.ThreadTitle
+                                </a>
+                            </td>
+                            <td><small class="text-muted">@r.ReporterStudentId</small></td>
+                            <td>@r.Reason</td>
+                            <td><small>@r.ReportedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</small></td>
+                            @if (filter == "handled") {
+                                <td><small class="text-muted">@r.HandlerNote</small></td>
+                            }
+                            <td class="text-end">
+                                @if (!r.IsHandled)
+                                {
+                                    <form method="post" action="@Url.Action("HandleReport","Admin")" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="reportId" value="@r.ReportId" />
+                                        <button type="submit" name="action" value="dismiss" class="btn btn-sm btn-outline-secondary me-1">
+                                            <i class="bi bi-x-circle"></i> Rejeter
+                                        </button>
+                                        <button type="submit" name="action" value="delete_thread"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Supprimer ce fil de discussion ?')">
+                                            <i class="bi bi-trash"></i> Supprimer le fil
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success"><i class="bi bi-check"></i> Traité</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
