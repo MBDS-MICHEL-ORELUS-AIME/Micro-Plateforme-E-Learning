@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net9.0": {}
   },
@@ -8,28 +8,37 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ore68\\.nuget\\packages\\": {}
+    "C:\\Users\\hugue\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+      "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
       "projectName": "E-learningProject.Core",
-      "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
-      "packagesPath": "C:\\Users\\ore68\\.nuget\\packages\\",
-      "outputPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\obj\\",
+      "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+      "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ore68\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {}
         }
@@ -44,10 +53,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net9.0": {
+        "framework": "net9.0",
         "targetAlias": "net9.0",
         "imports": [
           "net461",
@@ -63,15 +73,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.11, 9.0.11]"
+            "version": "[9.0.16, 9.0.16]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[9.0.11, 9.0.11]"
+            "version": "[9.0.16, 9.0.16]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[9.0.11, 9.0.11]"
+            "version": "[9.0.16, 9.0.16]"
           }
         ],
         "frameworkReferences": {
@@ -79,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

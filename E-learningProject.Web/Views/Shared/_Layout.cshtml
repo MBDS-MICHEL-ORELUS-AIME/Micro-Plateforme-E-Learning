@@ -44,7 +44,7 @@
                             <a class="nav-link nav-pill @(isActive("Discussion", "Index") ? "active" : string.Empty)" asp-area="" asp-controller="Discussion" asp-action="Index"><i class="bi bi-chat-dots me-1"></i>Discussion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-pill @(isActive("Certificates", "Verify") ? "active" : string.Empty)" asp-area="" asp-controller="Certificates" asp-action="Verify"><i class="bi bi-shield-check me-1"></i>Vérifier certificat</a>
+                            <a class="nav-link nav-pill @(string.Equals(currentController, "Certificates", StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)" asp-area="" asp-controller="Certificates" asp-action="Index"><i class="bi bi-shield-check me-1"></i>Certificats</a>
                         </li>
                         @if (canAccessAdminDashboard)
                         {

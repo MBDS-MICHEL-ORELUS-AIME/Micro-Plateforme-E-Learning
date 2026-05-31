@@ -51,7 +51,15 @@
                     <h2 class="h5">Retour au quiz</h2>
                 </div>
             </div>
-            <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">Voir les quiz</a>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">Voir les quiz</a>
+                    <a class="btn btn-outline-secondary" asp-controller="Learner" asp-action="QuizHistory">Voir mon historique</a>
+                    @if (Model.IsPassed)
+                    {
+                        <a class="btn btn-success" asp-controller="Quiz" asp-action="DownloadCertificate" asp-route-quizResultId="@Model.QuizResultId">Télécharger le certificat</a>
+                    }
+                    <a class="btn btn-outline-primary" asp-controller="Quiz" asp-action="Start" asp-route-id="@Model.QuizId">Repasser</a>
+                </div>
         </div>
     </div>
 

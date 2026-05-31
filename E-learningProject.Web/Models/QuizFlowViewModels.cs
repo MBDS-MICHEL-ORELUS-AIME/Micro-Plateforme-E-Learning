@@ -9,6 +9,8 @@ public class QuizListItemViewModel
     public int PassingScore { get; set; }
     public int QuestionCount { get; set; }
     public string? ModuleTitle { get; set; }
+    public bool AlreadyPassed { get; set; }
+    public DateTime? PassedAt { get; set; }
 }
 
 public class QuizTakeViewModel
@@ -64,6 +66,7 @@ public class QuizAnswerInputViewModel
 public class QuizResultViewModel
 {
     public int QuizResultId { get; set; }
+    public int QuizId { get; set; }
     public string QuizTitle { get; set; } = string.Empty;
     public string StudentId { get; set; } = string.Empty;
     public int Score { get; set; }

@@ -49,6 +49,16 @@
                                 {
                                     <p class="text-muted mb-0">@quiz.ModuleTitle</p>
                                 }
+                                @if (quiz.AlreadyPassed)
+                                {
+                                    <div class="mt-2">
+                                        <span class="status-chip status-chip--success"><i class="bi bi-check2-circle me-1"></i>Quiz déjà réussi</span>
+                                        @if (quiz.PassedAt != null)
+                                        {
+                                            <small class="text-muted ms-2">le @quiz.PassedAt.Value.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</small>
+                                        }
+                                    </div>
+                                }
                             </div>
                             <span class="status-chip status-chip--neutral">@quiz.QuestionCount questions</span>
                         </div>
@@ -62,6 +72,10 @@
 
                         <div class="mt-auto d-flex gap-2 flex-wrap">
                             <a class="btn btn-brand" asp-controller="Quiz" asp-action="Start" asp-route-id="@quiz.QuizId">Commencer</a>
+                            @if (quiz.AlreadyPassed)
+                            {
+                                <a class="btn btn-outline-secondary" title="Repasser le quiz" asp-controller="Quiz" asp-action="Start" asp-route-id="@quiz.QuizId">Repasser</a>
+                            }
                         </div>
                     </div>
                 </article>
