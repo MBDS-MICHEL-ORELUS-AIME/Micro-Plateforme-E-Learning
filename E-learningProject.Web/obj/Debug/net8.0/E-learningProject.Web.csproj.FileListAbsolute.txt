@@ -301,3 +301,8 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\stat
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\swae.build.ex.cache
 c:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learni.4BAC9384.Up2Date
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets\msbuild.E-learningProject.Web.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets\msbuild.build.E-learningProject.Web.props
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.E-learningProject.Web.props
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.E-learningProject.Web.props
+C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets.pack.json
