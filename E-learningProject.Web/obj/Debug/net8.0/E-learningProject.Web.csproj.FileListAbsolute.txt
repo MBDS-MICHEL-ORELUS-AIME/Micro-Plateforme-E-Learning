@@ -300,4 +300,4 @@ C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\rjsm
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\swae.build.ex.cache
-C:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learni.4BAC9384.Up2Date
+c:\Donnees\NET MVC\E-learningProject\E-learningProject.Web\obj\Debug\net8.0\E-learni.4BAC9384.Up2Date

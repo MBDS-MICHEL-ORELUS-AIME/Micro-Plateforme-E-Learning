@@ -50,6 +50,7 @@
       "Microsoft.EntityFrameworkCore/8.0.15": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.15",
+          "Microsoft.EntityFrameworkCore.Analyzers": "8.0.15",
           "Microsoft.Extensions.Caching.Memory": "8.0.1",
           "Microsoft.Extensions.Logging": "8.0.1"
         },
@@ -68,6 +69,7 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.Analyzers/8.0.15": {},
       "Microsoft.EntityFrameworkCore.Relational/8.0.15": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.15",
@@ -278,10 +280,7 @@
       },
       "E-learningProject.Core/1.0.0": {
         "runtime": {
-          "E-learningProject.Core.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
+          "E-learningProject.Core.dll": {}
         }
       },
       "E-learningProject.Data/1.0.0": {
@@ -291,10 +290,7 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.11"
         },
         "runtime": {
-          "E-learningProject.Data.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "E-learningProject.Data.dll": {}
         }
       }
     }
@@ -339,6 +335,13 @@
       "sha512": "sha512-wzBUYqfNTyclVaVo6we4Vo0GsfNSmHHJPn3SF4gEsR+e5QZ4r5Ck5Y9oRcEoeqxS+eFPvJzWN6xpTbwCCoWPnw==",
       "path": "microsoft.entityframeworkcore.abstractions/8.0.15",
       "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-viyTqFw09xwhynmvYggUu48R0Y6WEU2dDKBKm7WwozDH5t1K7+RS9P+iXGe5uUNJstTH/STd2AMFKpT9GaX4OQ==",
+      "path": "microsoft.entityframeworkcore.analyzers/8.0.15",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.15.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.15": {
       "type": "package",
