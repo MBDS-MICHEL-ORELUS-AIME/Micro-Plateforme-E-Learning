@@ -1,4 +1,4 @@
-using E_learningProject.Data.Context;
+﻿using E_learningProject.Data.Context;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Models;
 using E_learningProject.Web.Security;
@@ -677,5 +677,60 @@ public class AdminController : Controller
         {
             ModelState.AddModelError(nameof(model.RoleId), "Veuillez sélectionner un rôle valide.");
         }
+    }
+    public async Task<IActionResult> Moderation(string filter = "pending", CancellationToken cancellationToken = default)
+    {
+        var role = HttpContext.Session.GetString("CurrentUserRole");
+        if (!string.Equals(role, "coordinateur", StringComparison.OrdinalIgnoreCase) && !string.Equals(role, "superadmin", StringComparison.OrdinalIgnoreCase))
+            return Forbid();
+
+        var reports = await _dbContext.DiscussionReports.AsNoTracking()
+            .Include(r => r.Thread)
+            .OrderByDescending(r => r.ReportedAt)
+            .Select(r => new ModerationReportItemViewModel
+            {
+                ReportId = r.Id, ThreadId = r.ThreadId,
+                ThreadTitle = r.Thread != null ? r.Thread.Title : string.Empty,
+                ReporterStudentId = r.ReporterStudentId, Reason = r.Reason,
+                ReportedAt = r.ReportedAt, IsHandled = r.IsHandled, HandlerNote = r.HandlerNote
+            })
+            .ToListAsync(cancellationToken);
+
+        var filtered = filter == "handled" ? reports.Where(r => r.IsHandled).ToList() : reports.Where(r => !r.IsHandled).ToList();
+
+        var vm = new ModerationIndexViewModel
+        {
+            PendingCount = reports.Count(r => !r.IsHandled),
+            HandledCount = reports.Count(r => r.IsHandled),
+            Reports = filtered
+        };
+        ViewData["Filter"] = filter;
+        return View(vm);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> HandleReport(int reportId, string action, CancellationToken cancellationToken = default)
+    {
+        var role = HttpContext.Session.GetString("CurrentUserRole");
+        if (!string.Equals(role, "coordinateur", StringComparison.OrdinalIgnoreCase) && !string.Equals(role, "superadmin", StringComparison.OrdinalIgnoreCase))
+            return Forbid();
+
+        var report = await _dbContext.DiscussionReports.Include(r => r.Thread).FirstOrDefaultAsync(r => r.Id == reportId, cancellationToken);
+        if (report is null) return NotFound();
+
+        if (action == "delete_thread" && report.Thread is not null)
+        {
+            _dbContext.DiscussionThreads.Remove(report.Thread);
+            report.IsHandled = true;
+            report.HandlerNote = "Fil supprime par le moderateur.";
+        }
+        else
+        {
+            report.IsHandled = true;
+            report.HandlerNote = "Signalement rejete.";
+        }
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return RedirectToAction(nameof(Moderation));
     }
 }

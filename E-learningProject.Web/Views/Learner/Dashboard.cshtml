@@ -1,4 +1,4 @@
-@model E_learningProject.Web.Models.LearnerDashboardViewModel
+﻿@model E_learningProject.Web.Models.LearnerDashboardViewModel
 
 @{
     ViewData["Title"] = "Tableau de bord apprenant";
@@ -74,4 +74,26 @@
             </article>
         }
     </div>
+
+    @if (Model.Badges.Any())
+    {
+        <div class="mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="h6 fw-bold"><i class="bi bi-award-fill text-warning me-1"></i>Mes badges récents</h3>
+                <a href="@Url.Action("Badges", "Learner")" class="btn btn-outline-secondary btn-sm">Voir tous</a>
+            </div>
+            <div class="row g-3">
+                @foreach (var badge in Model.Badges)
+                {
+                    <div class="col-6 col-md-3">
+                        <div class="card border-0 shadow-sm text-center p-2 h-100">
+                            <div class="fs-2 text-warning"><i class="bi @badge.IconCss"></i></div>
+                            <div class="small fw-semibold">@badge.Name</div>
+                            <small class="text-muted">@badge.AwardedAt.ToLocalTime().ToString("dd/MM")</small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
 </div>

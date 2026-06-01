@@ -41,16 +41,19 @@
                 <thead>
                     <tr>
                         <th>Quiz</th>
+                        <th>Module</th>
                         <th>Score</th>
                         <th>Statut</th>
+                        <th>Remarque</th>
                         <th>Date</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (!Model.Attempts.Any())
                     {
                         <tr>
-                            <td colspan="4" class="text-center text-muted py-4">Aucune tentative enregistree pour le moment.</td>
+                            <td colspan="7" class="text-center text-muted py-4">Aucune tentative enregistree pour le moment.</td>
                         </tr>
                     }
                     else
@@ -59,13 +62,32 @@
                         {
                             <tr>
                                 <td class="fw-semibold">@attempt.QuizTitle</td>
+                                <td>@(string.IsNullOrWhiteSpace(attempt.ModuleTitle) ? "-" : attempt.ModuleTitle)</td>
                                 <td>@Math.Round(attempt.Score, 1)%</td>
                                 <td>
                                     <span class="status-chip @(attempt.IsPassed ? "status-chip--success" : "status-chip--warning")">
                                         @(attempt.IsPassed ? "Reussi" : "Echoue")
                                     </span>
                                 </td>
+                                <td>
+                                    @if (attempt.IsPassed)
+                                    {
+                                        <span class="status-chip status-chip--success"><i class="bi bi-check-circle me-1"></i>Quiz déjà réussi</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
                                 <td>@attempt.AttemptDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    @if (attempt.CanDownloadCertificate)
+                                    {
+                                        <a class="btn btn-sm btn-outline-success" asp-controller="Certificates" asp-action="Download" asp-route-moduleId="@attempt.ModuleId">
+                                            <i class="bi bi-file-earmark-pdf me-1"></i>Télécharger
+                                        </a>
+                                    }
+                                </td>
                             </tr>
                         }
                     }
