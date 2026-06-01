@@ -5,6 +5,7 @@ using E_learningProject.Data.Repositories;
 using E_learningProject.Services;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Security;
+using E_learningProject.Web;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -71,10 +72,17 @@ using (var scope = app.Services.CreateScope())
         {
             await dbContext.Database.EnsureCreatedAsync();
         }
-
-        if (applyMigrationsOnStartup)
+        else if (applyMigrationsOnStartup)
         {
-            dbContext.Database.Migrate();
+            try
+            {
+                dbContext.Database.Migrate();
+            }
+            catch (InvalidOperationException ex) when (ex.Message.Contains("Unable to find a migration") || ex.Message.Contains("No migrations"))
+            {
+                // No migrations found, ensure schema is created instead
+                await dbContext.Database.EnsureCreatedAsync();
+            }
         }
     }
     catch (Exception ex)
