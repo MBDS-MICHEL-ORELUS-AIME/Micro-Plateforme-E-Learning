@@ -85,11 +85,12 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Details(int id, CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var module = await _dbContext.Modules
             .AsNoTracking()
@@ -103,7 +104,7 @@ public class CoursesController : Controller
 
         var readLessonIds = await _dbContext.LessonProgressions
             .AsNoTracking()
-            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Where(lp => lp.UserId == userId && lp.IsRead)
             .Join(_dbContext.Lessons, lp => lp.LessonId, lesson => lesson.Id, (lp, lesson) => new { lp, lesson })
             .Where(x => x.lesson.ModuleId == id)
             .Select(x => x.lp.LessonId)
@@ -118,7 +119,7 @@ public class CoursesController : Controller
             ModuleId = module.Id,
             ModuleTitle = module.Title,
             ModuleDescription = module.Description,
-            StudentId = studentId,
+            StudentId = userName,
             CompletionPercentage = completion,
             IsModuleCompleted = completion >= 100,
             Lessons = module.Lessons
@@ -170,11 +171,12 @@ public class CoursesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkLessonRead(int moduleId, int lessonId, CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var lesson = await _dbContext.Lessons
             .FirstOrDefaultAsync(l => l.Id == lessonId && l.ModuleId == moduleId, cancellationToken);
@@ -185,13 +187,13 @@ public class CoursesController : Controller
         }
 
         var progression = await _dbContext.LessonProgressions
-            .FirstOrDefaultAsync(lp => lp.StudentId == studentId && lp.LessonId == lessonId, cancellationToken);
+            .FirstOrDefaultAsync(lp => lp.UserId == userId && lp.LessonId == lessonId, cancellationToken);
 
         if (progression is null)
         {
             progression = new()
             {
-                StudentId = studentId,
+                UserId = userId.Value,
                 LessonId = lessonId,
                 IsRead = true,
                 ReadDate = DateTime.UtcNow
@@ -205,13 +207,13 @@ public class CoursesController : Controller
         }
 
         var enrollment = await _dbContext.Enrollments
-            .FirstOrDefaultAsync(e => e.StudentId == studentId && e.ModuleId == moduleId, cancellationToken);
+            .FirstOrDefaultAsync(e => e.UserId == userId && e.ModuleId == moduleId, cancellationToken);
 
         if (enrollment is null)
         {
             enrollment = new()
             {
-                StudentId = studentId,
+                UserId = userId.Value,
                 ModuleId = moduleId,
                 EnrollmentDate = DateTime.UtcNow,
                 IsCompleted = false
@@ -221,7 +223,7 @@ public class CoursesController : Controller
 
         var totalLessons = await _dbContext.Lessons.CountAsync(l => l.ModuleId == moduleId, cancellationToken);
         var completedLessons = await _dbContext.LessonProgressions
-            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Where(lp => lp.UserId == userId && lp.IsRead)
             .Join(_dbContext.Lessons, lp => lp.LessonId, l => l.Id, (lp, l) => new { lp, l })
             .CountAsync(x => x.l.ModuleId == moduleId, cancellationToken);
 
@@ -230,18 +232,19 @@ public class CoursesController : Controller
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        return RedirectToAction(nameof(Details), new { id = moduleId, studentId });
+        return RedirectToAction(nameof(Details), new { id = moduleId, studentId = userName });
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DownloadCertificate(int moduleId, CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var module = await _dbContext.Modules
             .AsNoTracking()
@@ -253,7 +256,7 @@ public class CoursesController : Controller
         }
 
         var enrollment = await _dbContext.Enrollments
-            .FirstOrDefaultAsync(e => e.ModuleId == moduleId && e.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(e => e.ModuleId == moduleId && e.UserId == userId, cancellationToken);
 
         if (enrollment is null || !enrollment.IsCompleted)
         {
@@ -261,15 +264,15 @@ public class CoursesController : Controller
         }
 
         var certificate = await _dbContext.Certificates
-            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.UserId == userId, cancellationToken);
 
         if (certificate is null)
         {
             certificate = new()
             {
                 ModuleId = moduleId,
-                StudentId = studentId,
-                UniqueCode = _certificateService.GenerateCertificateNumber(studentId, moduleId),
+                UserId = userId.Value,
+                UniqueCode = _certificateService.GenerateCertificateNumber(userName, moduleId),
                 IssueDate = DateTime.UtcNow
             };
 
@@ -277,21 +280,22 @@ public class CoursesController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{moduleId}-{studentId}.pdf";
+        var pdfBytes = _certificateService.GenerateCertificatePdf(userName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{moduleId}-{userName}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
     }
 
-    private string? ResolveStudentId()
+    private int? ResolveStudentId()
     {
-        var currentUserName = HttpContext.Session.GetString("CurrentUserName");
         var role = HttpContext.Session.GetString("CurrentUserRole");
+        var userIdStr = HttpContext.Session.GetString("CurrentUserId");
 
-        if (!string.IsNullOrWhiteSpace(currentUserName)
+        if (!string.IsNullOrWhiteSpace(userIdStr)
+            && int.TryParse(userIdStr, out var userId)
             && string.Equals(role, "etudiant", StringComparison.OrdinalIgnoreCase))
         {
-            return currentUserName;
+            return userId;
         }
 
         return null;

@@ -30,7 +30,7 @@ if (string.IsNullOrEmpty(connectionString))
     var dbUser = Environment.GetEnvironmentVariable("DB_USERNAME") ?? "postgres";
     if (!string.IsNullOrEmpty(dbPassword))
     {
-        connectionString = $"Host=localhost;Port=5432;Database=MicroLmsDb;Username={dbUser};Password={dbPassword};Search Path=public,lms;Include Error Detail=true";
+        connectionString = $"Host=localhost;Port=5432;Database=MicroLmsDb;Username={dbUser};Password={dbPassword};Search Path=public;Include Error Detail=true";
     }
     else
     {
@@ -317,29 +317,6 @@ using (var scope = app.Services.CreateScope())
                 await dbContext.SaveChangesAsync();
             }
 
-            if (!await dbContext.DiscussionThreads.AnyAsync())
-            {
-                var thread = new DiscussionThread
-                {
-                    Title = "Difference entre un controleur MVC et une Razor Page ?",
-                    StudentId = "student.demo",
-                    CreatedAt = DateTime.UtcNow,
-                    IsResolved = false,
-                    Replies = new List<DiscussionReply>
-                    {
-                        new()
-                        {
-                            AuthorId = "teacher.demo",
-                            Message = "Les controleurs sont bases sur des actions et definissent les routes explicitement, alors que les Razor Pages sont centrees sur les pages.",
-                            CreatedAt = DateTime.UtcNow
-                        }
-                    }
-                };
-
-                dbContext.DiscussionThreads.Add(thread);
-                await dbContext.SaveChangesAsync();
-            }
-
             var requiredRoles = new[] { "etudiant", "enseignant", "coordinateur", "superadmin" };
             var existingRoleNames = await dbContext.AppRoles
                 .Select(r => r.Name.ToLower())
@@ -385,6 +362,33 @@ using (var scope = app.Services.CreateScope())
             }
 
             await dbContext.SaveChangesAsync();
+
+            if (!await dbContext.DiscussionThreads.AnyAsync())
+            {
+                var studentUser = await dbContext.AppUsers.FirstOrDefaultAsync(u => u.UserName == "student.demo");
+                var teacherUser = await dbContext.AppUsers.FirstOrDefaultAsync(u => u.UserName == "teacher.demo");
+                if (studentUser != null && teacherUser != null)
+                {
+                    var thread = new DiscussionThread
+                    {
+                        Title = "Difference entre un controleur MVC et une Razor Page ?",
+                        AuthorId = studentUser.Id,
+                        CreatedAt = DateTime.UtcNow,
+                        IsResolved = false,
+                        Replies = new List<DiscussionReply>
+                        {
+                            new()
+                            {
+                                AuthorId = teacherUser.Id,
+                                Message = "Les controleurs sont bases sur des actions et definissent les routes explicitement, alors que les Razor Pages sont centrees sur les pages.",
+                                CreatedAt = DateTime.UtcNow
+                            }
+                        }
+                    };
+                    dbContext.DiscussionThreads.Add(thread);
+                    await dbContext.SaveChangesAsync();
+                }
+            }
         }
         catch (Exception ex)
         {

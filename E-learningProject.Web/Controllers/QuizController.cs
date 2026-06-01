@@ -23,7 +23,7 @@ public class QuizController : Controller
 
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        var currentUser = GetCurrentUserName();
+        var currentUserId = GetCurrentUserId();
 
         var quizEntities = await _dbContext.Quizzes
             .AsNoTracking()
@@ -32,11 +32,11 @@ public class QuizController : Controller
             .ToListAsync(cancellationToken);
 
         Dictionary<int, DateTime> passedByQuiz = new();
-        if (!string.IsNullOrWhiteSpace(currentUser))
+        if (currentUserId.HasValue)
         {
             passedByQuiz = await _dbContext.QuizResults
                 .AsNoTracking()
-                .Where(r => r.StudentId == currentUser && r.IsPassed)
+                .Where(r => r.UserId == currentUserId && r.IsPassed)
                 .GroupBy(r => r.QuizId)
                 .Select(g => new { QuizId = g.Key, PassedAt = g.Max(x => x.AttemptDate) })
                 .ToDictionaryAsync(x => x.QuizId, x => x.PassedAt, cancellationToken);
@@ -65,8 +65,8 @@ public class QuizController : Controller
     [HttpGet]
     public IActionResult Start(int id)
     {
-        var currentUserName = GetCurrentUserName();
-        if (currentUserName is null)
+        var userId = GetCurrentUserId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Start), "Quiz", new { id }) });
         }
@@ -76,11 +76,12 @@ public class QuizController : Controller
 
     public async Task<IActionResult> Take(int id, CancellationToken cancellationToken = default)
     {
-        var studentId = GetCurrentUserName();
-        if (studentId is null)
+        var userId = GetCurrentUserId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Take), "Quiz", new { id }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.Value.ToString();
 
         var quiz = await _dbContext.Quizzes
             .AsNoTracking()
@@ -97,11 +98,11 @@ public class QuizController : Controller
             QuizId = quiz.Id,
             QuizTitle = quiz.Title,
             PassingScore = quiz.PassingScore,
-            StudentId = studentId,
+            StudentId = userName,
             TotalQuestions = quiz.Questions.Count
         };
 
-        ResetStoredAnswers(quiz.Id, studentId);
+        ResetStoredAnswers(quiz.Id, userId.Value.ToString());
 
         return View(viewModel);
     }
@@ -116,11 +117,12 @@ public class QuizController : Controller
         string? answerText = null,
         CancellationToken cancellationToken = default)
     {
-        studentId = GetCurrentUserName();
-        if (studentId is null)
+        var userId = GetCurrentUserId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Start), "Quiz", new { id = quizId }) });
         }
+        var userKey = userId.Value.ToString();
 
         var quiz = await _dbContext.Quizzes
             .AsNoTracking()
@@ -133,7 +135,7 @@ public class QuizController : Controller
             return NotFound();
         }
 
-        PersistAnswer(quizId, studentId, questionId, selectedOptionId, answerText);
+        PersistAnswer(quizId, userKey, questionId, selectedOptionId, answerText);
 
         var orderedQuestions = quiz.Questions.OrderBy(q => q.Id).ToList();
         if (!orderedQuestions.Any())
@@ -143,13 +145,13 @@ public class QuizController : Controller
 
         index = Math.Clamp(index, 0, orderedQuestions.Count - 1);
         var current = orderedQuestions[index];
-        var answers = GetStoredAnswers(quizId, studentId);
+        var answers = GetStoredAnswers(quizId, userKey);
         answers.TryGetValue(current.Id, out var stored);
 
         var viewModel = new QuizQuestionStepViewModel
         {
             QuizId = quizId,
-            StudentId = studentId,
+            StudentId = HttpContext.Session.GetString("CurrentUserName") ?? userKey,
             CurrentIndex = index,
             TotalQuestions = orderedQuestions.Count,
             SelectedOptionId = stored?.SelectedOptionId,
@@ -184,13 +186,14 @@ public class QuizController : Controller
         string? answerText = null,
         CancellationToken cancellationToken = default)
     {
-        studentId = GetCurrentUserName();
-        if (studentId is null)
+        var userId = GetCurrentUserId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Start), "Quiz", new { id = quizId }) });
         }
+        var userKey = userId.Value.ToString();
 
-        PersistAnswer(quizId, studentId, questionId, selectedOptionId, answerText);
+        PersistAnswer(quizId, userKey, questionId, selectedOptionId, answerText);
 
         var quiz = await _dbContext.Quizzes
             .Include(q => q.Questions)
@@ -202,7 +205,7 @@ public class QuizController : Controller
             return NotFound();
         }
 
-        var answers = GetStoredAnswers(quizId, studentId);
+        var answers = GetStoredAnswers(quizId, userKey);
         var correctAnswers = 0;
         var corrections = new List<QuizQuestionCorrectionItemViewModel>();
 
@@ -249,7 +252,7 @@ public class QuizController : Controller
 
         var result = new Core.Entities.QuizResult
         {
-            StudentId = studentId,
+            UserId = userId.Value,
             QuizId = quiz.Id,
             Score = score,
             IsPassed = isPassed,
@@ -260,7 +263,7 @@ public class QuizController : Controller
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         PersistCorrections(result.Id, corrections);
-        ResetStoredAnswers(quizId, studentId);
+        ResetStoredAnswers(quizId, userKey);
 
         Response.Headers["HX-Redirect"] = Url.Action(nameof(Result), new { id = result.Id }) ?? Url.Action(nameof(Index)) ?? "/Quiz";
         return new EmptyResult();
@@ -271,6 +274,7 @@ public class QuizController : Controller
         var result = await _dbContext.QuizResults
             .AsNoTracking()
             .Include(r => r.Quiz)
+            .Include(r => r.Student)
             .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
 
         if (result is null || result.Quiz is null)
@@ -294,7 +298,7 @@ public class QuizController : Controller
             QuizResultId = result.Id,
             QuizId = result.QuizId,
             QuizTitle = result.Quiz.Title,
-            StudentId = result.StudentId,
+            StudentId = result.Student?.UserName ?? result.UserId.ToString(),
             Score = displayScore,
             PassingScore = result.Quiz.PassingScore,
             IsPassed = displayIsPassed,
@@ -316,7 +320,8 @@ public class QuizController : Controller
         var last = await _dbContext.QuizResults
             .AsNoTracking()
             .Include(r => r.Quiz)
-            .Where(r => r.StudentId == userName)
+            .Include(r => r.Student)
+            .Where(r => r.Student != null && r.Student.UserName == userName)
             .OrderByDescending(r => r.AttemptDate)
             .Select(r => new
             {
@@ -340,16 +345,17 @@ public class QuizController : Controller
     [HttpGet]
     public async Task<IActionResult> DownloadCertificate(int quizResultId, CancellationToken cancellationToken = default)
     {
-        var studentId = GetCurrentUserName();
-        if (studentId is null)
+        var userId = GetCurrentUserId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Result), "Quiz", new { id = quizResultId }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.Value.ToString();
 
         var result = await _dbContext.QuizResults
             .AsNoTracking()
             .Include(r => r.Quiz)
-            .FirstOrDefaultAsync(r => r.Id == quizResultId && r.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(r => r.Id == quizResultId && r.UserId == userId, cancellationToken);
 
         if (result is null)
         {
@@ -371,15 +377,15 @@ public class QuizController : Controller
         }
 
         var certificate = await _dbContext.Certificates
-            .FirstOrDefaultAsync(c => c.ModuleId == module.Id && c.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(c => c.ModuleId == module.Id && c.UserId == userId, cancellationToken);
 
         if (certificate is null)
         {
             certificate = new Core.Entities.Certificate
             {
                 ModuleId = module.Id,
-                StudentId = studentId,
-                UniqueCode = _certificateService.GenerateCertificateNumber(studentId, module.Id),
+                UserId = userId.Value,
+                UniqueCode = _certificateService.GenerateCertificateNumber(userName, module.Id),
                 IssueDate = DateTime.UtcNow
             };
 
@@ -387,8 +393,8 @@ public class QuizController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{module.Id}-{studentId}.pdf";
+        var pdfBytes = _certificateService.GenerateCertificatePdf(userName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{module.Id}-{userName}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
     }
@@ -510,6 +516,14 @@ public class QuizController : Controller
 
     private static string GetCorrectionSessionKey(int resultId)
         => $"quiz-corrections:{resultId}";
+
+    private int? GetCurrentUserId()
+    {
+        var userIdStr = HttpContext.Session.GetString("CurrentUserId");
+        if (!string.IsNullOrWhiteSpace(userIdStr) && int.TryParse(userIdStr, out var id))
+            return id;
+        return null;
+    }
 
     private string? GetCurrentUserName()
     {

@@ -3,6 +3,7 @@ using System;
 using E_learningProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E_learningProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260601042617_DropAspNetIdentityTables")]
+    partial class DropAspNetIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,19 +39,19 @@ namespace E_learningProject.Data.Migrations
                     b.Property<int>("ModuleId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
+
                     b.Property<string>("UniqueCode")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ModuleId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Certificates");
                 });
@@ -110,8 +113,10 @@ namespace E_learningProject.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
@@ -125,8 +130,6 @@ namespace E_learningProject.Data.Migrations
                         .HasColumnType("character varying(2000)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("DiscussionThreadId");
 
@@ -157,15 +160,15 @@ namespace E_learningProject.Data.Migrations
                     b.Property<DateTime>("ReportedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("ReporterId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ReporterStudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.Property<int>("ThreadId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReporterId");
 
                     b.HasIndex("ThreadId");
 
@@ -180,17 +183,16 @@ namespace E_learningProject.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsResolved")
                         .HasColumnType("boolean");
 
-                    b.Property<int?>("ModuleId")
-                        .HasColumnType("integer");
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -198,10 +200,6 @@ namespace E_learningProject.Data.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("ModuleId");
 
                     b.ToTable("DiscussionThreads");
                 });
@@ -223,15 +221,14 @@ namespace E_learningProject.Data.Migrations
                     b.Property<int>("ModuleId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ModuleId");
-
-                    b.HasIndex("UserId", "ModuleId")
-                        .IsUnique();
 
                     b.ToTable("Enrollments");
                 });
@@ -292,15 +289,14 @@ namespace E_learningProject.Data.Migrations
                     b.Property<DateTime>("ReadDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LessonId");
-
-                    b.HasIndex("UserId", "LessonId")
-                        .IsUnique();
 
                     b.ToTable("LessonProgressions");
                 });
@@ -392,9 +388,6 @@ namespace E_learningProject.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("PassingScore")
                         .HasColumnType("integer");
 
@@ -404,8 +397,6 @@ namespace E_learningProject.Data.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatedByUserId");
 
                     b.ToTable("Quizzes");
                 });
@@ -430,14 +421,14 @@ namespace E_learningProject.Data.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("QuizId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("QuizResults");
                 });
@@ -489,12 +480,14 @@ namespace E_learningProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "BadgeName")
+                    b.HasIndex("StudentId", "BadgeName")
                         .IsUnique();
 
                     b.ToTable("StudentBadges", (string)null);
@@ -547,71 +540,29 @@ namespace E_learningProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_learningProject.Core.Entities.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Module");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.DiscussionReply", b =>
                 {
-                    b.HasOne("E_learningProject.Core.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("E_learningProject.Core.Entities.DiscussionThread", "DiscussionThread")
                         .WithMany("Replies")
                         .HasForeignKey("DiscussionThreadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
-
                     b.Navigation("DiscussionThread");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.DiscussionReport", b =>
                 {
-                    b.HasOne("E_learningProject.Core.Entities.User", "Reporter")
-                        .WithMany()
-                        .HasForeignKey("ReporterId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("E_learningProject.Core.Entities.DiscussionThread", "Thread")
                         .WithMany()
                         .HasForeignKey("ThreadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Reporter");
-
                     b.Navigation("Thread");
-                });
-
-            modelBuilder.Entity("E_learningProject.Core.Entities.DiscussionThread", b =>
-                {
-                    b.HasOne("E_learningProject.Core.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("E_learningProject.Core.Entities.Module", "Module")
-                        .WithMany()
-                        .HasForeignKey("ModuleId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Module");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.Enrollment", b =>
@@ -622,15 +573,7 @@ namespace E_learningProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_learningProject.Core.Entities.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Module");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.Lesson", b =>
@@ -652,15 +595,7 @@ namespace E_learningProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_learningProject.Core.Entities.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Lesson");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.Module", b =>
@@ -695,16 +630,6 @@ namespace E_learningProject.Data.Migrations
                     b.Navigation("Quiz");
                 });
 
-            modelBuilder.Entity("E_learningProject.Core.Entities.Quiz", b =>
-                {
-                    b.HasOne("E_learningProject.Core.Entities.User", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedByUserId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("CreatedBy");
-                });
-
             modelBuilder.Entity("E_learningProject.Core.Entities.QuizResult", b =>
                 {
                     b.HasOne("E_learningProject.Core.Entities.Quiz", "Quiz")
@@ -713,26 +638,7 @@ namespace E_learningProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_learningProject.Core.Entities.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Quiz");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("E_learningProject.Core.Entities.StudentBadge", b =>
-                {
-                    b.HasOne("E_learningProject.Core.Entities.User", "Student")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("E_learningProject.Core.Entities.User", b =>

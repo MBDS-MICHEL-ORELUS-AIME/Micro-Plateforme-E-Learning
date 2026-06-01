@@ -38,6 +38,7 @@ public class CertificatesController : Controller
         var certificate = await _dbContext.Certificates
             .AsNoTracking()
             .Include(c => c.Module)
+            .Include(c => c.Student)
             .FirstOrDefaultAsync(c => c.UniqueCode == normalizedCode, cancellationToken);
 
         if (certificate is null)
@@ -48,7 +49,7 @@ public class CertificatesController : Controller
 
         viewModel.IsValid = true;
         viewModel.CertificateCode = certificate.UniqueCode;
-        viewModel.StudentId = certificate.StudentId;
+        viewModel.StudentId = certificate.Student?.UserName ?? certificate.UserId.ToString();
         viewModel.ModuleTitle = certificate.Module?.Title;
         viewModel.IssueDate = certificate.IssueDate;
 
@@ -58,16 +59,17 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var certificates = await _dbContext.Certificates
             .AsNoTracking()
             .Include(c => c.Module)
-            .Where(c => c.StudentId == studentId)
+            .Where(c => c.UserId == userId)
             .ToListAsync(cancellationToken);
 
         var existingCertificates = certificates.Select(c => new LearnerCertificateItemViewModel
@@ -81,7 +83,7 @@ public class CertificatesController : Controller
 
         var passedQuizIds = await _dbContext.QuizResults
             .AsNoTracking()
-            .Where(r => r.StudentId == studentId && r.IsPassed)
+            .Where(r => r.UserId == userId && r.IsPassed)
             .Select(r => r.QuizId)
             .Distinct()
             .ToListAsync(cancellationToken);
@@ -105,7 +107,7 @@ public class CertificatesController : Controller
 
         var viewModel = new LearnerCertificatesViewModel
         {
-            StudentId = studentId,
+            StudentId = userName,
             ExistingCertificates = existingCertificates,
             AvailableCertificates = availableCertificates
         };
@@ -116,11 +118,12 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Download(int moduleId, CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var module = await _dbContext.Modules
             .AsNoTracking()
@@ -132,14 +135,14 @@ public class CertificatesController : Controller
         }
 
         var certificate = await _dbContext.Certificates
-            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.UserId == userId, cancellationToken);
 
         var canGenerate = certificate != null;
         if (!canGenerate && module.QuizId.HasValue)
         {
             canGenerate = await _dbContext.QuizResults
                 .AsNoTracking()
-                .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId && r.IsPassed, cancellationToken);
+                .AnyAsync(r => r.UserId == userId && r.QuizId == module.QuizId && r.IsPassed, cancellationToken);
         }
 
         if (!canGenerate)
@@ -152,8 +155,8 @@ public class CertificatesController : Controller
             certificate = new Core.Entities.Certificate
             {
                 ModuleId = module.Id,
-                StudentId = studentId,
-                UniqueCode = _certificateService.GenerateCertificateNumber(studentId, module.Id),
+                UserId = userId.Value,
+                UniqueCode = _certificateService.GenerateCertificateNumber(userName, module.Id),
                 IssueDate = DateTime.UtcNow
             };
 
@@ -161,21 +164,22 @@ public class CertificatesController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{module.Id}-{studentId}.pdf";
+        var pdfBytes = _certificateService.GenerateCertificatePdf(userName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{module.Id}-{userName}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
     }
 
-    private string? ResolveStudentId()
+    private int? ResolveStudentId()
     {
-        var currentUserName = HttpContext.Session.GetString("CurrentUserName");
         var role = HttpContext.Session.GetString("CurrentUserRole");
+        var userIdStr = HttpContext.Session.GetString("CurrentUserId");
 
-        if (!string.IsNullOrWhiteSpace(currentUserName)
+        if (!string.IsNullOrWhiteSpace(userIdStr)
+            && int.TryParse(userIdStr, out var userId)
             && string.Equals(role, "etudiant", StringComparison.OrdinalIgnoreCase))
         {
-            return currentUserName;
+            return userId;
         }
 
         return null;

@@ -21,7 +21,7 @@ if ([string]::IsNullOrWhiteSpace($env:MICROLMS_CONNECTION_STRING)) {
 	if ([string]::IsNullOrWhiteSpace($dbUser)) { $dbUser = $env:DB_USERNAME }
 	if ([string]::IsNullOrWhiteSpace($dbUser)) { $dbUser = $username }
 
-	$env:MICROLMS_CONNECTION_STRING = "Host=$hostName;Port=$port;Database=$database;Username=$dbUser;Password=$dbPassword;Search Path=public,lms;Include Error Detail=true"
+	$env:MICROLMS_CONNECTION_STRING = "Host=$hostName;Port=$port;Database=$database;Username=$dbUser;Password=$dbPassword;Search Path=public;Include Error Detail=true"
 }
 
 Write-Host "Demarrage de l'application web avec PostgreSQL..." -ForegroundColor Cyan

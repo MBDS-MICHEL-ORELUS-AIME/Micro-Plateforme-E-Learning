@@ -19,11 +19,12 @@ public class LearnerController : Controller
 
     public async Task<IActionResult> Dashboard(CancellationToken cancellationToken)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Dashboard), "Learner") });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var modules = await _dbContext.Modules
             .AsNoTracking()
@@ -33,7 +34,7 @@ public class LearnerController : Controller
 
         var readLessonIds = await _dbContext.LessonProgressions
             .AsNoTracking()
-            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Where(lp => lp.UserId == userId && lp.IsRead)
             .Select(lp => lp.LessonId)
             .ToListAsync(cancellationToken);
 
@@ -58,23 +59,23 @@ public class LearnerController : Controller
 
         var certificatesEarned = await _dbContext.Certificates
             .AsNoTracking()
-            .CountAsync(c => c.StudentId == studentId, cancellationToken);
+            .CountAsync(c => c.UserId == userId, cancellationToken);
 
         var quizAttempts = await _dbContext.QuizResults
             .AsNoTracking()
-            .CountAsync(r => r.StudentId == studentId, cancellationToken);
+            .CountAsync(r => r.UserId == userId, cancellationToken);
 
         var passedQuizzes = await _dbContext.QuizResults
             .AsNoTracking()
-            .CountAsync(r => r.StudentId == studentId && r.IsPassed, cancellationToken);
+            .CountAsync(r => r.UserId == userId && r.IsPassed, cancellationToken);
 
         var discussionsOpened = await _dbContext.DiscussionThreads
             .AsNoTracking()
-            .CountAsync(t => t.StudentId == studentId, cancellationToken);
+            .CountAsync(t => t.AuthorId == userId, cancellationToken);
 
         var viewModel = new LearnerDashboardViewModel
         {
-            StudentId = studentId,
+            StudentId = userName,
             OverallProgress = _progressService.CalculateCompletion(overallRead, overallTotal),
             CompletedModules = completedModules,
             CertificatesEarned = certificatesEarned,
@@ -82,7 +83,7 @@ public class LearnerController : Controller
             PassedQuizzes = passedQuizzes,
             DiscussionsOpened = discussionsOpened,
             Modules = moduleCards,
-            Badges = await _dbContext.StudentBadges.AsNoTracking().Where(b => b.StudentId == studentId).OrderByDescending(b => b.AwardedAt).Select(b => new BadgeViewModel { Name = b.BadgeName, Description = b.Description, IconCss = b.IconCss, AwardedAt = b.AwardedAt }).Take(4).ToListAsync(cancellationToken)
+            Badges = await _dbContext.StudentBadges.AsNoTracking().Where(b => b.UserId == userId).OrderByDescending(b => b.AwardedAt).Select(b => new BadgeViewModel { Name = b.BadgeName, Description = b.Description, IconCss = b.IconCss, AwardedAt = b.AwardedAt }).Take(4).ToListAsync(cancellationToken)
         };
 
         return View(viewModel);
@@ -90,11 +91,12 @@ public class LearnerController : Controller
 
     public async Task<IActionResult> Reader(int moduleId, int? lessonId = null, CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Reader), "Learner", new { moduleId, lessonId }) });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var module = await _dbContext.Modules
             .AsNoTracking()
@@ -110,7 +112,7 @@ public class LearnerController : Controller
 
         var readLessonIds = await _dbContext.LessonProgressions
             .AsNoTracking()
-            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Where(lp => lp.UserId == userId && lp.IsRead)
             .Join(_dbContext.Lessons, lp => lp.LessonId, lesson => lesson.Id, (lp, lesson) => new { lp, lesson })
             .Where(x => x.lesson.ModuleId == moduleId)
             .Select(x => x.lp.LessonId)
@@ -124,7 +126,7 @@ public class LearnerController : Controller
         {
             ModuleId = moduleId,
             ModuleTitle = module.Title,
-            StudentId = studentId,
+            StudentId = userName,
             ProgressPercent = _progressService.CalculateCompletion(readLessonIds.Count, orderedLessons.Count),
             Lessons = orderedLessons.Select(l => new LessonReaderItemViewModel
             {
@@ -153,15 +155,16 @@ public class LearnerController : Controller
 
     public async Task<IActionResult> QuizHistory(CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(QuizHistory), "Learner") });
         }
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var attemptData = await _dbContext.QuizResults
             .AsNoTracking()
-            .Where(r => r.StudentId == studentId)
+            .Where(r => r.UserId == userId)
             .Include(r => r.Quiz)
             .OrderByDescending(r => r.AttemptDate)
             .Select(r => new
@@ -185,7 +188,7 @@ public class LearnerController : Controller
         var moduleIds = modulesByQuizId.Values.Select(m => m.Id).ToList();
         var certificateModuleIds = new HashSet<int>(await _dbContext.Certificates
             .AsNoTracking()
-            .Where(c => c.StudentId == studentId && moduleIds.Contains(c.ModuleId))
+            .Where(c => c.UserId == userId && moduleIds.Contains(c.ModuleId))
             .Select(c => c.ModuleId)
             .ToListAsync(cancellationToken));
 
@@ -209,7 +212,7 @@ public class LearnerController : Controller
 
         var viewModel = new LearnerQuizHistoryViewModel
         {
-            StudentId = studentId,
+            StudentId = userName,
             TotalAttempts = attempts.Count,
             PassedAttempts = attempts.Count(a => a.IsPassed),
             AverageScore = attempts.Count == 0 ? 0 : Math.Round(attempts.Average(a => a.Score), 1),
@@ -223,8 +226,8 @@ public class LearnerController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkRead(int moduleId, int lessonId, CancellationToken cancellationToken)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Reader), "Learner", new { moduleId, lessonId }) });
         }
@@ -236,13 +239,13 @@ public class LearnerController : Controller
         }
 
         var progression = await _dbContext.LessonProgressions
-            .FirstOrDefaultAsync(lp => lp.StudentId == studentId && lp.LessonId == lessonId, cancellationToken);
+            .FirstOrDefaultAsync(lp => lp.UserId == userId && lp.LessonId == lessonId, cancellationToken);
 
         if (progression is null)
         {
             progression = new Core.Entities.LessonProgression
             {
-                StudentId = studentId,
+                UserId = userId.Value,
                 LessonId = lessonId,
                 IsRead = true,
                 ReadDate = DateTime.UtcNow
@@ -256,19 +259,20 @@ public class LearnerController : Controller
         }
 
         await _dbContext.SaveChangesAsync(cancellationToken);
-        await AwardBadgesAfterReadAsync(studentId, moduleId, cancellationToken);
+        await AwardBadgesAfterReadAsync(userId.Value, moduleId, cancellationToken);
         return RedirectToAction(nameof(Reader), new { moduleId, lessonId });
     }
 
-    private string? ResolveStudentId()
+    private int? ResolveStudentId()
     {
-        var currentUserName = HttpContext.Session.GetString("CurrentUserName");
         var currentRole = HttpContext.Session.GetString("CurrentUserRole");
+        var userIdStr = HttpContext.Session.GetString("CurrentUserId");
 
-        if (!string.IsNullOrWhiteSpace(currentUserName)
+        if (!string.IsNullOrWhiteSpace(userIdStr)
+            && int.TryParse(userIdStr, out var userId)
             && string.Equals(currentRole, "etudiant", StringComparison.OrdinalIgnoreCase))
         {
-            return currentUserName;
+            return userId;
         }
 
         return null;
@@ -276,13 +280,14 @@ public class LearnerController : Controller
 
     public async Task<IActionResult> Badges(CancellationToken cancellationToken = default)
     {
-        var studentId = ResolveStudentId();
-        if (studentId is null)
+        var userId = ResolveStudentId();
+        if (userId is null)
             return RedirectToAction("Login", "Account");
+        var userName = HttpContext.Session.GetString("CurrentUserName") ?? userId.ToString()!;
 
         var badges = await _dbContext.StudentBadges
             .AsNoTracking()
-            .Where(b => b.StudentId == studentId)
+            .Where(b => b.UserId == userId)
             .OrderByDescending(b => b.AwardedAt)
             .Select(b => new BadgeViewModel
             {
@@ -293,34 +298,34 @@ public class LearnerController : Controller
             })
             .ToListAsync(cancellationToken);
 
-        return View(new LearnerBadgesViewModel { StudentId = studentId, Badges = badges });
+        return View(new LearnerBadgesViewModel { StudentId = userName, Badges = badges });
     }
 
-    private async Task AwardBadgesAfterReadAsync(string studentId, int moduleId, CancellationToken cancellationToken)
+    private async Task AwardBadgesAfterReadAsync(int userId, int moduleId, CancellationToken cancellationToken)
     {
         var module = await _dbContext.Modules.AsNoTracking().Include(m => m.Lessons).FirstOrDefaultAsync(m => m.Id == moduleId, cancellationToken);
         if (module is null) return;
 
         var readLessonIds = await _dbContext.LessonProgressions.AsNoTracking()
-            .Where(lp => lp.StudentId == studentId && lp.IsRead)
+            .Where(lp => lp.UserId == userId && lp.IsRead)
             .Select(lp => lp.LessonId)
             .ToListAsync(cancellationToken);
 
         if (readLessonIds.Count >= 1)
-            await TryAwardBadgeAsync(studentId, "Premiere Lecon", "Vous avez lu votre premiere lecon !", "bi-star-fill", cancellationToken);
+            await TryAwardBadgeAsync(userId, "Premiere Lecon", "Vous avez lu votre premiere lecon !", "bi-star-fill", cancellationToken);
 
         if (module.Lessons.Count > 0 && module.Lessons.All(l => readLessonIds.Contains(l.Id)))
-            await TryAwardBadgeAsync(studentId, "Module: " + module.Title, "Module completement lu: " + module.Title, "bi-trophy-fill", cancellationToken);
+            await TryAwardBadgeAsync(userId, "Module: " + module.Title, "Module completement lu: " + module.Title, "bi-trophy-fill", cancellationToken);
     }
 
-    private async Task TryAwardBadgeAsync(string studentId, string badgeName, string description, string iconCss, CancellationToken cancellationToken)
+    private async Task TryAwardBadgeAsync(int userId, string badgeName, string description, string iconCss, CancellationToken cancellationToken)
     {
-        var exists = await _dbContext.StudentBadges.AnyAsync(b => b.StudentId == studentId && b.BadgeName == badgeName, cancellationToken);
+        var exists = await _dbContext.StudentBadges.AnyAsync(b => b.UserId == userId && b.BadgeName == badgeName, cancellationToken);
         if (!exists)
         {
             _dbContext.StudentBadges.Add(new Core.Entities.StudentBadge
             {
-                StudentId = studentId,
+                UserId = userId,
                 BadgeName = badgeName,
                 Description = description,
                 IconCss = iconCss,

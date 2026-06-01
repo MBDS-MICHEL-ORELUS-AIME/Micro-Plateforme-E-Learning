@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9v77i068ykfO75H2TBGeP3h3Oqc4BMsa3CWvG5oFt9A=",
+  "Hash": "qpy4xkdluc+QFs0WtqzFJbThaLEpdbGbKNaKuH+wMEo=",
   "Source": "E-learningProject.Web",
   "BasePath": "_content/E-learningProject.Web",
   "Mode": "Default",
@@ -965,6 +965,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
+    },
+    {
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\htmx\\htmx.min.js",
+      "SourceId": "E-learningProject.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
+      "BasePath": "_content/E-learningProject.Web",
+      "RelativePath": "lib/htmx/htmx.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\htmx\\htmx.min.js"
     },
     {
       "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
@@ -2637,6 +2656,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-9.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\videos\\2ee93b49648e4447ac14541f4f3e4658.mp4",
+      "SourceId": "E-learningProject.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
+      "BasePath": "_content/E-learningProject.Web",
+      "RelativePath": "uploads/videos/2ee93b49648e4447ac14541f4f3e4658.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\videos\\2ee93b49648e4447ac14541f4f3e4658.mp4"
     }
   ]
 }

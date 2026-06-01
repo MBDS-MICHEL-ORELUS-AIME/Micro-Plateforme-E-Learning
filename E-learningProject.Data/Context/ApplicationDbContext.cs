@@ -1,10 +1,9 @@
 ﻿using E_learningProject.Core.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_learningProject.Data.Context;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -45,6 +44,10 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<Quiz>(entity =>
         {
             entity.Property(x => x.Title).HasMaxLength(200).IsRequired();
+            entity.HasOne(x => x.CreatedBy)
+                .WithMany()
+                .HasForeignKey(x => x.CreatedByUserId)
+                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<Question>(entity =>
@@ -62,35 +65,59 @@ public class ApplicationDbContext : IdentityDbContext
 
         modelBuilder.Entity<Enrollment>(entity =>
         {
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
+            entity.HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            entity.HasIndex(x => new { x.UserId, x.ModuleId }).IsUnique();
         });
 
         modelBuilder.Entity<LessonProgression>(entity =>
         {
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
+            entity.HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            entity.HasIndex(x => new { x.UserId, x.LessonId }).IsUnique();
         });
 
         modelBuilder.Entity<QuizResult>(entity =>
         {
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
+            entity.HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<Certificate>(entity =>
         {
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
             entity.Property(x => x.UniqueCode).HasMaxLength(100).IsRequired();
+            entity.HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<DiscussionThread>(entity =>
         {
             entity.Property(x => x.Title).HasMaxLength(200).IsRequired();
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
+            entity.HasOne(x => x.Author)
+                .WithMany()
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
+            entity.HasOne(x => x.Module)
+                .WithMany()
+                .HasForeignKey(x => x.ModuleId)
+                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<DiscussionReply>(entity =>
         {
-            entity.Property(x => x.AuthorId).HasMaxLength(450).IsRequired();
             entity.Property(x => x.Message).HasMaxLength(2000).IsRequired();
+            entity.HasOne(x => x.Author)
+                .WithMany()
+                .HasForeignKey(x => x.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.DiscussionThread)
                 .WithMany(t => t.Replies)
                 .HasForeignKey(x => x.DiscussionThreadId)
@@ -133,19 +160,25 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<StudentBadge>(entity =>
         {
             entity.ToTable("StudentBadges");
-            entity.Property(x => x.StudentId).HasMaxLength(450).IsRequired();
             entity.Property(x => x.BadgeName).HasMaxLength(100).IsRequired();
             entity.Property(x => x.Description).HasMaxLength(300).IsRequired();
             entity.Property(x => x.IconCss).HasMaxLength(100).IsRequired();
-            entity.HasIndex(x => new { x.StudentId, x.BadgeName }).IsUnique();
+            entity.HasOne(x => x.Student)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            entity.HasIndex(x => new { x.UserId, x.BadgeName }).IsUnique();
         });
 
         modelBuilder.Entity<DiscussionReport>(entity =>
         {
             entity.ToTable("DiscussionReports");
-            entity.Property(x => x.ReporterStudentId).HasMaxLength(450).IsRequired();
             entity.Property(x => x.Reason).HasMaxLength(500).IsRequired();
             entity.Property(x => x.HandlerNote).HasMaxLength(500);
+            entity.HasOne(x => x.Reporter)
+                .WithMany()
+                .HasForeignKey(x => x.ReporterId)
+                .OnDelete(DeleteBehavior.Restrict);
             entity.HasOne(x => x.Thread)
                 .WithMany()
                 .HasForeignKey(x => x.ThreadId)

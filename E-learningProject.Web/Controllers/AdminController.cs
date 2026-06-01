@@ -58,12 +58,13 @@ public class AdminController : Controller
 
         var recentQuizAttempts = await _dbContext.QuizResults
             .AsNoTracking()
+            .Include(r => r.Student)
             .OrderByDescending(r => r.AttemptDate)
             .Take(5)
             .Select(r => new QuizAttemptItem
             {
                 QuizTitle = r.Quiz != null ? r.Quiz.Title : $"Quiz #{r.QuizId}",
-                StudentId = r.StudentId,
+                StudentId = r.Student != null ? r.Student.UserName : r.UserId.ToString(),
                 Score = r.Score,
                 IsPassed = r.IsPassed,
                 AttemptDate = r.AttemptDate
@@ -72,12 +73,13 @@ public class AdminController : Controller
 
         var recentDiscussionThreads = await _dbContext.DiscussionThreads
             .AsNoTracking()
+            .Include(t => t.Author)
             .OrderByDescending(t => t.CreatedAt)
             .Take(5)
             .Select(t => new DiscussionThreadItem
             {
                 Title = t.Title,
-                StudentId = t.StudentId,
+                StudentId = t.Author != null ? t.Author.UserName : t.AuthorId.ToString(),
                 ReplyCount = t.Replies.Count,
                 IsResolved = t.IsResolved,
                 CreatedAt = t.CreatedAt
@@ -99,11 +101,12 @@ public class AdminController : Controller
         var recentCertificates = await _dbContext.Certificates
             .AsNoTracking()
             .Include(c => c.Module)
+            .Include(c => c.Student)
             .OrderByDescending(c => c.IssueDate)
             .Take(8)
             .Select(c => new CertificateIssueItem
             {
-                StudentId = c.StudentId,
+                StudentId = c.Student != null ? c.Student.UserName : c.UserId.ToString(),
                 ModuleTitle = c.Module != null ? c.Module.Title : $"Module #{c.ModuleId}",
                 IssueDate = c.IssueDate,
                 UniqueCode = c.UniqueCode
@@ -677,7 +680,8 @@ public class AdminController : Controller
         {
             ModelState.AddModelError(nameof(model.RoleId), "Veuillez sélectionner un rôle valide.");
         }
-    }
+    }
+
     public async Task<IActionResult> Moderation(string filter = "pending", CancellationToken cancellationToken = default)
     {
         var role = HttpContext.Session.GetString("CurrentUserRole");
@@ -686,12 +690,13 @@ public class AdminController : Controller
 
         var reports = await _dbContext.DiscussionReports.AsNoTracking()
             .Include(r => r.Thread)
+            .Include(r => r.Reporter)
             .OrderByDescending(r => r.ReportedAt)
             .Select(r => new ModerationReportItemViewModel
             {
                 ReportId = r.Id, ThreadId = r.ThreadId,
                 ThreadTitle = r.Thread != null ? r.Thread.Title : string.Empty,
-                ReporterStudentId = r.ReporterStudentId, Reason = r.Reason,
+                ReporterStudentId = r.Reporter != null ? r.Reporter.UserName : r.ReporterId.ToString(), Reason = r.Reason,
                 ReportedAt = r.ReportedAt, IsHandled = r.IsHandled, HandlerNote = r.HandlerNote
             })
             .ToListAsync(cancellationToken);
