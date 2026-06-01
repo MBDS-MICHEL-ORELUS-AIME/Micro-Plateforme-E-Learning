@@ -377,7 +377,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
     {
         var normalized = text.Replace("\r", " ").Replace("\n", " ");
         var sentences = normalized
-            .Split(['.', '!', '?'], StringSplitOptions.RemoveEmptyEntries)
+            .Split(new[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries)
             .Select(x => x.Trim())
             .Where(x => x.Length > 20)
             .ToList();

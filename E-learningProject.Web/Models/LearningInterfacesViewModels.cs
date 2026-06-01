@@ -33,6 +33,10 @@ public class LearnerQuizHistoryItemViewModel
     public double Score { get; set; }
     public bool IsPassed { get; set; }
     public DateTime AttemptDate { get; set; }
+    public int ModuleId { get; set; }
+    public string ModuleTitle { get; set; } = string.Empty;
+    public bool CanDownloadCertificate { get; set; }
+    public bool HasCertificate { get; set; }
 }
 
 public class LearnerModuleCardViewModel

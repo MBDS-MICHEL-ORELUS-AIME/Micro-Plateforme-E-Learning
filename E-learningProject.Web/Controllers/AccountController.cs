@@ -57,6 +57,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
         HttpContext.Session.SetString("CurrentUserName", user.UserName);
         HttpContext.Session.SetString("CurrentUserRole", user.Role?.Name ?? string.Empty);
+        HttpContext.Session.SetString("CurrentUserFullName", string.IsNullOrWhiteSpace(user.FullName) ? user.UserName : user.FullName);
 
         if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
@@ -103,6 +104,7 @@ public class AccountController : Controller
             return View(model);
         }
 
+        var fullName = model.FullName.Trim();
         var userName = model.UserName.Trim();
         var email = model.Email.Trim();
 
@@ -128,6 +130,7 @@ public class AccountController : Controller
 
         var user = new Core.Entities.User
         {
+            FullName = fullName,
             UserName = userName,
             Email = email,
             PasswordHash = PasswordSecurity.Hash(model.Password),
@@ -140,6 +143,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
         HttpContext.Session.SetString("CurrentUserName", user.UserName);
         HttpContext.Session.SetString("CurrentUserRole", role.Name);
+        HttpContext.Session.SetString("CurrentUserFullName", fullName);
 
         if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
@@ -156,6 +160,7 @@ public class AccountController : Controller
         HttpContext.Session.Remove("CurrentUserId");
         HttpContext.Session.Remove("CurrentUserName");
         HttpContext.Session.Remove("CurrentUserRole");
+        HttpContext.Session.Remove("CurrentUserFullName");
         return RedirectToAction("Public", "Home");
     }
 

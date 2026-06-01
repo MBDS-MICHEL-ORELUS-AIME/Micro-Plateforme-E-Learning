@@ -1,0 +1,97 @@
+@model E_learningProject.Web.Models.LearnerCertificatesViewModel
+
+@{
+    ViewData["Title"] = "Mes certificats";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Certificats</p>
+            <h1 class="h2 mb-2">Mes certificats</h1>
+            <p class="hero-subtitle">Téléchargez vos certificats pour les quiz réussis.</p>
+        </div>
+    </section>
+
+    @if (Model.ExistingCertificates.Any())
+    {
+        <div class="page-panel mb-4">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Certificats générés</p>
+                    <h2 class="h5">Certificats disponibles</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Code</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var certificate in Model.ExistingCertificates)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@certificate.ModuleTitle</td>
+                                <td>@certificate.CertificateCode</td>
+                                <td>@certificate.IssueDate?.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-success" asp-action="Download" asp-route-moduleId="@certificate.ModuleId">
+                                        <i class="bi bi-file-earmark-pdf me-1"></i>Télécharger
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (Model.AvailableCertificates.Any())
+    {
+        <div class="page-panel mb-4">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow mb-1">Certificats à générer</p>
+                    <h2 class="h5">Quiz réussis sans certificat</h2>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var available in Model.AvailableCertificates)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@available.ModuleTitle</td>
+                                <td>
+                                    <a class="btn btn-sm btn-success" asp-action="Download" asp-route-moduleId="@available.ModuleId">
+                                        <i class="bi bi-file-earmark-pdf me-1"></i>Générer et télécharger
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    @if (!Model.ExistingCertificates.Any() && !Model.AvailableCertificates.Any())
+    {
+        <div class="page-panel">
+            <p class="text-muted mb-0">Aucun certificat n’est encore disponible pour votre compte.</p>
+            <p class="text-muted">Réussissez un quiz lié à un module pour pouvoir télécharger votre certificat.</p>
+        </div>
+    }
+</div>

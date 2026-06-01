@@ -159,20 +159,53 @@ public class LearnerController : Controller
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(QuizHistory), "Learner") });
         }
 
-        var attempts = await _dbContext.QuizResults
+        var attemptData = await _dbContext.QuizResults
             .AsNoTracking()
             .Where(r => r.StudentId == studentId)
             .Include(r => r.Quiz)
             .OrderByDescending(r => r.AttemptDate)
-            .Select(r => new LearnerQuizHistoryItemViewModel
+            .Select(r => new
             {
-                AttemptId = r.Id,
-                QuizTitle = r.Quiz != null ? r.Quiz.Title : "Quiz",
-                Score = r.Score,
-                IsPassed = r.IsPassed,
-                AttemptDate = r.AttemptDate
+                r.Id,
+                r.Score,
+                r.IsPassed,
+                r.AttemptDate,
+                r.QuizId,
+                QuizTitle = r.Quiz != null ? r.Quiz.Title : "Quiz"
             })
             .ToListAsync(cancellationToken);
+
+        var quizIds = attemptData.Select(a => a.QuizId).Distinct().ToList();
+
+        var modulesByQuizId = await _dbContext.Modules
+            .AsNoTracking()
+            .Where(m => m.QuizId != null && quizIds.Contains(m.QuizId.Value))
+            .ToDictionaryAsync(m => m.QuizId!.Value, m => m, cancellationToken);
+
+        var moduleIds = modulesByQuizId.Values.Select(m => m.Id).ToList();
+        var certificateModuleIds = new HashSet<int>(await _dbContext.Certificates
+            .AsNoTracking()
+            .Where(c => c.StudentId == studentId && moduleIds.Contains(c.ModuleId))
+            .Select(c => c.ModuleId)
+            .ToListAsync(cancellationToken));
+
+        var attempts = attemptData.Select(a =>
+        {
+            modulesByQuizId.TryGetValue(a.QuizId, out var module);
+            var moduleId = module?.Id ?? 0;
+            return new LearnerQuizHistoryItemViewModel
+            {
+                AttemptId = a.Id,
+                QuizTitle = a.QuizTitle,
+                Score = a.Score,
+                IsPassed = a.IsPassed,
+                AttemptDate = a.AttemptDate,
+                ModuleId = moduleId,
+                ModuleTitle = module?.Title ?? string.Empty,
+                CanDownloadCertificate = a.IsPassed && module is not null,
+                HasCertificate = moduleId != 0 && certificateModuleIds.Contains(moduleId)
+            };
+        }).ToList();
 
         var viewModel = new LearnerQuizHistoryViewModel
         {
@@ -239,7 +272,8 @@ public class LearnerController : Controller
         }
 
         return null;
-    }
+    }
+
     public async Task<IActionResult> Badges(CancellationToken cancellationToken = default)
     {
         var studentId = ResolveStudentId();

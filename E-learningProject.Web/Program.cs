@@ -8,6 +8,8 @@ using E_learningProject.Web.Security;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,9 +23,21 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-// Production-friendly precedence: env var can override appsettings without code changes.
-var connectionString = Environment.GetEnvironmentVariable("MICROLMS_CONNECTION_STRING")
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("MICROLMS_CONNECTION_STRING");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    var dbUser = Environment.GetEnvironmentVariable("DB_USERNAME") ?? "postgres";
+    if (!string.IsNullOrEmpty(dbPassword))
+    {
+        connectionString = $"Host=localhost;Port=5432;Database=MicroLmsDb;Username={dbUser};Password={dbPassword};Search Path=public,lms;Include Error Detail=true";
+    }
+    else
+    {
+        connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    }
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -349,22 +363,30 @@ using (var scope = app.Services.CreateScope())
 
             var defaultUsers = new[]
             {
-                new { UserName = "superadmin", Email = "superadmin@microlms.local", RoleName = "superadmin" },
-                new { UserName = "coordinateur.demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
-                new { UserName = "teacher.demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
-                new { UserName = "student.demo", Email = "student@microlms.local", RoleName = "etudiant" }
+                new { UserName = "superadmin", FullName = "Super Administrateur", Email = "superadmin@microlms.local", RoleName = "superadmin" },
+                new { UserName = "coordinateur.demo", FullName = "Coordinateur Demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
+                new { UserName = "teacher.demo", FullName = "Enseignant Demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
+                new { UserName = "student.demo", FullName = "Etudiant Demo", Email = "student@microlms.local", RoleName = "etudiant" }
             };
 
             foreach (var defaultUser in defaultUsers)
             {
-                var userExists = await dbContext.AppUsers.AnyAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
-                if (userExists)
+                var existingUser = await dbContext.AppUsers
+                    .FirstOrDefaultAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
+
+                if (existingUser is not null)
                 {
+                    if (string.IsNullOrWhiteSpace(existingUser.FullName))
+                    {
+                        existingUser.FullName = defaultUser.FullName;
+                    }
+
                     continue;
                 }
 
                 dbContext.AppUsers.Add(new User
                 {
+                    FullName = defaultUser.FullName,
                     UserName = defaultUser.UserName,
                     Email = defaultUser.Email,
                     PasswordHash = PasswordSecurity.Hash("Admin@123"),

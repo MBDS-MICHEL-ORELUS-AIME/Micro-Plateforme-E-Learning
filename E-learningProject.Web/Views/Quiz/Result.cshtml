@@ -20,6 +20,17 @@
         </div>
     </section>
 
+    <div class="alert @(Model.IsPassed ? "alert-success" : "alert-warning")" role="alert">
+        @if (Model.IsPassed)
+        {
+            <span>Quiz réussi. Vous avez atteint @Model.Score% pour un seuil fixé à @Model.PassingScore%.</span>
+        }
+        else
+        {
+            <span>Quiz non réussi. Vous avez obtenu @Model.Score% pour un seuil requis de @Model.PassingScore%. Consultez la correction puis repassez le quiz.</span>
+        }
+    </div>
+
     <div class="content-grid content-grid--two">
         <div class="page-panel">
             <div class="section-heading">
@@ -51,7 +62,15 @@
                     <h2 class="h5">Retour au quiz</h2>
                 </div>
             </div>
-            <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">Voir les quiz</a>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-brand" asp-controller="Quiz" asp-action="Index">Voir les quiz</a>
+                    <a class="btn btn-outline-secondary" asp-controller="Learner" asp-action="QuizHistory">Voir mon historique</a>
+                    @if (Model.IsPassed)
+                    {
+                        <a class="btn btn-success" asp-controller="Quiz" asp-action="DownloadCertificate" asp-route-quizResultId="@Model.QuizResultId">Télécharger le certificat</a>
+                    }
+                    <a class="btn btn-outline-primary" asp-controller="Quiz" asp-action="Start" asp-route-id="@Model.QuizId">Repasser</a>
+                </div>
         </div>
     </div>
 

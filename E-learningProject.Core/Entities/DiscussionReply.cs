@@ -6,7 +6,7 @@ public class DiscussionReply
     public int DiscussionThreadId { get; set; }
     public string AuthorId { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public DiscussionThread? DiscussionThread { get; set; }
 }

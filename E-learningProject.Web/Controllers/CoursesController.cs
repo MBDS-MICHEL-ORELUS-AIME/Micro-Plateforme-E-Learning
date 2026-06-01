@@ -187,6 +187,8 @@ public class CoursesController : Controller
         var progression = await _dbContext.LessonProgressions
             .FirstOrDefaultAsync(lp => lp.StudentId == studentId && lp.LessonId == lessonId, cancellationToken);
 
+        var alreadyRead = progression?.IsRead == true;
+
         if (progression is null)
         {
             progression = new()
@@ -201,7 +203,10 @@ public class CoursesController : Controller
         else
         {
             progression.IsRead = true;
-            progression.ReadDate = DateTime.UtcNow;
+            if (!alreadyRead)
+            {
+                progression.ReadDate = DateTime.UtcNow;
+            }
         }
 
         var enrollment = await _dbContext.Enrollments
@@ -230,12 +235,56 @@ public class CoursesController : Controller
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
+        TempData["LessonReadNotificationType"] = alreadyRead ? "info" : "success";
+        TempData["LessonReadNotification"] = alreadyRead
+            ? $"La lecon \"{lesson.Title}\" etait deja marquee comme lue."
+            : $"La lecon \"{lesson.Title}\" est maintenant marquee comme lue.";
+
         return RedirectToAction(nameof(Details), new { id = moduleId, studentId });
     }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
+    [HttpGet]
     public async Task<IActionResult> DownloadCertificate(int moduleId, CancellationToken cancellationToken = default)
+    {
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
+        }
+
+        var module = await _dbContext.Modules
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == moduleId, cancellationToken);
+
+        if (module is null)
+        {
+            return NotFound();
+        }
+
+        var enrollment = await _dbContext.Enrollments
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.ModuleId == moduleId && e.StudentId == studentId, cancellationToken);
+
+        if (enrollment is null || !enrollment.IsCompleted)
+        {
+            return BadRequest("Le module doit être terminé avant de générer un certificat.");
+        }
+
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var viewModel = new CertificateDownloadConfirmationViewModel
+        {
+            ModuleId = moduleId,
+            ModuleTitle = module.Title,
+            RecipientName = recipientName
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ActionName("DownloadCertificate")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DownloadCertificateConfirmed(int moduleId, string? recipientName, CancellationToken cancellationToken = default)
     {
         var studentId = ResolveStudentId();
         if (studentId is null)
@@ -277,10 +326,76 @@ public class CoursesController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var resolvedRecipientName = await PersistCertificateRecipientName(studentId, recipientName, cancellationToken);
+        var pdfBytes = _certificateService.GenerateCertificatePdf(resolvedRecipientName, module.Title, certificate.UniqueCode, certificate.IssueDate);
         var fileName = $"certificate-{moduleId}-{studentId}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
+    }
+
+    private async Task<string> ResolveCertificateRecipientName(string studentId, CancellationToken cancellationToken)
+    {
+        var fullName = await _dbContext.AppUsers
+            .AsNoTracking()
+            .Where(u => u.UserName == studentId)
+            .Select(u => u.FullName)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return string.IsNullOrWhiteSpace(fullName)
+            ? BuildDisplayNameFromUserName(studentId)
+            : fullName.Trim();
+    }
+
+    private async Task<string> PersistCertificateRecipientName(string studentId, string? recipientName, CancellationToken cancellationToken)
+    {
+        var normalizedRecipientName = string.IsNullOrWhiteSpace(recipientName)
+            ? null
+            : recipientName.Trim();
+
+        if (string.IsNullOrWhiteSpace(normalizedRecipientName))
+        {
+            return await ResolveCertificateRecipientName(studentId, cancellationToken);
+        }
+
+        var user = await _dbContext.AppUsers.FirstOrDefaultAsync(u => u.UserName == studentId, cancellationToken);
+        if (user is not null && !string.Equals(user.FullName?.Trim(), normalizedRecipientName, StringComparison.Ordinal))
+        {
+            user.FullName = normalizedRecipientName;
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            HttpContext.Session.SetString("CurrentUserFullName", normalizedRecipientName);
+        }
+
+        return normalizedRecipientName;
+    }
+
+    private static string BuildDisplayNameFromUserName(string userName)
+    {
+        var normalized = (userName ?? string.Empty)
+            .Trim()
+            .Replace('.', ' ')
+            .Replace('_', ' ')
+            .Replace('-', ' ');
+
+        if (string.IsNullOrWhiteSpace(normalized))
+        {
+            return "Apprenant";
+        }
+
+        var parts = normalized.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var formattedParts = new List<string>(parts.Length);
+
+        foreach (var part in parts)
+        {
+            if (part.Length == 1)
+            {
+                formattedParts.Add(part.ToUpperInvariant());
+                continue;
+            }
+
+            formattedParts.Add(char.ToUpperInvariant(part[0]) + part[1..].ToLowerInvariant());
+        }
+
+        return string.Join(' ', formattedParts);
     }
 
     private string? ResolveStudentId()
