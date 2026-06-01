@@ -92,7 +92,7 @@ public class DiscussionController : Controller
         {
             Title = title.Trim(),
             StudentId = studentId,
-            CreatedAt = DateTime.Now,
+            CreatedAt = DateTime.UtcNow,
             IsResolved = false
         };
 
@@ -157,7 +157,7 @@ public class DiscussionController : Controller
             DiscussionThreadId = threadId,
             AuthorId = authorId,
             Message = message.Trim(),
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.UtcNow
         };
 
         _dbContext.DiscussionReplies.Add(reply);

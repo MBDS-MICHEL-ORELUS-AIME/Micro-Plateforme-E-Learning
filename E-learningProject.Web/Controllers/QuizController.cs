@@ -228,7 +228,7 @@ public class QuizController : Controller
             QuizId = quiz.Id,
             Score = score,
             IsPassed = isPassed,
-            AttemptDate = DateTime.Now
+            AttemptDate = DateTime.UtcNow
         };
 
         _dbContext.QuizResults.Add(result);

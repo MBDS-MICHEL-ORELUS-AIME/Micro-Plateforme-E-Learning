@@ -8,6 +8,8 @@ using E_learningProject.Web.Security;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,8 +22,21 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-var connectionString = Environment.GetEnvironmentVariable("MICROLMS_CONNECTION_STRING")
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("MICROLMS_CONNECTION_STRING");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+    var dbUser = Environment.GetEnvironmentVariable("DB_USERNAME") ?? "postgres";
+    if (!string.IsNullOrEmpty(dbPassword))
+    {
+        connectionString = $"Host=localhost;Port=5432;Database=MicroLmsDb;Username={dbUser};Password={dbPassword};Search Path=public,lms;Include Error Detail=true";
+    }
+    else
+    {
+        connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    }
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

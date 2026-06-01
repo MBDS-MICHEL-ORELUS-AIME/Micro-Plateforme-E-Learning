@@ -50,6 +50,7 @@
       "Microsoft.EntityFrameworkCore/8.0.19": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.19",
+          "Microsoft.EntityFrameworkCore.Analyzers": "8.0.19",
           "Microsoft.Extensions.Caching.Memory": "8.0.1",
           "Microsoft.Extensions.Logging": "8.0.1"
         },
@@ -68,6 +69,7 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.Analyzers/8.0.19": {},
       "Microsoft.EntityFrameworkCore.Relational/8.0.19": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.19",
@@ -279,7 +281,7 @@
       "E-learningProject.Core/1.0.0": {
         "runtime": {
           "E-learningProject.Core.dll": {
-            "assemblyVersion": "0.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "0.0.0.0"
           }
         }
@@ -292,7 +294,7 @@
         },
         "runtime": {
           "E-learningProject.Data.dll": {
-            "assemblyVersion": "1.0.0.0",
+            "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -339,6 +341,13 @@
       "sha512": "sha512-3INN1Vti9EUVwb83o5uygUdjHgZCPLmQPpKptixh3hivggUCq1eZmU9QtyxwmK0HA6NXbZ5tyPIHSQNsMPS6aw==",
       "path": "microsoft.entityframeworkcore.abstractions/8.0.19",
       "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.19.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Analyzers/8.0.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OdLnhf4Mjm6OkhraTKK2Ye/Ok6VVcb5p1wtWfZBKKC3lHwQAisnv0BokE6NrLiySdcseVTI/ZAcQ+fGZVAx5Kg==",
+      "path": "microsoft.entityframeworkcore.analyzers/8.0.19",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.19.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.19": {
       "type": "package",
