@@ -40,6 +40,7 @@ public class AccountController : Controller
             .Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.UserName == model.UserName, cancellationToken);
 
+        // Authentication is intentionally based on hashed password verification only.
         if (user is null || !PasswordSecurity.Verify(model.Password, user.PasswordHash))
         {
             ModelState.AddModelError(string.Empty, "Nom d'utilisateur ou mot de passe invalide.");
@@ -160,6 +161,7 @@ public class AccountController : Controller
 
     private IActionResult RedirectToRoleHome(string? role)
     {
+        // Centralized role-to-home mapping keeps post-login behavior explicit and testable.
         if (string.Equals(role, "etudiant", StringComparison.OrdinalIgnoreCase))
         {
             return RedirectToAction("Dashboard", "Learner");

@@ -9,6 +9,7 @@ public class CertificateService : ICertificateService
 {
     public string GenerateCertificateNumber(string studentId, int moduleId)
     {
+        // Timestamped code keeps certificate references unique and easy to audit.
         var safeStudent = string.IsNullOrWhiteSpace(studentId) ? "UNKNOWN" : studentId.Trim().ToUpperInvariant();
         return $"CERT-{safeStudent}-{moduleId}-{DateTime.UtcNow:yyyyMMddHHmmss}";
     }
@@ -24,6 +25,7 @@ public class CertificateService : ICertificateService
         {
             container.Page(page =>
             {
+                // Single-page layout keeps generated certificates lightweight and printable.
                 page.Size(PageSizes.A4);
                 page.Margin(30);
                 page.PageColor(Colors.White);

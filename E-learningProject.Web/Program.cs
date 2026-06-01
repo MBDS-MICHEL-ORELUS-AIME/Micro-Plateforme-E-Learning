@@ -15,11 +15,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
+    // Keep backend-driven authentication state in server-side session.
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
+// Production-friendly precedence: env var can override appsettings without code changes.
 var connectionString = Environment.GetEnvironmentVariable("MICROLMS_CONNECTION_STRING")
     ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -51,7 +53,7 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        // Create the target database and schema objects when missing.
+        // Create the database on first run, then apply migrations for schema evolution.
         if (!await dbContext.Database.CanConnectAsync())
         {
             await dbContext.Database.EnsureCreatedAsync();
@@ -71,6 +73,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
+            // Seed only when empty to keep startup idempotent across executions.
             if (!await dbContext.Modules.AnyAsync())
             {
                 var modules = new List<Module>
