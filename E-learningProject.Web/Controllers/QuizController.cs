@@ -32,12 +32,8 @@ public class QuizController : Controller
             .ToListAsync(cancellationToken);
 
         Dictionary<int, DateTime> passedByQuiz = new();
-<<<<<<< HEAD
-        if (currentUserId.HasValue)
-=======
         Dictionary<int, DateTime> failedByQuiz = new();
-        if (!string.IsNullOrWhiteSpace(currentUser))
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
+        if (currentUserId.HasValue)
         {
             passedByQuiz = await _dbContext.QuizResults
                 .AsNoTracking()
@@ -48,7 +44,7 @@ public class QuizController : Controller
 
             failedByQuiz = await _dbContext.QuizResults
                 .AsNoTracking()
-                .Where(r => r.StudentId == currentUser && !r.IsPassed)
+                .Where(r => r.UserId == currentUserId && !r.IsPassed)
                 .GroupBy(r => r.QuizId)
                 .Select(g => new { QuizId = g.Key, FailedAt = g.Max(x => x.AttemptDate) })
                 .ToDictionaryAsync(x => x.QuizId, x => x.FailedAt, cancellationToken);
@@ -116,12 +112,7 @@ public class QuizController : Controller
             TotalQuestions = quiz.Questions.Count
         };
 
-<<<<<<< HEAD
         ResetStoredAnswers(quiz.Id, userId.Value.ToString());
-=======
-        // Start each attempt with a clean session state for deterministic correction.
-        ResetStoredAnswers(quiz.Id, studentId);
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
 
         return View(viewModel);
     }
@@ -397,7 +388,7 @@ public class QuizController : Controller
             return BadRequest("Aucun module lié à ce quiz n'a été trouvé.");
         }
 
-        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var recipientName = await ResolveCertificateRecipientName(userName, cancellationToken);
         var viewModel = new CertificateDownloadConfirmationViewModel
         {
             ModuleId = module.Id,
@@ -419,11 +410,12 @@ public class QuizController : Controller
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Result), "Quiz", new { id = quizResultId }) });
         }
+        var userId = GetCurrentUserId();
 
         var result = await _dbContext.QuizResults
             .AsNoTracking()
             .Include(r => r.Quiz)
-            .FirstOrDefaultAsync(r => r.Id == quizResultId && r.StudentId == studentId, cancellationToken);
+            .FirstOrDefaultAsync(r => r.Id == quizResultId && r.UserId == userId, cancellationToken);
 
         if (result is null)
         {
@@ -453,7 +445,7 @@ public class QuizController : Controller
             {
                 ModuleId = module.Id,
                 UserId = userId.Value,
-                UniqueCode = _certificateService.GenerateCertificateNumber(userName, module.Id),
+                UniqueCode = _certificateService.GenerateCertificateNumber(studentId, module.Id),
                 IssueDate = DateTime.UtcNow
             };
 
@@ -461,14 +453,9 @@ public class QuizController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-<<<<<<< HEAD
-        var pdfBytes = _certificateService.GenerateCertificatePdf(userName, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{module.Id}-{userName}.pdf";
-=======
         var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
         var pdfBytes = _certificateService.GenerateCertificatePdf(recipientName, module.Title, certificate.UniqueCode, certificate.IssueDate);
         var fileName = $"certificate-{certificate.UniqueCode}.pdf";
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
 
         return File(pdfBytes, "application/pdf", fileName);
     }

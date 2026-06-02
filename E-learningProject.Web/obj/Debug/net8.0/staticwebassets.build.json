@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
   "Hash": "qpy4xkdluc+QFs0WtqzFJbThaLEpdbGbKNaKuH+wMEo=",
-=======
-  "Hash": "d7Ez3rb+rr3IDv+RiZULtzLBslbpIJqH0rKr1fvQJZ0=",
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
   "Source": "E-learningProject.Web",
   "BasePath": "_content/E-learningProject.Web",
   "Mode": "Default",
@@ -14,17 +10,17 @@
     {
       "Name": "E-learningProject.Web\\wwwroot",
       "Source": "E-learningProject.Web",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\E-learningProject.Web.styles.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\E-learningProject.Web.styles.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "E-learningProject.Web.styles.css",
       "AssetKind": "All",
@@ -37,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\E-learningProject.Web.styles.css"
+      "OriginalItemSpec": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\bundle\\E-learningProject.Web.styles.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\E-learningProject.Web.bundle.scp.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\E-learningProject.Web.bundle.scp.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "E-learningProject.Web.bundle.scp.css",
       "AssetKind": "All",
@@ -56,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\E-learningProject.Web.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\E-learningProject.Web.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\css\\site.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -78,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\favicon.ico",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -97,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\js\\site.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -116,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -135,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -154,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -173,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -192,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -211,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -230,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -249,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -268,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -287,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -306,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -325,10 +321,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -344,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -363,10 +359,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -382,10 +378,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -401,10 +397,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -420,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -439,10 +435,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -458,10 +454,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -477,10 +473,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -496,10 +492,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -515,10 +511,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -534,10 +530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -553,10 +549,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -572,10 +568,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -591,10 +587,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -610,10 +606,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -629,10 +625,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -648,10 +644,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -667,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -686,10 +682,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -705,10 +701,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -724,10 +720,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -743,10 +739,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -762,10 +758,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -781,10 +777,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -800,10 +796,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -819,10 +815,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -838,10 +834,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -857,10 +853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -876,10 +872,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -895,10 +891,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -914,10 +910,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -933,10 +929,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -952,10 +948,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -971,7 +967,6 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\htmx\\htmx.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
@@ -992,31 +987,9 @@
     },
     {
       "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
-=======
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\htmx\\htmx.min.js",
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
-      "BasePath": "_content/E-learningProject.Web",
-      "RelativePath": "lib/htmx/htmx.min.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\htmx\\htmx.min.js"
-    },
-    {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
-      "SourceId": "E-learningProject.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1032,10 +1005,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1051,10 +1024,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -1070,10 +1043,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1089,10 +1062,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1108,10 +1081,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1127,10 +1100,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1146,10 +1119,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1165,10 +1138,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1184,10 +1157,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1203,10 +1176,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1222,10 +1195,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1241,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\965780cdd15b4e849f6f1df1e981a018.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\965780cdd15b4e849f6f1df1e981a018.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/965780cdd15b4e849f6f1df1e981a018.pdf",
       "AssetKind": "All",
@@ -1260,10 +1233,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\965780cdd15b4e849f6f1df1e981a018.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-1.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-1.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-1.pdf",
       "AssetKind": "All",
@@ -1279,10 +1252,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-1.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-10.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-10.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-10.pdf",
       "AssetKind": "All",
@@ -1298,10 +1271,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-10.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-11.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-11.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-11.pdf",
       "AssetKind": "All",
@@ -1317,10 +1290,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-11.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-12.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-12.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-12.pdf",
       "AssetKind": "All",
@@ -1336,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-12.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-13.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-13.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-13.pdf",
       "AssetKind": "All",
@@ -1355,10 +1328,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-13.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-14.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-14.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-14.pdf",
       "AssetKind": "All",
@@ -1374,10 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-14.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-15.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-15.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-15.pdf",
       "AssetKind": "All",
@@ -1393,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-15.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-16.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-16.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-16.pdf",
       "AssetKind": "All",
@@ -1412,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-16.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-17.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-17.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-17.pdf",
       "AssetKind": "All",
@@ -1431,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-17.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-18.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-18.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-18.pdf",
       "AssetKind": "All",
@@ -1450,10 +1423,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-18.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-19.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-19.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-19.pdf",
       "AssetKind": "All",
@@ -1469,10 +1442,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-19.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-2.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-2.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-2.pdf",
       "AssetKind": "All",
@@ -1488,10 +1461,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-2.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-20.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-20.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-20.pdf",
       "AssetKind": "All",
@@ -1507,10 +1480,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-20.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-21.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-21.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-21.pdf",
       "AssetKind": "All",
@@ -1526,10 +1499,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-21.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-22.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-22.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-22.pdf",
       "AssetKind": "All",
@@ -1545,10 +1518,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-22.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-23.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-23.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-23.pdf",
       "AssetKind": "All",
@@ -1564,10 +1537,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-23.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-24.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-24.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-24.pdf",
       "AssetKind": "All",
@@ -1583,10 +1556,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-24.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-25.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-25.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-25.pdf",
       "AssetKind": "All",
@@ -1602,10 +1575,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-25.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-26.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-26.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-26.pdf",
       "AssetKind": "All",
@@ -1621,10 +1594,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-26.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-27.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-27.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-27.pdf",
       "AssetKind": "All",
@@ -1640,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-27.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-28.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-28.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-28.pdf",
       "AssetKind": "All",
@@ -1659,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-28.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-29.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-29.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-29.pdf",
       "AssetKind": "All",
@@ -1678,10 +1651,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-29.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-3.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-3.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-3.pdf",
       "AssetKind": "All",
@@ -1697,10 +1670,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-3.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-30.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-30.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-30.pdf",
       "AssetKind": "All",
@@ -1716,10 +1689,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-30.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-31.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-31.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-31.pdf",
       "AssetKind": "All",
@@ -1735,10 +1708,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-31.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-32.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-32.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-32.pdf",
       "AssetKind": "All",
@@ -1754,10 +1727,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-32.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-33.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-33.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-33.pdf",
       "AssetKind": "All",
@@ -1773,10 +1746,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-33.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-34.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-34.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-34.pdf",
       "AssetKind": "All",
@@ -1792,10 +1765,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-34.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-35.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-35.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-35.pdf",
       "AssetKind": "All",
@@ -1811,10 +1784,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-35.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-36.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-36.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-36.pdf",
       "AssetKind": "All",
@@ -1830,10 +1803,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-36.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-37.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-37.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-37.pdf",
       "AssetKind": "All",
@@ -1849,10 +1822,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-37.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-38.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-38.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-38.pdf",
       "AssetKind": "All",
@@ -1868,10 +1841,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-38.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-39.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-39.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-39.pdf",
       "AssetKind": "All",
@@ -1887,10 +1860,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-39.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-4.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-4.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-4.pdf",
       "AssetKind": "All",
@@ -1906,10 +1879,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-4.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-40.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-40.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-40.pdf",
       "AssetKind": "All",
@@ -1925,10 +1898,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-40.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-41.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-41.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-41.pdf",
       "AssetKind": "All",
@@ -1944,10 +1917,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-41.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-42.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-42.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-42.pdf",
       "AssetKind": "All",
@@ -1963,10 +1936,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-42.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-43.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-43.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-43.pdf",
       "AssetKind": "All",
@@ -1982,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-43.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-44.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-44.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-44.pdf",
       "AssetKind": "All",
@@ -2001,10 +1974,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-44.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-45.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-45.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-45.pdf",
       "AssetKind": "All",
@@ -2020,10 +1993,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-45.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-47.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-47.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-47.pdf",
       "AssetKind": "All",
@@ -2039,10 +2012,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-47.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-48.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-48.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-48.pdf",
       "AssetKind": "All",
@@ -2058,10 +2031,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-48.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-49.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-49.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-49.pdf",
       "AssetKind": "All",
@@ -2077,10 +2050,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-49.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-5.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-5.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-5.pdf",
       "AssetKind": "All",
@@ -2096,10 +2069,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-5.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-50.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-50.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-50.pdf",
       "AssetKind": "All",
@@ -2115,10 +2088,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-50.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-51.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-51.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-51.pdf",
       "AssetKind": "All",
@@ -2134,10 +2107,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-51.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-52.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-52.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-52.pdf",
       "AssetKind": "All",
@@ -2153,10 +2126,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-52.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-53.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-53.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-53.pdf",
       "AssetKind": "All",
@@ -2172,10 +2145,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-53.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-54.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-54.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-54.pdf",
       "AssetKind": "All",
@@ -2191,10 +2164,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-54.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-55.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-55.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-55.pdf",
       "AssetKind": "All",
@@ -2210,10 +2183,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-55.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-56.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-56.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-56.pdf",
       "AssetKind": "All",
@@ -2229,10 +2202,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-56.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-57.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-57.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-57.pdf",
       "AssetKind": "All",
@@ -2248,10 +2221,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-57.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-58.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-58.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-58.pdf",
       "AssetKind": "All",
@@ -2267,10 +2240,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-58.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-59.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-59.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-59.pdf",
       "AssetKind": "All",
@@ -2286,10 +2259,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-59.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-6.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-6.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-6.pdf",
       "AssetKind": "All",
@@ -2305,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-6.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-60.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-60.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-60.pdf",
       "AssetKind": "All",
@@ -2324,10 +2297,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-60.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-61.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-61.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-61.pdf",
       "AssetKind": "All",
@@ -2343,10 +2316,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-61.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-62.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-62.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-62.pdf",
       "AssetKind": "All",
@@ -2362,10 +2335,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-62.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-63.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-63.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-63.pdf",
       "AssetKind": "All",
@@ -2381,10 +2354,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-63.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-64.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-64.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-64.pdf",
       "AssetKind": "All",
@@ -2400,10 +2373,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-64.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-65.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-65.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-65.pdf",
       "AssetKind": "All",
@@ -2419,10 +2392,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-65.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-66.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-66.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-66.pdf",
       "AssetKind": "All",
@@ -2438,10 +2411,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-66.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-67.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-67.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-67.pdf",
       "AssetKind": "All",
@@ -2457,10 +2430,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-67.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-68.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-68.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-68.pdf",
       "AssetKind": "All",
@@ -2476,10 +2449,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-68.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-69.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-69.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-69.pdf",
       "AssetKind": "All",
@@ -2495,10 +2468,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-69.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-7.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-7.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-7.pdf",
       "AssetKind": "All",
@@ -2514,10 +2487,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-7.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-70.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-70.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-70.pdf",
       "AssetKind": "All",
@@ -2533,10 +2506,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-70.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-71.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-71.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-71.pdf",
       "AssetKind": "All",
@@ -2552,10 +2525,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-71.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-72.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-72.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-72.pdf",
       "AssetKind": "All",
@@ -2571,10 +2544,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-72.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-73.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-73.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-73.pdf",
       "AssetKind": "All",
@@ -2590,10 +2563,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-73.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-74.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-74.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-74.pdf",
       "AssetKind": "All",
@@ -2609,10 +2582,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-74.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-75.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-75.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-75.pdf",
       "AssetKind": "All",
@@ -2628,10 +2601,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-75.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-76.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-76.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-76.pdf",
       "AssetKind": "All",
@@ -2647,10 +2620,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-76.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-8.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-8.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-8.pdf",
       "AssetKind": "All",
@@ -2666,10 +2639,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-8.pdf"
     },
     {
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-9.pdf",
+      "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\pdfs\\lesson-9.pdf",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/pdfs/lesson-9.pdf",
       "AssetKind": "All",
@@ -2685,17 +2658,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\pdfs\\lesson-9.pdf"
     },
     {
-<<<<<<< HEAD
       "Identity": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\uploads\\videos\\2ee93b49648e4447ac14541f4f3e4658.mp4",
       "SourceId": "E-learningProject.Web",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\wwwroot\\",
-=======
-      "Identity": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\uploads\\videos\\2ee93b49648e4447ac14541f4f3e4658.mp4",
-      "SourceId": "E-learningProject.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Web\\wwwroot\\",
->>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
       "BasePath": "_content/E-learningProject.Web",
       "RelativePath": "uploads/videos/2ee93b49648e4447ac14541f4f3e4658.mp4",
       "AssetKind": "All",
