@@ -20,6 +20,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Verify(string? code, CancellationToken cancellationToken = default)
     {
+        // La vérification permet à n'importe qui de contrôler l'authenticité d'un certificat.
         var normalizedCode = string.IsNullOrWhiteSpace(code)
             ? null
             : code.Trim();
@@ -59,8 +60,14 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
     {
+<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
+=======
+        // La page d'accueil certificat montre ceux déjà obtenus et ceux encore disponibles.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
         }
@@ -118,8 +125,14 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Download(int moduleId, CancellationToken cancellationToken = default)
     {
+<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
+=======
+        // Avant génération, on vérifie que le module est bien associé à un quiz réussi.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
         }
@@ -165,8 +178,14 @@ public class CertificatesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DownloadConfirmed(int moduleId, CancellationToken cancellationToken = default)
     {
+<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
+=======
+        // La version confirmée génère le PDF uniquement après validation des conditions métier.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
         }
@@ -220,6 +239,39 @@ public class CertificatesController : Controller
 
     private int? ResolveStudentId()
     {
+<<<<<<< HEAD
+=======
+        // On cherche d'abord le nom complet en session, puis dans la base si nécessaire.
+        string? fullName = null;
+
+        var currentUserIdRaw = HttpContext.Session.GetString("CurrentUserId");
+        if (int.TryParse(currentUserIdRaw, out var currentUserId))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.Id == currentUserId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.UserName == studentId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        return string.IsNullOrWhiteSpace(fullName)
+            ? "Apprenant"
+            : fullName.Trim();
+    }
+
+    private string? ResolveStudentId()
+    {
+        var currentUserName = HttpContext.Session.GetString("CurrentUserName");
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         var role = HttpContext.Session.GetString("CurrentUserRole");
         var userIdStr = HttpContext.Session.GetString("CurrentUserId");
 

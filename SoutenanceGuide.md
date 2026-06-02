@@ -101,7 +101,7 @@ http://localhost:5230
 - Suggestions de structure et de logique métier.
 - Aide à documenter les étapes et à formuler les explications.
 
-> À mentionner : Copilot a été utilisé comme assistant de développement, mais c'est vous qui avez choisi et intégré les solutions dans le code.
+> À mentionner : Copilot a été utilisé comme assistant de développement, mais c'est nous qui avons choisi et intégré les solutions dans le code.
 
 ## 9. Points forts du projet
 

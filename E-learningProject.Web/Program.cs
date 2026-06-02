@@ -5,6 +5,7 @@ using E_learningProject.Data.Repositories;
 using E_learningProject.Services;
 using E_learningProject.Services.Interfaces;
 using E_learningProject.Web.Security;
+using E_learningProject.Web;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -12,12 +13,12 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Ajouter les services au conteneur.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    // Keep backend-driven authentication state in server-side session.
+    // Conserver l'état d'authentification piloté par le backend dans la session côté serveur.
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
@@ -67,15 +68,22 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        // Create the database on first run, then apply migrations for schema evolution.
+        // Créer la base lors du premier lancement, puis appliquer les migrations pour faire évoluer le schéma.
         if (!await dbContext.Database.CanConnectAsync())
         {
             await dbContext.Database.EnsureCreatedAsync();
         }
-
-        if (applyMigrationsOnStartup)
+        else if (applyMigrationsOnStartup)
         {
-            dbContext.Database.Migrate();
+            try
+            {
+                dbContext.Database.Migrate();
+            }
+            catch (InvalidOperationException ex) when (ex.Message.Contains("Unable to find a migration") || ex.Message.Contains("No migrations"))
+            {
+                // No migrations found, ensure schema is created instead
+                await dbContext.Database.EnsureCreatedAsync();
+            }
         }
     }
     catch (Exception ex)
@@ -87,7 +95,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
-            // Seed only when empty to keep startup idempotent across executions.
+            // N'initialiser que lorsque la base est vide pour garder un démarrage idempotent entre les exécutions.
             if (!await dbContext.Modules.AnyAsync())
             {
                 var modules = new List<Module>
@@ -489,7 +497,7 @@ static bool IsOpenSourcePdfPath(string? pdfPath)
     }
 }
 
-// Configure the HTTP request pipeline.
+// Configurer le pipeline des requêtes HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\E-learningProject.Web.csproj": {}
   },
   "projects": {
@@ -12,18 +13,43 @@
         "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj",
         "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\obj\\",
+=======
+    "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+        "projectName": "E-learningProject.Core",
+        "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+        "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\obj\\",
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+          "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -37,10 +63,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "10.0.300"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -53,11 +85,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
@@ -70,22 +117,53 @@
         "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj",
         "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\obj\\",
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
+        "projectName": "E-learningProject.Data",
+        "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
+        "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\obj\\",
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+          "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
                 "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
+=======
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
               }
             }
           }
@@ -99,10 +177,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "10.0.300"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
@@ -127,11 +211,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
@@ -144,25 +243,59 @@
         "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj",
         "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\obj\\",
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj",
+        "projectName": "E-learningProject.Services",
+        "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj",
+        "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\obj\\",
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+          "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
                 "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
               },
               "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj": {
                 "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj"
+=======
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
+              },
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
               }
             }
           }
@@ -176,12 +309,30 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "10.0.300"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.16.0, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "QuestPDF": {
               "target": "Package",
               "version": "[2024.7.1, )"
@@ -198,11 +349,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
@@ -215,20 +381,47 @@
         "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\E-learningProject.Web.csproj",
         "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\",
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj",
+        "projectName": "E-learningProject.Web",
+        "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj",
+        "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\obj\\",
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+          "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
                 "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
               },
@@ -237,6 +430,16 @@
               },
               "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj": {
                 "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj"
+=======
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
+              },
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj"
+              },
+              "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj": {
+                "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
               }
             }
           }
@@ -250,10 +453,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "10.0.300"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
@@ -282,6 +491,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -290,7 +517,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         }
       }
     }

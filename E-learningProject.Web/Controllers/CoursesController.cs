@@ -28,6 +28,7 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Index(string? q, string quiz = "all", int page = 1, int pageSize = 6, CancellationToken cancellationToken = default)
     {
+        // Le catalogue liste les modules et applique des filtres de recherche simples.
         page = page <= 0 ? 1 : page;
         pageSize = pageSize is < 1 or > 24 ? 6 : pageSize;
         quiz = string.IsNullOrWhiteSpace(quiz) ? "all" : quiz.Trim().ToLowerInvariant();
@@ -85,8 +86,14 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Details(int id, CancellationToken cancellationToken = default)
     {
+<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
+=======
+        // Le détail montre le module et le suivi de progression de l'apprenant.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id }) });
         }
@@ -142,6 +149,7 @@ public class CoursesController : Controller
 
     public IActionResult Start(int moduleId)
     {
+        // L'entrée de parcours redirige l'utilisateur vers l'espace adapté à son rôle.
         var role = HttpContext.Session.GetString("CurrentUserRole");
 
         if (string.IsNullOrWhiteSpace(role))
@@ -171,8 +179,14 @@ public class CoursesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkLessonRead(int moduleId, int lessonId, CancellationToken cancellationToken = default)
     {
+<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
+=======
+        // On marque la leçon comme lue et on crée la progression si elle n'existe pas encore.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+>>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
         }

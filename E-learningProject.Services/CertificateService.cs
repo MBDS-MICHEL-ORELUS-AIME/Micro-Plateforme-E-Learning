@@ -9,7 +9,7 @@ public class CertificateService : ICertificateService
 {
     public string GenerateCertificateNumber(string studentId, int moduleId)
     {
-        // Timestamped code keeps certificate references unique and easy to audit.
+        // Un code horodaté rend les références de certificat uniques et faciles à auditer.
         var safeStudent = string.IsNullOrWhiteSpace(studentId) ? "UNKNOWN" : studentId.Trim().ToUpperInvariant();
         return $"CERT-{safeStudent}-{moduleId}-{DateTime.UtcNow:yyyyMMddHHmmss}";
     }
@@ -25,7 +25,7 @@ public class CertificateService : ICertificateService
         {
             container.Page(page =>
             {
-                // Single-page layout keeps generated certificates lightweight and printable.
+                // Une mise en page sur une seule page garde les certificats générés légers et imprimables.
                 page.Size(PageSizes.A4);
                 page.Margin(30);
                 page.PageColor(Colors.White);
@@ -74,5 +74,6 @@ public class CertificateService : ICertificateService
         });
 
         return document.GeneratePdf();
+        
     }
 }
