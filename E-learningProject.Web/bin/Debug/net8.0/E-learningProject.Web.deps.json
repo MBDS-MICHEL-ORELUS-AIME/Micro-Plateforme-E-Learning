@@ -35,6 +35,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "MailKit/4.16.0": {
         "dependencies": {
           "MimeKit": "4.16.0"
@@ -54,6 +55,16 @@
           }
         }
       },
+=======
+      "Microsoft.AspNetCore.Cryptography.Internal/8.0.15": {
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1525.16505"
+          }
+        }
+      },
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.15": {
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.Internal": "8.0.15"
@@ -246,8 +257,12 @@
           "Humanizer.Core": "2.14.1",
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
           "Microsoft.CodeAnalysis.Common": "4.5.0",
+<<<<<<< HEAD
           "System.Composition": "6.0.0",
           "System.IO.Pipelines": "9.0.0"
+=======
+          "System.Composition": "6.0.0"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.CodeAnalysis.Workspaces.dll": {
@@ -346,8 +361,12 @@
       },
       "Microsoft.EntityFrameworkCore.Relational/8.0.15": {
         "dependencies": {
+<<<<<<< HEAD
           "Microsoft.EntityFrameworkCore": "8.0.15",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.0"
+=======
+          "Microsoft.EntityFrameworkCore": "8.0.15"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -358,10 +377,16 @@
       },
       "Microsoft.Extensions.Caching.Memory/8.0.1": {
         "dependencies": {
+<<<<<<< HEAD
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.0",
           "Microsoft.Extensions.Options": "9.0.0",
           "Microsoft.Extensions.Primitives": "9.0.0"
+=======
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Options": "8.0.2"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Caching.Memory.dll": {
@@ -370,10 +395,16 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.Configuration/9.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
           "Microsoft.Extensions.Primitives": "9.0.0"
+=======
+      "Microsoft.Extensions.DependencyInjection/8.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Configuration.dll": {
@@ -499,6 +530,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Microsoft.Extensions.Diagnostics/9.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "9.0.0",
@@ -609,6 +641,13 @@
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.15",
           "Microsoft.Extensions.Logging": "9.0.0",
           "Microsoft.Extensions.Options": "9.0.0"
+=======
+      "Microsoft.Extensions.Identity.Core/8.0.15": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.15",
+          "Microsoft.Extensions.Logging": "8.0.1",
+          "Microsoft.Extensions.Options": "8.0.2"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Identity.Core.dll": {
@@ -620,7 +659,11 @@
       "Microsoft.Extensions.Identity.Stores/8.0.15": {
         "dependencies": {
           "Microsoft.Extensions.Identity.Core": "8.0.15",
+<<<<<<< HEAD
           "Microsoft.Extensions.Logging": "9.0.0"
+=======
+          "Microsoft.Extensions.Logging": "8.0.1"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Identity.Stores.dll": {
@@ -656,6 +699,7 @@
       },
       "Microsoft.Extensions.Logging.Configuration/9.0.0": {
         "dependencies": {
+<<<<<<< HEAD
           "Microsoft.Extensions.Configuration": "9.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.0",
           "Microsoft.Extensions.Configuration.Binder": "9.0.0",
@@ -736,6 +780,9 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
           "Microsoft.Extensions.Primitives": "9.0.0"
+=======
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Options.dll": {
@@ -928,6 +975,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "System.Diagnostics.DiagnosticSource/9.0.0": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
@@ -1010,6 +1058,8 @@
           }
         }
       },
+=======
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "E-learningProject.Core/1.0.0": {
         "runtime": {
           "E-learningProject.Core.dll": {
@@ -1069,6 +1119,7 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+<<<<<<< HEAD
     "MailKit/4.16.0": {
       "type": "package",
       "serviceable": true,
@@ -1093,6 +1144,25 @@
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.15": {
       "type": "package",
       "serviceable": true,
+=======
+    "Microsoft.AspNetCore.Cryptography.Internal/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D6jG7S6jDSDG664cI89qnSxO5HLkoUMVWSHPW+y0/5Ter5YlOswYZCdUjm0GY11fCWCnFK+yECM9niY4QhzEgg==",
+      "path": "microsoft.aspnetcore.cryptography.internal/8.0.15",
+      "hashPath": "microsoft.aspnetcore.cryptography.internal.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/ZK4ZZq2TyrfuTbkbbvhg+OiWlH1N9cxjiUzfEtUmGLNJbouy4tNl0ymnp2GBaJtIUTrjgsAYnpqeSiPcCGsEw==",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/8.0.15",
+      "hashPath": "microsoft.aspnetcore.cryptography.keyderivation.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "sha512": "sha512-LaG8ff73FHMnDtsUHsBEKxs07Yc/k54cTb1CDw6BJFoe4nZcN7t6UEdWMCycr7I9yrfO0dd2gV8h4foGgoWJxg==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/8.0.15",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.8.0.15.nupkg.sha512"
@@ -1174,6 +1244,7 @@
       "path": "microsoft.extensions.caching.memory/8.0.1",
       "hashPath": "microsoft.extensions.caching.memory.8.0.1.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.Configuration/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1182,6 +1253,9 @@
       "hashPath": "microsoft.extensions.configuration.9.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.Abstractions/9.0.0": {
+=======
+    "Microsoft.Extensions.DependencyInjection/8.0.1": {
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lqvd7W3FGKUO1+ZoUEMaZ5XDJeWvjpy2/M/ptCGz3tXLD4HWVaSzjufsAsjemasBEg+2SxXVtYVvGt5r2nKDlg==",
@@ -1251,6 +1325,7 @@
       "path": "microsoft.extensions.dependencymodel/8.0.2",
       "hashPath": "microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.Diagnostics/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1264,6 +1339,21 @@
       "sha512": "sha512-1K8P7XzuzX8W8pmXcZjcrqS6x5eSSdvhQohmcpgiQNY/HlDAlnrhR9dvlURfFz428A+RTCJpUyB+aKTA6AgVcQ==",
       "path": "microsoft.extensions.diagnostics.abstractions/9.0.0",
       "hashPath": "microsoft.extensions.diagnostics.abstractions.9.0.0.nupkg.sha512"
+=======
+    "Microsoft.Extensions.Identity.Core/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1+stEes9UuKbPuJsu4EIVcMgyxFl6dnRBnLBp0jE/CPg6jO3K5E2p/wMqdfHZQdHeLg4XMuKS6MOSPzbeT84Ww==",
+      "path": "microsoft.extensions.identity.core/8.0.15",
+      "hashPath": "microsoft.extensions.identity.core.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Identity.Stores/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oTwgR4Ay1UbSgRxHDiz8or6NUMmoS5sDyRR3fI5fsHtnG1rnDtmnfyNjO3E/NbmopGfoTXX+mTXxM4QGtWJBLQ==",
+      "path": "microsoft.extensions.identity.stores/8.0.15",
+      "hashPath": "microsoft.extensions.identity.stores.8.0.15.nupkg.sha512"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
     },
     "Microsoft.Extensions.FileProviders.Abstractions/9.0.0": {
       "type": "package",
@@ -1286,6 +1376,7 @@
       "path": "microsoft.extensions.filesystemglobbing/9.0.0",
       "hashPath": "microsoft.extensions.filesystemglobbing.9.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.Extensions.Hosting/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1391,6 +1482,8 @@
       "path": "mimekit/4.16.0",
       "hashPath": "mimekit.4.16.0.nupkg.sha512"
     },
+=======
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
     "Mono.TextTemplating/2.2.1": {
       "type": "package",
       "serviceable": true,
@@ -1468,6 +1561,7 @@
       "path": "system.composition.typedparts/6.0.0",
       "hashPath": "system.composition.typedparts.6.0.0.nupkg.sha512"
     },
+<<<<<<< HEAD
     "System.Diagnostics.DiagnosticSource/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1510,6 +1604,8 @@
       "path": "system.text.json/9.0.0",
       "hashPath": "system.text.json.9.0.0.nupkg.sha512"
     },
+=======
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
     "E-learningProject.Core/1.0.0": {
       "type": "project",
       "serviceable": false,

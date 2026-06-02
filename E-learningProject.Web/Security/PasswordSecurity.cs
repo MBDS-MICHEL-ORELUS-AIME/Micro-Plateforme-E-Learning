@@ -26,7 +26,7 @@ public static class PasswordSecurity
             return string.Equals(Hash(password), stored, StringComparison.Ordinal);
         }
 
-        // Backward compatibility for old seeded/plain values.
+        // Compatibilité ascendante avec les anciennes valeurs initialisées ou en clair.
         return string.Equals(password, stored, StringComparison.Ordinal);
     }
 

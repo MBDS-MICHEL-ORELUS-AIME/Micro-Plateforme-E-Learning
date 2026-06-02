@@ -28,6 +28,7 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Index(string? q, string quiz = "all", int page = 1, int pageSize = 6, CancellationToken cancellationToken = default)
     {
+        // Le catalogue liste les modules et applique des filtres de recherche simples.
         page = page <= 0 ? 1 : page;
         pageSize = pageSize is < 1 or > 24 ? 6 : pageSize;
         quiz = string.IsNullOrWhiteSpace(quiz) ? "all" : quiz.Trim().ToLowerInvariant();
@@ -85,6 +86,7 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Details(int id, CancellationToken cancellationToken = default)
     {
+        // Le détail montre le module et le suivi de progression de l'apprenant.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -141,6 +143,7 @@ public class CoursesController : Controller
 
     public IActionResult Start(int moduleId)
     {
+        // L'entrée de parcours redirige l'utilisateur vers l'espace adapté à son rôle.
         var role = HttpContext.Session.GetString("CurrentUserRole");
 
         if (string.IsNullOrWhiteSpace(role))
@@ -170,6 +173,7 @@ public class CoursesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkLessonRead(int moduleId, int lessonId, CancellationToken cancellationToken = default)
     {
+        // On marque la leçon comme lue et on crée la progression si elle n'existe pas encore.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -187,6 +191,8 @@ public class CoursesController : Controller
         var progression = await _dbContext.LessonProgressions
             .FirstOrDefaultAsync(lp => lp.StudentId == studentId && lp.LessonId == lessonId, cancellationToken);
 
+        var alreadyRead = progression?.IsRead == true;
+
         if (progression is null)
         {
             progression = new()
@@ -201,7 +207,10 @@ public class CoursesController : Controller
         else
         {
             progression.IsRead = true;
-            progression.ReadDate = DateTime.UtcNow;
+            if (!alreadyRead)
+            {
+                progression.ReadDate = DateTime.UtcNow;
+            }
         }
 
         var enrollment = await _dbContext.Enrollments
@@ -230,12 +239,70 @@ public class CoursesController : Controller
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
+        TempData["LessonReadNotificationType"] = alreadyRead ? "info" : "success";
+        TempData["LessonReadNotification"] = alreadyRead
+            ? $"La lecon \"{lesson.Title}\" etait deja marquee comme lue."
+            : $"La lecon \"{lesson.Title}\" est maintenant marquee comme lue.";
+
         return RedirectToAction(nameof(Details), new { id = moduleId, studentId });
     }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
+    [HttpGet]
     public async Task<IActionResult> DownloadCertificate(int moduleId, CancellationToken cancellationToken = default)
+    {
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
+        }
+
+        var module = await _dbContext.Modules
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == moduleId, cancellationToken);
+
+        if (module is null)
+        {
+            return NotFound();
+        }
+
+        var enrollment = await _dbContext.Enrollments
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.ModuleId == moduleId && e.StudentId == studentId, cancellationToken);
+
+        if (enrollment is null || !enrollment.IsCompleted)
+        {
+            return BadRequest("Le module doit être terminé avant de générer un certificat.");
+        }
+
+        if (!module.QuizId.HasValue)
+        {
+            return BadRequest("Le certificat ne peut être généré que pour un module lié à un quiz réussi.");
+        }
+
+        var hasPassedQuiz = await _dbContext.QuizResults
+            .AsNoTracking()
+            .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId.Value && r.IsPassed, cancellationToken);
+
+        if (!hasPassedQuiz)
+        {
+            return BadRequest("Le quiz lié à ce module doit être réussi avant de générer un certificat.");
+        }
+
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var viewModel = new CertificateDownloadConfirmationViewModel
+        {
+            ModuleId = moduleId,
+            ModuleTitle = module.Title,
+            RecipientName = recipientName
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ActionName("DownloadCertificate")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DownloadCertificateConfirmed(int moduleId, CancellationToken cancellationToken = default)
     {
         var studentId = ResolveStudentId();
         if (studentId is null)
@@ -260,6 +327,20 @@ public class CoursesController : Controller
             return BadRequest("Le module doit être terminé avant de générer un certificat.");
         }
 
+        if (!module.QuizId.HasValue)
+        {
+            return BadRequest("Le certificat ne peut être généré que pour un module lié à un quiz réussi.");
+        }
+
+        var hasPassedQuiz = await _dbContext.QuizResults
+            .AsNoTracking()
+            .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId.Value && r.IsPassed, cancellationToken);
+
+        if (!hasPassedQuiz)
+        {
+            return BadRequest("Le quiz lié à ce module doit être réussi avant de générer un certificat.");
+        }
+
         var certificate = await _dbContext.Certificates
             .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.StudentId == studentId, cancellationToken);
 
@@ -277,10 +358,39 @@ public class CoursesController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{moduleId}-{studentId}.pdf";
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var pdfBytes = _certificateService.GenerateCertificatePdf(recipientName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{certificate.UniqueCode}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
+    }
+
+    private async Task<string> ResolveCertificateRecipientName(string studentId, CancellationToken cancellationToken)
+    {
+        string? fullName = null;
+
+        var currentUserIdRaw = HttpContext.Session.GetString("CurrentUserId");
+        if (int.TryParse(currentUserIdRaw, out var currentUserId))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.Id == currentUserId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.UserName == studentId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        return string.IsNullOrWhiteSpace(fullName)
+            ? "Apprenant"
+            : fullName.Trim();
     }
 
     private string? ResolveStudentId()

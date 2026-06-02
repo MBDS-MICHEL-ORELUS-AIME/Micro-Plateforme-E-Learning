@@ -11,6 +11,7 @@ namespace E_learningProject.Services;
 
 public sealed class OpenContentImportService : IOpenContentImportService
 {
+    // Sources autorisées pour l'import automatique: uniquement du contenu ouvert ou réutilisable.
     private static readonly Dictionary<string, string> ApprovedSources = new(StringComparer.OrdinalIgnoreCase)
     {
         ["Wikiversity"] = "CC BY-SA",
@@ -31,7 +32,9 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     public async Task<OpenContentImportResult> ImportAsync(int maxModules = 20, CancellationToken cancellationToken = default)
     {
+        // On limite le volume importé pour éviter de surcharger la base.
         var targetCount = maxModules <= 0 ? 20 : Math.Min(maxModules, 100);
+        // Le catalogue mélange des sources en ligne et un jeu de secours local.
         var catalog = await BuildCatalogAsync(targetCount, cancellationToken);
 
         var importedModules = 0;
@@ -45,12 +48,14 @@ public sealed class OpenContentImportService : IOpenContentImportService
         {
             try
             {
+                // Toute source hors périmètre est écartée avant même l'écriture en base.
                 if (!IsSourceApproved(sourceModule.SourceName, sourceModule.SourceLicense))
                 {
                     skippedInvalidLicense++;
                     continue;
                 }
 
+                // Le hash permet d'identifier un contenu déjà importé même si le titre change légèrement.
                 var contentHash = ComputeHash(sourceModule.Title, sourceModule.SourceName, sourceModule.SourceUrl);
                 var exists = await _dbContext.ContentImportLogs
                     .AsNoTracking()
@@ -66,6 +71,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
                     continue;
                 }
 
+                // Le module est reconstruit à partir du seed source puis enrichi avec ses leçons.
                 var module = new Module
                 {
                     Title = sourceModule.Title,
@@ -84,6 +90,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
                 _dbContext.Modules.Add(module);
                 await _dbContext.SaveChangesAsync(cancellationToken);
 
+                // On journalise l'import pour conserver la traçabilité de la source et de la licence.
                 var log = new ContentImportLog
                 {
                     EntityType = "Module",
@@ -98,6 +105,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
                 if (sourceModule.Quiz is not null)
                 {
+                    // Certains modules reçoivent aussi un quiz pour être utilisables immédiatement.
                     var quiz = new Quiz
                     {
                         Title = sourceModule.Quiz.Title,
@@ -147,14 +155,17 @@ public sealed class OpenContentImportService : IOpenContentImportService
     {
         var catalog = new List<SourceModuleSeed>();
 
+        // Wikipedia apporte des résumés courts et variés.
         var wikipediaModules = await FetchWikipediaModulesAsync(12, cancellationToken);
         catalog.AddRange(wikipediaModules);
 
+        // Wikiversity apporte des contenus plus proches d'un parcours pédagogique.
         var wikiversityModules = await FetchWikiversityModulesAsync(8, cancellationToken);
         catalog.AddRange(wikiversityModules);
 
         if (catalog.Count < targetCount)
         {
+            // Si les sources externes ne suffisent pas, on complète avec un catalogue local stable.
             var fallback = BuildFallbackCatalog();
             foreach (var seed in fallback)
             {
@@ -173,6 +184,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
     private async Task<List<SourceModuleSeed>> FetchWikipediaModulesAsync(int count, CancellationToken cancellationToken)
     {
         var modules = new List<SourceModuleSeed>();
+        // Les thèmes sont choisis pour couvrir les domaines utiles à la plateforme.
         var themes = new[]
         {
             "Comptabilite",
@@ -191,6 +203,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
         foreach (var theme in themes.Take(count))
         {
+            // Chaque thème est transformé en module court et immédiatement exploitable.
             var page = await FetchWikipediaSummaryAsync(theme, cancellationToken);
             if (page is null)
             {
@@ -219,6 +232,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
     private async Task<List<SourceModuleSeed>> FetchWikiversityModulesAsync(int count, CancellationToken cancellationToken)
     {
         var modules = new List<SourceModuleSeed>();
+        // Ces domaines produisent des textes plus pédagogiques que de simples résumés encyclopédiques.
         var domains = new[]
         {
             "Comptabilite",
@@ -233,6 +247,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
         foreach (var domain in domains.Take(count))
         {
+            // Les extraits obtenus servent à générer plusieurs leçons plus courtes.
             var page = await FetchWikiversityExtractAsync(domain, cancellationToken);
             if (page is null)
             {
@@ -262,6 +277,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
     {
         try
         {
+            // L'API REST Wikipedia fournit un résumé bref suffisant pour initialiser un module.
             var encoded = Uri.EscapeDataString(topic);
             var url = $"https://fr.wikipedia.org/api/rest_v1/page/summary/{encoded}";
             using var response = await _httpClient.GetAsync(url, cancellationToken);
@@ -307,6 +323,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
     {
         try
         {
+            // Wikiversity fournit un extrait plus long, pratique pour découper des leçons.
             var encoded = Uri.EscapeDataString(topic);
             var url = $"https://fr.wikiversity.org/w/api.php?action=query&prop=extracts&explaintext=1&exintro=0&titles={encoded}&format=json&redirects=1";
             using var response = await _httpClient.GetAsync(url, cancellationToken);
@@ -360,6 +377,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static List<SourceLessonSeed> BuildLessonsFromText(string text, string sourceName, string sourceUrl)
     {
+        // On transforme un texte long en leçons courtes et mieux assimilables.
         var chunks = SplitIntoChunks(text, 3, 650);
         var lessons = new List<SourceLessonSeed>();
 
@@ -375,9 +393,10 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static List<string> SplitIntoChunks(string text, int maxChunks, int maxLength)
     {
+        // On normalise les retours à la ligne avant de regrouper les phrases.
         var normalized = text.Replace("\r", " ").Replace("\n", " ");
         var sentences = normalized
-            .Split(['.', '!', '?'], StringSplitOptions.RemoveEmptyEntries)
+            .Split(new[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries)
             .Select(x => x.Trim())
             .Where(x => x.Length > 20)
             .ToList();
@@ -424,6 +443,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static SourceQuizSeed BuildDefaultQuiz(string title)
     {
+        // Le quiz vérifie surtout que l'apprenant a compris la provenance et le bon usage du contenu.
         return new SourceQuizSeed(
             $"Quiz - {title}",
             [
@@ -444,6 +464,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static bool IsSourceApproved(string sourceName, string sourceLicense)
     {
+        // On compare la source et sa licence pour rester dans un cadre de réutilisation autorisé.
         if (!ApprovedSources.TryGetValue(sourceName, out var expected))
         {
             return false;
@@ -456,6 +477,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static string ComputeHash(string title, string sourceName, string sourceUrl)
     {
+        // Le hash combine les éléments clés du contenu pour obtenir un identifiant stable.
         var payload = $"{title.Trim().ToLowerInvariant()}|{sourceName.Trim().ToLowerInvariant()}|{sourceUrl.Trim().ToLowerInvariant()}";
         var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(payload));
         return Convert.ToHexString(bytes);
@@ -463,6 +485,7 @@ public sealed class OpenContentImportService : IOpenContentImportService
 
     private static IReadOnlyList<SourceModuleSeed> BuildFallbackCatalog()
     {
+        // Le catalogue de secours garantit un import possible même sans appel réseau.
         var modules = new List<SourceModuleSeed>();
 
         modules.Add(new SourceModuleSeed(

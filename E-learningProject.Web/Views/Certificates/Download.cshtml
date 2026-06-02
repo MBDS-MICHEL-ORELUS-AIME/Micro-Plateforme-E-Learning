@@ -1,0 +1,35 @@
+@model E_learningProject.Web.Models.CertificateDownloadConfirmationViewModel
+
+@{
+    ViewData["Title"] = "Confirmation du certificat";
+}
+
+<div class="page-shell">
+    <section class="page-hero">
+        <div>
+            <p class="eyebrow mb-2">Avant téléchargement</p>
+            <h1 class="h2 mb-2">Vérifier les informations du certificat</h1>
+            <p class="hero-subtitle">Confirmez les informations ci-dessous avant la génération du PDF.</p>
+        </div>
+    </section>
+
+    <div class="page-panel page-panel--soft">
+        <form asp-action="Download" method="post" class="d-flex gap-2 flex-wrap">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="moduleId" value="@Model.ModuleId" />
+            <div class="w-100">
+                <dl class="row mb-4">
+                    <dt class="col-sm-3">Module</dt>
+                    <dd class="col-sm-9">@Model.ModuleTitle</dd>
+
+                    <dt class="col-sm-3">Nom affiché</dt>
+                    <dd class="col-sm-9">@Model.RecipientName</dd>
+                </dl>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-file-earmark-pdf me-1"></i>Télécharger le certificat
+            </button>
+            <a class="btn btn-outline-secondary" asp-action="Index">Retour à mes certificats</a>
+        </form>
+    </div>
+</div>

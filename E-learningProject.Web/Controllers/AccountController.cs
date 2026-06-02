@@ -40,13 +40,14 @@ public class AccountController : Controller
             .Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.UserName == model.UserName, cancellationToken);
 
+        // L'authentification repose volontairement uniquement sur la vérification du mot de passe haché.
         if (user is null || !PasswordSecurity.Verify(model.Password, user.PasswordHash))
         {
             ModelState.AddModelError(string.Empty, "Nom d'utilisateur ou mot de passe invalide.");
             return View(model);
         }
 
-        // Upgrade legacy plain-text passwords on successful login.
+        // Mettre à niveau les anciens mots de passe en clair lors d'une connexion réussie.
         if (!PasswordSecurity.IsHashed(user.PasswordHash))
         {
             user.PasswordHash = PasswordSecurity.Hash(model.Password);
@@ -56,6 +57,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
         HttpContext.Session.SetString("CurrentUserName", user.UserName);
         HttpContext.Session.SetString("CurrentUserRole", user.Role?.Name ?? string.Empty);
+        HttpContext.Session.SetString("CurrentUserFullName", string.IsNullOrWhiteSpace(user.FullName) ? user.UserName : user.FullName);
 
         if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
@@ -102,6 +104,7 @@ public class AccountController : Controller
             return View(model);
         }
 
+        var fullName = model.FullName.Trim();
         var userName = model.UserName.Trim();
         var email = model.Email.Trim();
 
@@ -127,6 +130,7 @@ public class AccountController : Controller
 
         var user = new Core.Entities.User
         {
+            FullName = fullName,
             UserName = userName,
             Email = email,
             PasswordHash = PasswordSecurity.Hash(model.Password),
@@ -139,6 +143,7 @@ public class AccountController : Controller
         HttpContext.Session.SetString("CurrentUserId", user.Id.ToString());
         HttpContext.Session.SetString("CurrentUserName", user.UserName);
         HttpContext.Session.SetString("CurrentUserRole", role.Name);
+        HttpContext.Session.SetString("CurrentUserFullName", fullName);
 
         if (!string.IsNullOrWhiteSpace(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
         {
@@ -155,11 +160,13 @@ public class AccountController : Controller
         HttpContext.Session.Remove("CurrentUserId");
         HttpContext.Session.Remove("CurrentUserName");
         HttpContext.Session.Remove("CurrentUserRole");
+        HttpContext.Session.Remove("CurrentUserFullName");
         return RedirectToAction("Public", "Home");
     }
 
     private IActionResult RedirectToRoleHome(string? role)
     {
+        // Le mappage centralisé des rôles vers la page d'accueil garde le comportement après connexion explicite et testable.
         if (string.Equals(role, "etudiant", StringComparison.OrdinalIgnoreCase))
         {
             return RedirectToAction("Dashboard", "Learner");

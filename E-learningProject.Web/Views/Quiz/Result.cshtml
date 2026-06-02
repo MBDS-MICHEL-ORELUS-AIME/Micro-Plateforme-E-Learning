@@ -20,6 +20,17 @@
         </div>
     </section>
 
+    <div class="alert @(Model.IsPassed ? "alert-success" : "alert-warning")" role="alert">
+        @if (Model.IsPassed)
+        {
+            <span>Quiz réussi. Vous avez atteint @Model.Score% pour un seuil fixé à @Model.PassingScore%.</span>
+        }
+        else
+        {
+            <span>Quiz non réussi. Vous avez obtenu @Model.Score% pour un seuil requis de @Model.PassingScore%. Consultez la correction puis repassez le quiz.</span>
+        }
+    </div>
+
     <div class="content-grid content-grid--two">
         <div class="page-panel">
             <div class="section-heading">

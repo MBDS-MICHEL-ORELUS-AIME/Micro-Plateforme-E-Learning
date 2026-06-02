@@ -279,6 +279,10 @@
       "Microsoft.EntityFrameworkCore/8.0.15": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "8.0.15",
+<<<<<<< HEAD
+=======
+          "Microsoft.EntityFrameworkCore.Analyzers": "8.0.15",
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
           "Microsoft.Extensions.Caching.Memory": "8.0.1",
           "Microsoft.Extensions.Logging": "8.0.1"
         },
@@ -297,6 +301,10 @@
           }
         }
       },
+<<<<<<< HEAD
+=======
+      "Microsoft.EntityFrameworkCore.Analyzers/8.0.15": {},
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "Microsoft.EntityFrameworkCore.Design/8.0.15": {
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -572,10 +580,14 @@
       },
       "E-learningProject.Core/1.0.0": {
         "runtime": {
+<<<<<<< HEAD
           "E-learningProject.Core.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
+=======
+          "E-learningProject.Core.dll": {}
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
         }
       }
     }
@@ -663,6 +675,7 @@
       "path": "microsoft.entityframeworkcore.abstractions/8.0.15",
       "hashPath": "microsoft.entityframeworkcore.abstractions.8.0.15.nupkg.sha512"
     },
+<<<<<<< HEAD
     "Microsoft.EntityFrameworkCore.Design/8.0.15": {
       "type": "package",
       "serviceable": true,
@@ -673,6 +686,25 @@
     "Microsoft.EntityFrameworkCore.Relational/8.0.15": {
       "type": "package",
       "serviceable": true,
+=======
+    "Microsoft.EntityFrameworkCore.Analyzers/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-viyTqFw09xwhynmvYggUu48R0Y6WEU2dDKBKm7WwozDH5t1K7+RS9P+iXGe5uUNJstTH/STd2AMFKpT9GaX4OQ==",
+      "path": "microsoft.entityframeworkcore.analyzers/8.0.15",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Design/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ek0uHShBYrMmfQs0t4SlknWLvZH8P16l10HJtqsFmsz9Ym2E2sKUCq/NbmgBilDdlzF6sy15UFYxQ8O1z8+xBQ==",
+      "path": "microsoft.entityframeworkcore.design/8.0.15",
+      "hashPath": "microsoft.entityframeworkcore.design.8.0.15.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Relational/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "sha512": "sha512-rOge9UqPepLr4fDSbAjH+gMl4TwK7byKgUy66vgsjlwl11n/+MjbYZAYqfrD8mpGDwJ6Nzv2LIIK2fBHDqA+CQ==",
       "path": "microsoft.entityframeworkcore.relational/8.0.15",
       "hashPath": "microsoft.entityframeworkcore.relational.8.0.15.nupkg.sha512"

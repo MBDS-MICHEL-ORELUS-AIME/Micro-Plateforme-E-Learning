@@ -32,6 +32,7 @@ public class QuizController : Controller
             .ToListAsync(cancellationToken);
 
         Dictionary<int, DateTime> passedByQuiz = new();
+        Dictionary<int, DateTime> failedByQuiz = new();
         if (!string.IsNullOrWhiteSpace(currentUser))
         {
             passedByQuiz = await _dbContext.QuizResults
@@ -40,6 +41,13 @@ public class QuizController : Controller
                 .GroupBy(r => r.QuizId)
                 .Select(g => new { QuizId = g.Key, PassedAt = g.Max(x => x.AttemptDate) })
                 .ToDictionaryAsync(x => x.QuizId, x => x.PassedAt, cancellationToken);
+
+            failedByQuiz = await _dbContext.QuizResults
+                .AsNoTracking()
+                .Where(r => r.StudentId == currentUser && !r.IsPassed)
+                .GroupBy(r => r.QuizId)
+                .Select(g => new { QuizId = g.Key, FailedAt = g.Max(x => x.AttemptDate) })
+                .ToDictionaryAsync(x => x.QuizId, x => x.FailedAt, cancellationToken);
         }
 
         var quizzes = quizEntities.Select(q => new QuizListItemViewModel
@@ -50,7 +58,9 @@ public class QuizController : Controller
             QuestionCount = q.Questions.Count,
             ModuleTitle = _dbContext.Modules.Where(m => m.QuizId == q.Id).Select(m => m.Title).FirstOrDefault(),
             AlreadyPassed = passedByQuiz.ContainsKey(q.Id),
-            PassedAt = passedByQuiz.ContainsKey(q.Id) ? passedByQuiz[q.Id] : null
+            PassedAt = passedByQuiz.ContainsKey(q.Id) ? passedByQuiz[q.Id] : null,
+            HasFailedAttempt = !passedByQuiz.ContainsKey(q.Id) && failedByQuiz.ContainsKey(q.Id),
+            FailedAt = !passedByQuiz.ContainsKey(q.Id) && failedByQuiz.ContainsKey(q.Id) ? failedByQuiz[q.Id] : null
         }).ToList();
 
         return View(quizzes);
@@ -101,6 +111,7 @@ public class QuizController : Controller
             TotalQuestions = quiz.Questions.Count
         };
 
+        // Démarrer chaque tentative avec un état de session propre pour une correction déterministe.
         ResetStoredAnswers(quiz.Id, studentId);
 
         return View(viewModel);
@@ -244,6 +255,7 @@ public class QuizController : Controller
             });
         }
 
+        // La notation est déléguée au service pour garder une logique de contrôleur légère et réutilisable.
         var score = _quizService.CalculateScore(quiz.Questions.Count, correctAnswers);
         var isPassed = score >= quiz.PassingScore;
 
@@ -262,6 +274,7 @@ public class QuizController : Controller
         PersistCorrections(result.Id, corrections);
         ResetStoredAnswers(quizId, studentId);
 
+        // La redirection HTMX garde le parcours par étapes dynamique sans postback complet de la page.
         Response.Headers["HX-Redirect"] = Url.Action(nameof(Result), new { id = result.Id }) ?? Url.Action(nameof(Index)) ?? "/Quiz";
         return new EmptyResult();
     }
@@ -370,6 +383,53 @@ public class QuizController : Controller
             return BadRequest("Aucun module lié à ce quiz n'a été trouvé.");
         }
 
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var viewModel = new CertificateDownloadConfirmationViewModel
+        {
+            ModuleId = module.Id,
+            ModuleTitle = module.Title,
+            RecipientName = recipientName,
+            QuizResultId = quizResultId
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ActionName("DownloadCertificate")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DownloadCertificateConfirmed(int quizResultId, CancellationToken cancellationToken = default)
+    {
+        var studentId = GetCurrentUserName();
+        if (studentId is null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Result), "Quiz", new { id = quizResultId }) });
+        }
+
+        var result = await _dbContext.QuizResults
+            .AsNoTracking()
+            .Include(r => r.Quiz)
+            .FirstOrDefaultAsync(r => r.Id == quizResultId && r.StudentId == studentId, cancellationToken);
+
+        if (result is null)
+        {
+            return NotFound();
+        }
+
+        if (!result.IsPassed)
+        {
+            return BadRequest("Le quiz doit être réussi pour générer un certificat.");
+        }
+
+        var module = await _dbContext.Modules
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.QuizId == result.QuizId, cancellationToken);
+
+        if (module is null)
+        {
+            return BadRequest("Aucun module lié à ce quiz n'a été trouvé.");
+        }
+
         var certificate = await _dbContext.Certificates
             .FirstOrDefaultAsync(c => c.ModuleId == module.Id && c.StudentId == studentId, cancellationToken);
 
@@ -387,10 +447,39 @@ public class QuizController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{module.Id}-{studentId}.pdf";
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var pdfBytes = _certificateService.GenerateCertificatePdf(recipientName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{certificate.UniqueCode}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
+    }
+
+    private async Task<string> ResolveCertificateRecipientName(string studentId, CancellationToken cancellationToken)
+    {
+        string? fullName = null;
+
+        var currentUserIdRaw = HttpContext.Session.GetString("CurrentUserId");
+        if (int.TryParse(currentUserIdRaw, out var currentUserId))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.Id == currentUserId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.UserName == studentId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        return string.IsNullOrWhiteSpace(fullName)
+            ? "Apprenant"
+            : fullName.Trim();
     }
 
     private Dictionary<int, QuizAnswerInputViewModel> GetStoredAnswers(int quizId, string studentId)
@@ -403,6 +492,7 @@ public class QuizController : Controller
             return new Dictionary<int, QuizAnswerInputViewModel>();
         }
 
+        // La charge utile de session stocke une réponse par question pour prendre en charge la navigation précédent/suivant.
         return JsonSerializer.Deserialize<Dictionary<int, QuizAnswerInputViewModel>>(json)
             ?? new Dictionary<int, QuizAnswerInputViewModel>();
     }

@@ -11,6 +11,8 @@ public class QuizListItemViewModel
     public string? ModuleTitle { get; set; }
     public bool AlreadyPassed { get; set; }
     public DateTime? PassedAt { get; set; }
+    public bool HasFailedAttempt { get; set; }
+    public DateTime? FailedAt { get; set; }
 }
 
 public class QuizTakeViewModel

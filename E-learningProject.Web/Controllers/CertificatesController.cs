@@ -20,6 +20,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Verify(string? code, CancellationToken cancellationToken = default)
     {
+        // La vérification permet à n'importe qui de contrôler l'authenticité d'un certificat.
         var normalizedCode = string.IsNullOrWhiteSpace(code)
             ? null
             : code.Trim();
@@ -58,6 +59,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
     {
+        // La page d'accueil certificat montre ceux déjà obtenus et ceux encore disponibles.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -116,6 +118,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Download(int moduleId, CancellationToken cancellationToken = default)
     {
+        // Avant génération, on vérifie que le module est bien associé à un quiz réussi.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -131,21 +134,68 @@ public class CertificatesController : Controller
             return NotFound();
         }
 
-        var certificate = await _dbContext.Certificates
-            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.StudentId == studentId, cancellationToken);
-
-        var canGenerate = certificate != null;
-        if (!canGenerate && module.QuizId.HasValue)
-        {
-            canGenerate = await _dbContext.QuizResults
-                .AsNoTracking()
-                .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId && r.IsPassed, cancellationToken);
-        }
-
-        if (!canGenerate)
+        if (!module.QuizId.HasValue)
         {
             return BadRequest("Le certificat ne peut être généré que pour un module lié à un quiz réussi.");
         }
+
+        var hasPassedQuiz = await _dbContext.QuizResults
+            .AsNoTracking()
+            .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId.Value && r.IsPassed, cancellationToken);
+
+        if (!hasPassedQuiz)
+        {
+            return BadRequest("Le quiz lié à ce module doit être réussi avant de générer un certificat.");
+        }
+
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var viewModel = new CertificateDownloadConfirmationViewModel
+        {
+            ModuleId = module.Id,
+            ModuleTitle = module.Title,
+            RecipientName = recipientName
+        };
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    [ActionName("Download")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DownloadConfirmed(int moduleId, CancellationToken cancellationToken = default)
+    {
+        // La version confirmée génère le PDF uniquement après validation des conditions métier.
+        var studentId = ResolveStudentId();
+        if (studentId is null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Index), "Certificates") });
+        }
+
+        var module = await _dbContext.Modules
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.Id == moduleId, cancellationToken);
+
+        if (module is null)
+        {
+            return NotFound();
+        }
+
+        if (!module.QuizId.HasValue)
+        {
+            return BadRequest("Le certificat ne peut être généré que pour un module lié à un quiz réussi.");
+        }
+
+        var hasPassedQuiz = await _dbContext.QuizResults
+            .AsNoTracking()
+            .AnyAsync(r => r.StudentId == studentId && r.QuizId == module.QuizId.Value && r.IsPassed, cancellationToken);
+
+        if (!hasPassedQuiz)
+        {
+            return BadRequest("Le quiz lié à ce module doit être réussi avant de générer un certificat.");
+        }
+
+        var certificate = await _dbContext.Certificates
+            .FirstOrDefaultAsync(c => c.ModuleId == moduleId && c.StudentId == studentId, cancellationToken);
 
         if (certificate is null)
         {
@@ -161,10 +211,40 @@ public class CertificatesController : Controller
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        var pdfBytes = _certificateService.GenerateCertificatePdf(studentId, module.Title, certificate.UniqueCode, certificate.IssueDate);
-        var fileName = $"certificate-{module.Id}-{studentId}.pdf";
+        var recipientName = await ResolveCertificateRecipientName(studentId, cancellationToken);
+        var pdfBytes = _certificateService.GenerateCertificatePdf(recipientName, module.Title, certificate.UniqueCode, certificate.IssueDate);
+        var fileName = $"certificate-{certificate.UniqueCode}.pdf";
 
         return File(pdfBytes, "application/pdf", fileName);
+    }
+
+    private async Task<string> ResolveCertificateRecipientName(string studentId, CancellationToken cancellationToken)
+    {
+        // On cherche d'abord le nom complet en session, puis dans la base si nécessaire.
+        string? fullName = null;
+
+        var currentUserIdRaw = HttpContext.Session.GetString("CurrentUserId");
+        if (int.TryParse(currentUserIdRaw, out var currentUserId))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.Id == currentUserId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        if (string.IsNullOrWhiteSpace(fullName))
+        {
+            fullName = await _dbContext.AppUsers
+                .AsNoTracking()
+                .Where(u => u.UserName == studentId)
+                .Select(u => u.FullName)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        return string.IsNullOrWhiteSpace(fullName)
+            ? "Apprenant"
+            : fullName.Trim();
     }
 
     private string? ResolveStudentId()

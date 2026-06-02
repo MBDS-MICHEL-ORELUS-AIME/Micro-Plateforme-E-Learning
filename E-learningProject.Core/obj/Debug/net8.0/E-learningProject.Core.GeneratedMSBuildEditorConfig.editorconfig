@@ -11,7 +11,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = E_learningProject.Core
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\
+=======
+build_property.ProjectDir = C:\Donnees\NET MVC\E-learningProject\E-learningProject.Core\
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0

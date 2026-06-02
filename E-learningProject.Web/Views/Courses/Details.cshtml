@@ -12,6 +12,16 @@
 <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
 
 <div class="page-shell">
+    @if (TempData["LessonReadNotification"] is string lessonReadMessage)
+    {
+        var notificationType = (TempData["LessonReadNotificationType"] as string ?? "info").ToLowerInvariant();
+        var alertClass = notificationType == "success" ? "alert-success" : "alert-info";
+
+        <div class="alert @alertClass" role="alert">
+            @lessonReadMessage
+        </div>
+    }
+
     <section class="page-hero">
         <div>
             <p class="eyebrow mb-2">Module de formation</p>
@@ -122,14 +132,9 @@
                 <p class="mb-0 text-muted">Téléchargez votre certificat pour conserver une preuve de progression.</p>
             </div>
 
-            <form asp-controller="Courses" asp-action="DownloadCertificate" method="post">
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="moduleId" value="@Model.ModuleId" />
-                <input type="hidden" name="studentId" value="@Model.StudentId" />
-                <button type="submit" class="btn btn-brand">
-                    <i class="bi bi-file-earmark-pdf me-1"></i>Télécharger le certificat
-                </button>
-            </form>
+            <a class="btn btn-brand" asp-controller="Courses" asp-action="DownloadCertificate" asp-route-moduleId="@Model.ModuleId">
+                <i class="bi bi-card-checklist me-1"></i>Voir le formulaire
+            </a>
         </div>
     }
 </div>

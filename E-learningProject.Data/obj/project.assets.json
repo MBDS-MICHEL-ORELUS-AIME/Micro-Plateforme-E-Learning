@@ -2299,25 +2299,41 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\hugue\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\ore68\\.nuget\\packages\\": {}
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
       "projectName": "E-learningProject.Data",
       "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
       "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\obj\\",
+=======
+      "projectUniqueName": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
+      "projectName": "E-learningProject.Data",
+      "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
+      "packagesPath": "C:\\Users\\ore68\\.nuget\\packages\\",
+      "outputPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\obj\\",
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\ore68\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2332,8 +2348,13 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
               "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
+=======
+            "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+              "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
             }
           }
         }
@@ -2348,7 +2369,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
+<<<<<<< HEAD
       "SdkAnalysisLevel": "10.0.300"
+=======
+      "SdkAnalysisLevel": "10.0.100"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
     },
     "frameworks": {
       "net8.0": {
@@ -2384,6 +2409,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
+<<<<<<< HEAD
             "version": "[8.0.27, 8.0.27]"
           },
           {
@@ -2393,6 +2419,17 @@
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
             "version": "[8.0.27, 8.0.27]"
+=======
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
           }
         ],
         "frameworkReferences": {
@@ -2400,7 +2437,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
       }
     }
   }

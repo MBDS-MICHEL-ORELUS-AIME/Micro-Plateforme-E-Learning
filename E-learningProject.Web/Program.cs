@@ -13,11 +13,12 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Ajouter les services au conteneur.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
+    // Conserver l'état d'authentification piloté par le backend dans la session côté serveur.
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
@@ -67,7 +68,7 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        // Create the target database and schema objects when missing.
+        // Créer la base lors du premier lancement, puis appliquer les migrations pour faire évoluer le schéma.
         if (!await dbContext.Database.CanConnectAsync())
         {
             await dbContext.Database.EnsureCreatedAsync();
@@ -94,6 +95,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
+            // N'initialiser que lorsque la base est vide pour garder un démarrage idempotent entre les exécutions.
             if (!await dbContext.Modules.AnyAsync())
             {
                 var modules = new List<Module>
@@ -369,22 +371,30 @@ using (var scope = app.Services.CreateScope())
 
             var defaultUsers = new[]
             {
-                new { UserName = "superadmin", Email = "superadmin@microlms.local", RoleName = "superadmin" },
-                new { UserName = "coordinateur.demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
-                new { UserName = "teacher.demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
-                new { UserName = "student.demo", Email = "student@microlms.local", RoleName = "etudiant" }
+                new { UserName = "superadmin", FullName = "Super Administrateur", Email = "superadmin@microlms.local", RoleName = "superadmin" },
+                new { UserName = "coordinateur.demo", FullName = "Coordinateur Demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
+                new { UserName = "teacher.demo", FullName = "Enseignant Demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
+                new { UserName = "student.demo", FullName = "Etudiant Demo", Email = "student@microlms.local", RoleName = "etudiant" }
             };
 
             foreach (var defaultUser in defaultUsers)
             {
-                var userExists = await dbContext.AppUsers.AnyAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
-                if (userExists)
+                var existingUser = await dbContext.AppUsers
+                    .FirstOrDefaultAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
+
+                if (existingUser is not null)
                 {
+                    if (string.IsNullOrWhiteSpace(existingUser.FullName))
+                    {
+                        existingUser.FullName = defaultUser.FullName;
+                    }
+
                     continue;
                 }
 
                 dbContext.AppUsers.Add(new User
                 {
+                    FullName = defaultUser.FullName,
                     UserName = defaultUser.UserName,
                     Email = defaultUser.Email,
                     PasswordHash = PasswordSecurity.Hash("Admin@123"),
@@ -483,7 +493,7 @@ static bool IsOpenSourcePdfPath(string? pdfPath)
     }
 }
 
-// Configure the HTTP request pipeline.
+// Configurer le pipeline des requêtes HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
