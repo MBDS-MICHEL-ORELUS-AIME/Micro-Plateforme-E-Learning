@@ -16,9 +16,19 @@
         var currentUserName = Context.Session.GetString("CurrentUserName");
         var currentUserRole = Context.Session.GetString("CurrentUserRole");
         var isAuthenticated = !string.IsNullOrWhiteSpace(currentUserName);
+        var canAccessAdminDashboard = string.Equals(currentUserRole, "coordinateur", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(currentUserRole, "superadmin", StringComparison.OrdinalIgnoreCase);
         var isSuperAdmin = string.Equals(currentUserRole, "superadmin", StringComparison.OrdinalIgnoreCase);
-        var canAccessAdminDashboard = string.Equals(currentUserRole, "superadmin", StringComparison.OrdinalIgnoreCase)
-            || string.Equals(currentUserRole, "coordinateur", StringComparison.OrdinalIgnoreCase);
+        var roleHomeController = string.Equals(currentUserRole, "etudiant", StringComparison.OrdinalIgnoreCase) ? "Learner"
+            : string.Equals(currentUserRole, "enseignant", StringComparison.OrdinalIgnoreCase) ? "Teacher"
+            : string.Equals(currentUserRole, "coordinateur", StringComparison.OrdinalIgnoreCase) ? "Admin"
+            : string.Equals(currentUserRole, "superadmin", StringComparison.OrdinalIgnoreCase) ? "Admin"
+            : "Courses";
+        var roleHomeAction = string.Equals(currentUserRole, "enseignant", StringComparison.OrdinalIgnoreCase) ? "Workspace"
+            : string.Equals(currentUserRole, "coordinateur", StringComparison.OrdinalIgnoreCase) ? "Dashboard"
+            : string.Equals(currentUserRole, "superadmin", StringComparison.OrdinalIgnoreCase) ? "Dashboard"
+            : string.Equals(currentUserRole, "etudiant", StringComparison.OrdinalIgnoreCase) ? "Dashboard"
+            : "Index";
         Func<string, string, bool> isActive = (controller, action) => string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase) && string.Equals(currentAction, action, StringComparison.OrdinalIgnoreCase);
     }
     <header>
@@ -59,28 +69,26 @@
                             </li>
                         }
                     </ul>
-                    <ul class="navbar-nav">
-                        @if (isAuthenticated)
-                        {
-                            <li class="nav-item d-flex align-items-center px-2 text-muted small">
-                                <i class="bi bi-person-circle me-1"></i>@currentUserName
-                            </li>
-                            <li class="nav-item">
-                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="nav-link nav-pill btn btn-link border-0 p-0 px-3">
-                                        <i class="bi bi-box-arrow-right me-1"></i>Se déconnecter
-                                    </button>
-                                </form>
-                            </li>
-                        }
-                        else
+                    <ul class="navbar-nav align-items-sm-center gap-sm-2">
+                        @if (!isAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link nav-pill @(isActive("Account", "Login") ? "active" : string.Empty)" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right me-1"></i>Connexion</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-pill @(isActive("Account", "Register") ? "active" : string.Empty)" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus me-1"></i>Inscription</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link nav-pill @(isActive(roleHomeController, roleHomeAction) ? "active" : string.Empty)" asp-controller="@roleHomeController" asp-action="@roleHomeAction"><i class="bi bi-speedometer2 me-1"></i>Mon espace</a>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-dark">Deconnexion</button>
+                                </form>
                             </li>
                         }
                     </ul>

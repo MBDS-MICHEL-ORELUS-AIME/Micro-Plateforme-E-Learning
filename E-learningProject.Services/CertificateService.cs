@@ -9,6 +9,7 @@ public class CertificateService : ICertificateService
 {
     public string GenerateCertificateNumber(string studentId, int moduleId)
     {
+        // Timestamped code keeps certificate references unique and easy to audit.
         var safeStudent = string.IsNullOrWhiteSpace(studentId) ? "UNKNOWN" : studentId.Trim().ToUpperInvariant();
         return $"CERT-{safeStudent}-{moduleId}-{DateTime.UtcNow:yyyyMMddHHmmss}";
     }
@@ -17,13 +18,14 @@ public class CertificateService : ICertificateService
     {
         QuestPDF.Settings.License = LicenseType.Community;
 
-        var safeStudent = string.IsNullOrWhiteSpace(studentId) ? "Student" : studentId.Trim();
-        var safeModule = string.IsNullOrWhiteSpace(moduleTitle) ? "Training Module" : moduleTitle.Trim();
+        var safeStudent = string.IsNullOrWhiteSpace(studentId) ? "Apprenant" : studentId.Trim();
+        var safeModule = string.IsNullOrWhiteSpace(moduleTitle) ? "Module de formation" : moduleTitle.Trim();
 
         var document = Document.Create(container =>
         {
             container.Page(page =>
             {
+                // Single-page layout keeps generated certificates lightweight and printable.
                 page.Size(PageSizes.A4);
                 page.Margin(30);
                 page.PageColor(Colors.White);
@@ -32,12 +34,12 @@ public class CertificateService : ICertificateService
                 {
                     column.Spacing(15);
 
-                    column.Item().AlignCenter().Text("Certificate of Completion")
+                    column.Item().AlignCenter().Text("Certificat de réussite")
                         .FontSize(34)
                         .SemiBold()
                         .FontColor(Colors.Blue.Darken2);
 
-                    column.Item().AlignCenter().Text("This certificate is proudly awarded to")
+                    column.Item().AlignCenter().Text("Le présent certificat est décerné à")
                         .FontSize(14)
                         .FontColor(Colors.Grey.Darken2);
 
@@ -46,7 +48,7 @@ public class CertificateService : ICertificateService
                         .Bold()
                         .FontColor(Colors.Black);
 
-                    column.Item().AlignCenter().Text("for successfully completing")
+                    column.Item().AlignCenter().Text("pour avoir terminé avec succès")
                         .FontSize(14)
                         .FontColor(Colors.Grey.Darken2);
 
@@ -57,13 +59,13 @@ public class CertificateService : ICertificateService
 
                     column.Item().PaddingTop(20).Row(row =>
                     {
-                        row.RelativeItem().Text($"Issue Date: {issueDate:yyyy-MM-dd}").FontSize(12);
-                        row.RelativeItem().AlignRight().Text($"Certificate Code: {certificateCode}").FontSize(12);
+                        row.RelativeItem().Text($"Date de délivrance : {issueDate:yyyy-MM-dd}").FontSize(12);
+                        row.RelativeItem().AlignRight().Text($"Code du certificat : {certificateCode}").FontSize(12);
                     });
 
                     column.Item().PaddingTop(25).LineHorizontal(1).LineColor(Colors.Grey.Lighten1);
 
-                    column.Item().AlignCenter().Text("E-learning Project")
+                    column.Item().AlignCenter().Text("Projet d'apprentissage en ligne")
                         .FontSize(12)
                         .Italic()
                         .FontColor(Colors.Grey.Darken1);

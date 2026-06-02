@@ -538,6 +538,17 @@ body {
   grid-template-columns: 0.95fr 1.05fr;
 }
 
+.auth-shell-solo {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.auth-shell-solo .auth-card {
+  width: 100%;
+  max-width: 480px;
+}
+
 .auth-visual {
   position: relative;
   overflow: hidden;

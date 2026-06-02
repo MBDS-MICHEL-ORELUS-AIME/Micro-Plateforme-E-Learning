@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj": {}
+    "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+    "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj",
+        "projectUniqueName": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
         "projectName": "E-learningProject.Core",
-        "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj",
-        "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\obj\\",
+        "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+        "packagesPath": "C:\\Users\\ore68\\.nuget\\packages\\",
+        "outputPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ore68\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,21 +53,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\ore68\\.dotnet8\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj": {
+    "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj",
+        "projectUniqueName": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
         "projectName": "E-learningProject.Data",
-        "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj",
-        "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\obj\\",
+        "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj",
+        "packagesPath": "C:\\Users\\ore68\\.nuget\\packages\\",
+        "outputPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ore68\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -84,8 +79,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
-                "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
+              "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+                "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
               }
             }
           }
@@ -94,22 +89,28 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+<<<<<<< HEAD
+=======
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.15, )"
+            },
+>>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
+<<<<<<< HEAD
               "version": "[8.0.11, )"
+=======
+              "version": "[8.0.15, )"
+>>>>>>> 5bc5b989be65b70553e51dbbc6e7d0e368b872fa
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -132,21 +133,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\ore68\\.dotnet8\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj": {
+    "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj",
+        "projectUniqueName": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj",
         "projectName": "E-learningProject.Services",
-        "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj",
-        "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\obj\\",
+        "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj",
+        "packagesPath": "C:\\Users\\ore68\\.nuget\\packages\\",
+        "outputPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ore68\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -158,11 +159,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
-                "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
+              "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
+                "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
               },
-              "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj": {
-                "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Data\\E-learningProject.Data.csproj"
+              "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
+                "projectPath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj"
               }
             }
           }
@@ -171,11 +172,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -203,7 +199,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\ore68\\.dotnet8\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

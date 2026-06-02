@@ -15,3 +15,11 @@ public class LearnerCertificatesViewModel
     public List<LearnerCertificateItemViewModel> ExistingCertificates { get; set; } = new();
     public List<LearnerCertificateItemViewModel> AvailableCertificates { get; set; } = new();
 }
+
+public class CertificateDownloadConfirmationViewModel
+{
+    public int ModuleId { get; set; }
+    public string ModuleTitle { get; set; } = string.Empty;
+    public string RecipientName { get; set; } = string.Empty;
+    public int? QuizResultId { get; set; }
+}

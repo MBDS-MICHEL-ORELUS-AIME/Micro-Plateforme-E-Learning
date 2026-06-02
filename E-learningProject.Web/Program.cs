@@ -17,6 +17,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
+    // Keep backend-driven authentication state in server-side session.
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
@@ -66,7 +67,7 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        // Create the target database and schema objects when missing.
+        // Create the database on first run, then apply migrations for schema evolution.
         if (!await dbContext.Database.CanConnectAsync())
         {
             await dbContext.Database.EnsureCreatedAsync();
@@ -86,6 +87,7 @@ using (var scope = app.Services.CreateScope())
     {
         try
         {
+            // Seed only when empty to keep startup idempotent across executions.
             if (!await dbContext.Modules.AnyAsync())
             {
                 var modules = new List<Module>
@@ -338,22 +340,30 @@ using (var scope = app.Services.CreateScope())
 
             var defaultUsers = new[]
             {
-                new { UserName = "superadmin", Email = "superadmin@microlms.local", RoleName = "superadmin" },
-                new { UserName = "coordinateur.demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
-                new { UserName = "teacher.demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
-                new { UserName = "student.demo", Email = "student@microlms.local", RoleName = "etudiant" }
+                new { UserName = "superadmin", FullName = "Super Administrateur", Email = "superadmin@microlms.local", RoleName = "superadmin" },
+                new { UserName = "coordinateur.demo", FullName = "Coordinateur Demo", Email = "coordinateur@microlms.local", RoleName = "coordinateur" },
+                new { UserName = "teacher.demo", FullName = "Enseignant Demo", Email = "teacher@microlms.local", RoleName = "enseignant" },
+                new { UserName = "student.demo", FullName = "Etudiant Demo", Email = "student@microlms.local", RoleName = "etudiant" }
             };
 
             foreach (var defaultUser in defaultUsers)
             {
-                var userExists = await dbContext.AppUsers.AnyAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
-                if (userExists)
+                var existingUser = await dbContext.AppUsers
+                    .FirstOrDefaultAsync(u => u.UserName == defaultUser.UserName || u.Email == defaultUser.Email);
+
+                if (existingUser is not null)
                 {
+                    if (string.IsNullOrWhiteSpace(existingUser.FullName))
+                    {
+                        existingUser.FullName = defaultUser.FullName;
+                    }
+
                     continue;
                 }
 
                 dbContext.AppUsers.Add(new User
                 {
+                    FullName = defaultUser.FullName,
                     UserName = defaultUser.UserName,
                     Email = defaultUser.Email,
                     PasswordHash = PasswordSecurity.Hash("Admin@123"),

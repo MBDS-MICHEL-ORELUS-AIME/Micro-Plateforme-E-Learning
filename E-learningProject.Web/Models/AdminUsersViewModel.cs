@@ -59,6 +59,11 @@ public class LoginViewModel
 
 public class RegisterViewModel
 {
+    [Required(ErrorMessage = "Le nom complet est requis.")]
+    [StringLength(200, ErrorMessage = "Le nom complet ne peut pas depasser 200 caracteres.")]
+    [Display(Name = "Nom complet")]
+    public string FullName { get; set; } = string.Empty;
+
     [Required(ErrorMessage = "Le nom d'utilisateur est requis.")]
     [StringLength(100, ErrorMessage = "Le nom d'utilisateur ne peut pas depasser 100 caracteres.")]
     [Display(Name = "Nom d'utilisateur")]
