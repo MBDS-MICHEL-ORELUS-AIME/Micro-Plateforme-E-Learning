@@ -74,5 +74,6 @@ public class CertificateService : ICertificateService
         });
 
         return document.GeneratePdf();
+        
     }
 }
