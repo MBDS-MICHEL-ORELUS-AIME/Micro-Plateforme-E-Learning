@@ -79,7 +79,7 @@
                                         <span class="text-muted">-</span>
                                     }
                                 </td>
-                                <td>@attempt.AttemptDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@attempt.AttemptDate.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>
                                     @if (attempt.CanDownloadCertificate)
                                     {

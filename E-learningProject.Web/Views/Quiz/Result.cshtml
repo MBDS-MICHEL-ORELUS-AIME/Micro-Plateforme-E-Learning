@@ -56,7 +56,6 @@
                     <a class="btn btn-outline-secondary" asp-controller="Learner" asp-action="QuizHistory">Voir mon historique</a>
                     @if (Model.IsPassed)
                     {
-                        <a class="btn btn-success" asp-controller="Quiz" asp-action="DownloadCertificate" asp-route-quizResultId="@Model.QuizResultId">Télécharger le certificat</a>
                     }
                     <a class="btn btn-outline-primary" asp-controller="Quiz" asp-action="Start" asp-route-id="@Model.QuizId">Repasser</a>
                 </div>
