@@ -6,14 +6,14 @@ public class QuizService : IQuizService
 {
     public int CalculateScore(int totalQuestions, int correctAnswers)
     {
-        // Guard against division by zero for edge cases (empty quiz).
+        // Prévenir la division par zéro dans les cas limites (quiz vide).
         if (totalQuestions <= 0)
         {
             return 0;
         }
 
         var ratio = (double)correctAnswers / totalQuestions;
-        // AwayFromZero avoids under-scoring borderline decimals like 66.5.
+        // AwayFromZero évite de sous-noter les décimales limites comme 66,5.
         return (int)Math.Round(ratio * 100, MidpointRounding.AwayFromZero);
     }
 }

@@ -111,7 +111,7 @@ public class QuizController : Controller
             TotalQuestions = quiz.Questions.Count
         };
 
-        // Start each attempt with a clean session state for deterministic correction.
+        // Démarrer chaque tentative avec un état de session propre pour une correction déterministe.
         ResetStoredAnswers(quiz.Id, studentId);
 
         return View(viewModel);
@@ -255,7 +255,7 @@ public class QuizController : Controller
             });
         }
 
-        // Scoring is delegated to service to keep controller logic thin and reusable.
+        // La notation est déléguée au service pour garder une logique de contrôleur légère et réutilisable.
         var score = _quizService.CalculateScore(quiz.Questions.Count, correctAnswers);
         var isPassed = score >= quiz.PassingScore;
 
@@ -274,7 +274,7 @@ public class QuizController : Controller
         PersistCorrections(result.Id, corrections);
         ResetStoredAnswers(quizId, studentId);
 
-        // HTMX redirect keeps the step-by-step flow dynamic without full page postback.
+        // La redirection HTMX garde le parcours par étapes dynamique sans postback complet de la page.
         Response.Headers["HX-Redirect"] = Url.Action(nameof(Result), new { id = result.Id }) ?? Url.Action(nameof(Index)) ?? "/Quiz";
         return new EmptyResult();
     }
@@ -492,7 +492,7 @@ public class QuizController : Controller
             return new Dictionary<int, QuizAnswerInputViewModel>();
         }
 
-        // Session payload stores one answer per question to support previous/next navigation.
+        // La charge utile de session stocke une réponse par question pour prendre en charge la navigation précédent/suivant.
         return JsonSerializer.Deserialize<Dictionary<int, QuizAnswerInputViewModel>>(json)
             ?? new Dictionary<int, QuizAnswerInputViewModel>();
     }

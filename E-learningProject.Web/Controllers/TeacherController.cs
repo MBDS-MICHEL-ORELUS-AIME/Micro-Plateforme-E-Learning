@@ -9,6 +9,7 @@ namespace E_learningProject.Web.Controllers;
 
 public class TeacherController : Controller
 {
+    // Limites de taille pour éviter l'import de médias trop lourds côté enseignant.
     private const long MaxPdfSizeBytes = 10 * 1024 * 1024;
     private const long MaxVideoSizeBytes = 100 * 1024 * 1024;
     private static readonly HashSet<string> AllowedPdfExtensions = new(StringComparer.OrdinalIgnoreCase) { ".pdf" };
@@ -26,6 +27,7 @@ public class TeacherController : Controller
     [HttpGet]
     public async Task<IActionResult> Workspace(int? selectedModuleId = null, CancellationToken cancellationToken = default)
     {
+        // Le workspace rassemble la gestion des modules, leçons, quiz et médias dans une seule vue.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
@@ -38,6 +40,7 @@ public class TeacherController : Controller
     [HttpGet]
     public async Task<IActionResult> MyQuizzes(CancellationToken cancellationToken)
     {
+        // Cette page donne une vue rapide des quiz créés et de leurs résultats.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(MyQuizzes), "Teacher") });
@@ -79,6 +82,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateModule([Bind(Prefix = "ModuleForm")] TeacherModuleCreateViewModel form, CancellationToken cancellationToken)
     {
+        // On crée d'abord le module, puis on pourra lui rattacher des leçons ou un quiz.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
@@ -108,6 +112,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateLesson([Bind(Prefix = "LessonForm")] TeacherLessonCreateViewModel form, CancellationToken cancellationToken)
     {
+        // Une leçon peut contenir du texte seul, un PDF, une vidéo locale ou une URL externe.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
@@ -189,6 +194,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateQuiz([Bind(Prefix = "QuizForm")] TeacherQuizCreateViewModel form, CancellationToken cancellationToken)
     {
+        // Le quiz est normalisé avant l'enregistrement pour conserver une structure cohérente.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
@@ -234,6 +240,7 @@ public class TeacherController : Controller
     [HttpGet]
     public async Task<IActionResult> EditQuiz(int id, CancellationToken cancellationToken)
     {
+        // L'écran d'édition recharge le quiz existant avec ses questions et options ordonnées.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(EditQuiz), "Teacher", new { id }) });
@@ -289,6 +296,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EditQuiz(TeacherQuizCreateViewModel form, CancellationToken cancellationToken)
     {
+        // La mise à jour remplace l'ensemble des questions pour repartir d'une structure propre.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(MyQuizzes), "Teacher") });
@@ -353,6 +361,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteQuiz(int id, CancellationToken cancellationToken)
     {
+        // La suppression détache d'abord le quiz des modules liés, puis retire ses questions et options.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(MyQuizzes), "Teacher") });
@@ -387,6 +396,7 @@ public class TeacherController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UploadMedia([Bind(Prefix = "MediaForm")] TeacherMediaUploadViewModel form, CancellationToken cancellationToken)
     {
+        // Le formulaire média complète une leçon existante sans obliger à la recréer.
         if (!CanTeach())
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Workspace), "Teacher") });
@@ -459,6 +469,7 @@ public class TeacherController : Controller
 
     private async Task<TeacherWorkspaceViewModel> BuildWorkspaceViewModel(CancellationToken cancellationToken, int? selectedModuleId = null)
     {
+        // Le tableau de bord agrège les compteurs et les listes utiles à l'administration pédagogique.
         var modules = await _dbContext.Modules
             .AsNoTracking()
             .OrderByDescending(m => m.Id)
@@ -571,6 +582,7 @@ public class TeacherController : Controller
 
     private static void NormalizeQuizForm(TeacherQuizCreateViewModel form)
     {
+        // On supprime les collections nulles pour simplifier la validation et l'enregistrement.
         form.Questions ??= new List<TeacherQuestionInputViewModel>();
 
         foreach (var question in form.Questions)
@@ -581,6 +593,7 @@ public class TeacherController : Controller
 
     private void ValidateQuizForm(TeacherQuizCreateViewModel form)
     {
+        // Les règles de validation garantissent qu'un quiz reste exploitable par l'apprenant.
         if (!form.Questions.Any())
         {
             ModelState.AddModelError(string.Empty, "Au moins une question est requise.");
@@ -627,6 +640,7 @@ public class TeacherController : Controller
 
     private static List<Option> BuildOptions(TeacherQuestionInputViewModel question)
     {
+        // On conserve seulement les réponses utiles et on impose une structure correcte pour le vrai/faux.
         if (question.Type == QuestionType.TrueFalse)
         {
             var hasTrue = question.Options.Any(o => string.Equals(o.Text.Trim(), "Vrai", StringComparison.OrdinalIgnoreCase) || string.Equals(o.Text.Trim(), "True", StringComparison.OrdinalIgnoreCase));
@@ -657,6 +671,7 @@ public class TeacherController : Controller
 
     private async Task<string> SaveFile(IFormFile file, string relativeFolder, CancellationToken cancellationToken)
     {
+        // Les fichiers sont copiés dans wwwroot pour être servis directement par l'application.
         var safeFileName = $"{Guid.NewGuid():N}{Path.GetExtension(file.FileName)}";
         var folderPath = Path.Combine(_environment.WebRootPath, relativeFolder);
         Directory.CreateDirectory(folderPath);
@@ -670,6 +685,7 @@ public class TeacherController : Controller
 
     private void ValidateFileUpload(IFormFile file, HashSet<string> allowedExtensions, long maxSizeBytes, string modelKey, string label)
     {
+        // Validation centralisée pour éviter de répéter les mêmes règles sur les PDF et les vidéos.
         if (file.Length <= 0)
         {
             ModelState.AddModelError(modelKey, $"Le fichier {label} est vide.");

@@ -20,6 +20,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Verify(string? code, CancellationToken cancellationToken = default)
     {
+        // La vérification permet à n'importe qui de contrôler l'authenticité d'un certificat.
         var normalizedCode = string.IsNullOrWhiteSpace(code)
             ? null
             : code.Trim();
@@ -58,6 +59,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Index(CancellationToken cancellationToken = default)
     {
+        // La page d'accueil certificat montre ceux déjà obtenus et ceux encore disponibles.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -116,6 +118,7 @@ public class CertificatesController : Controller
     [HttpGet]
     public async Task<IActionResult> Download(int moduleId, CancellationToken cancellationToken = default)
     {
+        // Avant génération, on vérifie que le module est bien associé à un quiz réussi.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -161,6 +164,7 @@ public class CertificatesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DownloadConfirmed(int moduleId, CancellationToken cancellationToken = default)
     {
+        // La version confirmée génère le PDF uniquement après validation des conditions métier.
         var studentId = ResolveStudentId();
         if (studentId is null)
         {
@@ -216,6 +220,7 @@ public class CertificatesController : Controller
 
     private async Task<string> ResolveCertificateRecipientName(string studentId, CancellationToken cancellationToken)
     {
+        // On cherche d'abord le nom complet en session, puis dans la base si nécessaire.
         string? fullName = null;
 
         var currentUserIdRaw = HttpContext.Session.GetString("CurrentUserId");

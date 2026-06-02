@@ -17,6 +17,7 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Public(CancellationToken cancellationToken)
     {
+        // La page publique sert de vitrine synthétique de la plateforme.
         var model = new HomePublicViewModel
         {
             TotalModules = await _dbContext.Modules.CountAsync(cancellationToken),

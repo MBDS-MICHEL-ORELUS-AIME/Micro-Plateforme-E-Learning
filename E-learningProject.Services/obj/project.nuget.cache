@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eAaNoPzDsdBf2hnw0+0R9LEUuxqfhFVo+HowF8eTFwmBkW7UIUnEhlQ3YFenhhPDhVlAbXRX9Q3VHwZ9rvSydQ==",
+  "dgSpecHash": "27+JEi2ODGI=",
   "success": true,
   "projectFilePath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj",
   "expectedPackageFiles": [
@@ -24,7 +24,10 @@
     "C:\\Users\\ore68\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\ore68\\.nuget\\packages\\npgsql\\8.0.6\\npgsql.8.0.6.nupkg.sha512",
     "C:\\Users\\ore68\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.11\\npgsql.entityframeworkcore.postgresql.8.0.11.nupkg.sha512",
-    "C:\\Users\\ore68\\.nuget\\packages\\questpdf\\2024.7.1\\questpdf.2024.7.1.nupkg.sha512"
+    "C:\\Users\\ore68\\.nuget\\packages\\questpdf\\2024.7.1\\questpdf.2024.7.1.nupkg.sha512",
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
+    "C:\\Users\\ore68\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }
