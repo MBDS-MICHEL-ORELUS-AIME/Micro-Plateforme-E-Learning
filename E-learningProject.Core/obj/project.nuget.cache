@@ -1,5 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "JavtOU3qsic=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hugue\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\hugue\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\hugue\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512"
+=======
   "dgSpecHash": "xs3GS6Kg/xU=",
   "success": true,
   "projectFilePath": "C:\\Donnees\\NET MVC\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj",
@@ -7,6 +16,7 @@
     "C:\\Users\\ore68\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\ore68\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\ore68\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+>>>>>>> 6b59aa232cec07a7317f782d3baef11f0e5608b9
   ],
   "logs": []
 }

@@ -1,0 +1,13 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  E-learningProject.Core -> C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\bin\Debug\net9.0\E-learningProject.Core.dll
+  E-learningProject.Data -> C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Data\bin\Debug\net9.0\E-learningProject.Data.dll
+  E-learningProject.Services -> C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Services\bin\Debug\net9.0\E-learningProject.Services.dll
+  E-learningProject.Web -> C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Web\bin\Debug\net9.0\E-learningProject.Web.dll
+  E-learningProject.Web.Tests -> C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Web.Tests\bin\Debug\net10.0\E-learningProject.Web.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.41

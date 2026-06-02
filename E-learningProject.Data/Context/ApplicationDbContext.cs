@@ -27,6 +27,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<ContentImportLog> ContentImportLogs => Set<ContentImportLog>();
     public DbSet<StudentBadge> StudentBadges => Set<StudentBadge>();
     public DbSet<DiscussionReport> DiscussionReports => Set<DiscussionReport>();
+    public DbSet<EmailMessage> EmailMessages => Set<EmailMessage>();
+    public DbSet<EmailAttachment> EmailAttachments => Set<EmailAttachment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -149,6 +151,29 @@ public class ApplicationDbContext : IdentityDbContext
             entity.HasOne(x => x.Thread)
                 .WithMany()
                 .HasForeignKey(x => x.ThreadId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<EmailMessage>(entity =>
+        {
+            entity.ToTable("EmailMessages");
+            entity.Property(x => x.MessageId).HasMaxLength(500).IsRequired();
+            entity.Property(x => x.From).HasMaxLength(500).IsRequired();
+            entity.Property(x => x.To).HasMaxLength(1000).IsRequired();
+            entity.Property(x => x.Subject).HasMaxLength(1000).IsRequired(false);
+            entity.HasIndex(x => x.MessageId).IsUnique(false);
+            entity.HasIndex(x => x.DiscussionThreadId);
+        });
+
+        modelBuilder.Entity<EmailAttachment>(entity =>
+        {
+            entity.ToTable("EmailAttachments");
+            entity.Property(x => x.FileName).HasMaxLength(500).IsRequired();
+            entity.Property(x => x.ContentType).HasMaxLength(200).IsRequired();
+            entity.Property(x => x.FilePath).HasMaxLength(1000).IsRequired();
+            entity.HasOne(x => x.EmailMessage)
+                .WithMany()
+                .HasForeignKey(x => x.EmailMessageId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
