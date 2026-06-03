@@ -209,7 +209,7 @@ public class EmailService : IEmailService
                     var thread = new DiscussionThread
                     {
                         Title = string.IsNullOrWhiteSpace(message.Subject) ? $"Email from {fromAddress}" : (message.Subject.Length > 200 ? message.Subject[..200] : message.Subject),
-                        StudentId = studentId,
+                        AuthorId = user?.Id ?? 0,
                         CreatedAt = messageDate,
                         IsResolved = false
                     };
@@ -224,7 +224,7 @@ public class EmailService : IEmailService
                     var reply = new DiscussionReply
                     {
                         DiscussionThreadId = thread.Id,
-                        AuthorId = fromAddress,
+                        AuthorId = user?.Id ?? 0,
                         Message = bodyText.Length > 2000 ? bodyText[..2000] : bodyText,
                         CreatedAt = messageDate
                     };

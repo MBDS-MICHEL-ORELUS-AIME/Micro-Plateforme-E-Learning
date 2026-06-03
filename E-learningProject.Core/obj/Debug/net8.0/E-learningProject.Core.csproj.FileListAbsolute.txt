@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.deps.json
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.dll
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.pdb
@@ -9,15 +8,3 @@ C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learn
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\obj\Debug\net8.0\refint\E-learningProject.Core.dll
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.pdb
 C:\Users\GIPAD\Desktop\DotNet_Project\ProjetDotNet_Prod\Micro-Plateforme-E-Learning\E-learningProject.Core\obj\Debug\net8.0\ref\E-learningProject.Core.dll
-=======
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.deps.json
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.dll
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\bin\Debug\net8.0\E-learningProject.Core.pdb
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.csproj.CoreCompileInputs.cache
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.sourcelink.json
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.dll
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\refint\E-learningProject.Core.dll
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\E-learningProject.Core.pdb
-C:\Users\hugue\IdeaProjects\E-learningProject\E-learningProject.Core\obj\Debug\net8.0\ref\E-learningProject.Core.dll
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d

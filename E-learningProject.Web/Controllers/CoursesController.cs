@@ -86,14 +86,8 @@ public class CoursesController : Controller
 
     public async Task<IActionResult> Details(int id, CancellationToken cancellationToken = default)
     {
-<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
-=======
-        // Le détail montre le module et le suivi de progression de l'apprenant.
-        var studentId = ResolveStudentId();
-        if (studentId is null)
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id }) });
         }
@@ -179,14 +173,8 @@ public class CoursesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> MarkLessonRead(int moduleId, int lessonId, CancellationToken cancellationToken = default)
     {
-<<<<<<< HEAD
         var userId = ResolveStudentId();
         if (userId is null)
-=======
-        // On marque la leçon comme lue et on crée la progression si elle n'existe pas encore.
-        var studentId = ResolveStudentId();
-        if (studentId is null)
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         {
             return RedirectToAction("Login", "Account", new { returnUrl = Url.Action(nameof(Details), "Courses", new { id = moduleId }) });
         }

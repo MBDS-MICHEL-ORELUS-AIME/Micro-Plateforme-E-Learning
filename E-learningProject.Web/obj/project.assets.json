@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net8.0": {
       "BouncyCastle.Cryptography/2.6.2": {
@@ -28,8 +28,6 @@
           }
         }
       },
-<<<<<<< HEAD
-=======
       "MailKit/4.16.0": {
         "type": "package",
         "dependencies": {
@@ -47,53 +45,6 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/8.0.15": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.15": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "8.0.15"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.15": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "8.0.15",
-          "Microsoft.Extensions.Identity.Stores": "8.0.15"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
-            "related": ".xml"
-          }
-        }
-      },
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "type": "package",
         "compile": {
@@ -713,9 +664,6 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-<<<<<<< HEAD
-      "Microsoft.Extensions.Logging/8.0.1": {
-=======
       "Microsoft.Extensions.Diagnostics/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -877,44 +825,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Identity.Core/8.0.15": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "8.0.15",
-          "Microsoft.Extensions.Logging": "8.0.1",
-          "Microsoft.Extensions.Options": "8.0.2"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Identity.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Identity.Core.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.Extensions.Identity.Stores/8.0.15": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "8.0.0",
-          "Microsoft.Extensions.Identity.Core": "8.0.15",
-          "Microsoft.Extensions.Logging": "8.0.1"
-        },
-        "compile": {
-          "lib/net8.0/Microsoft.Extensions.Identity.Stores.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.Extensions.Identity.Stores.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Extensions.Logging/9.0.0": {
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "9.0.0",
@@ -1680,8 +1591,6 @@
         "logo.png"
       ]
     },
-<<<<<<< HEAD
-=======
     "MailKit/4.16.0": {
       "sha512": "trJ82DOpAmo8i1jO1vNE+dGn4mPRyeYfy4swRcAGgMJhPoI1Kohf4OFJJf0+YIj4iUxgxPn8W+ht7e7KiYzSjg==",
       "type": "package",
@@ -1726,60 +1635,6 @@
         "mailkit.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/8.0.15": {
-      "sha512": "D6jG7S6jDSDG664cI89qnSxO5HLkoUMVWSHPW+y0/5Ter5YlOswYZCdUjm0GY11fCWCnFK+yECM9niY4QhzEgg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/8.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net462/Microsoft.AspNetCore.Cryptography.Internal.dll",
-        "lib/net462/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "lib/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
-        "lib/net8.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.8.0.15.nupkg.sha512",
-        "microsoft.aspnetcore.cryptography.internal.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.15": {
-      "sha512": "/ZK4ZZq2TyrfuTbkbbvhg+OiWlH1N9cxjiUzfEtUmGLNJbouy4tNl0ymnp2GBaJtIUTrjgsAYnpqeSiPcCGsEw==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/8.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
-        "lib/net462/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "lib/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
-        "lib/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.8.0.15.nupkg.sha512",
-        "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.15": {
-      "sha512": "LaG8ff73FHMnDtsUHsBEKxs07Yc/k54cTb1CDw6BJFoe4nZcN7t6UEdWMCycr7I9yrfO0dd2gV8h4foGgoWJxg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/8.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
-        "lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.8.0.15.nupkg.sha512",
-        "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
-      ]
-    },
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "sha512": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
       "type": "package",
@@ -2715,10 +2570,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-<<<<<<< HEAD
-    "Microsoft.Extensions.Logging/8.0.1": {
-      "sha512": "4x+pzsQEbqxhNf1QYRr5TDkLP9UsLT3A6MdRKDDEgrW7h1ljiEPgTNhKYUhNCCAaVpQECVQ+onA91PTPnIp6Lw==",
-=======
     "Microsoft.Extensions.Diagnostics/9.0.0": {
       "sha512": "0CF9ZrNw5RAlRfbZuVIvzzhP8QeWqHiUmMBU/2H7Nmit8/vwP3/SbHeEctth7D4Gz2fBnEbokPc1NU8/j/1ZLw==",
       "type": "package",
@@ -2917,47 +2768,8 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Identity.Core/8.0.15": {
-      "sha512": "1+stEes9UuKbPuJsu4EIVcMgyxFl6dnRBnLBp0jE/CPg6jO3K5E2p/wMqdfHZQdHeLg4XMuKS6MOSPzbeT84Ww==",
-      "type": "package",
-      "path": "microsoft.extensions.identity.core/8.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net462/Microsoft.Extensions.Identity.Core.dll",
-        "lib/net462/Microsoft.Extensions.Identity.Core.xml",
-        "lib/net8.0/Microsoft.Extensions.Identity.Core.dll",
-        "lib/net8.0/Microsoft.Extensions.Identity.Core.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.8.0.15.nupkg.sha512",
-        "microsoft.extensions.identity.core.nuspec"
-      ]
-    },
-    "Microsoft.Extensions.Identity.Stores/8.0.15": {
-      "sha512": "oTwgR4Ay1UbSgRxHDiz8or6NUMmoS5sDyRR3fI5fsHtnG1rnDtmnfyNjO3E/NbmopGfoTXX+mTXxM4QGtWJBLQ==",
-      "type": "package",
-      "path": "microsoft.extensions.identity.stores/8.0.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net462/Microsoft.Extensions.Identity.Stores.dll",
-        "lib/net462/Microsoft.Extensions.Identity.Stores.xml",
-        "lib/net8.0/Microsoft.Extensions.Identity.Stores.dll",
-        "lib/net8.0/Microsoft.Extensions.Identity.Stores.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.8.0.15.nupkg.sha512",
-        "microsoft.extensions.identity.stores.nuspec"
-      ]
-    },
     "Microsoft.Extensions.Logging/9.0.0": {
       "sha512": "crjWyORoug0kK7RSNJBTeSE6VX8IQgLf3nUpTB9m62bPXp/tzbnOsnbe8TXEG0AASNaKZddnpHKw7fET8E++Pg==",
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       "type": "package",
       "path": "microsoft.extensions.logging/9.0.0",
       "files": [
@@ -4031,56 +3843,30 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\GIPAD\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\hugue\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\E-learningProject.Web.csproj",
       "projectName": "E-learningProject.Web",
       "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\E-learningProject.Web.csproj",
       "packagesPath": "C:\\Users\\GIPAD\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Web\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj",
-      "projectName": "E-learningProject.Web",
-      "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\E-learningProject.Web.csproj",
-      "packagesPath": "C:\\Users\\hugue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Web\\obj\\",
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\GIPAD\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-        "C:\\Users\\hugue\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-<<<<<<< HEAD
             "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj": {
               "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Core\\E-learningProject.Core.csproj"
             },
@@ -4089,16 +3875,6 @@
             },
             "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj": {
               "projectPath": "C:\\Users\\GIPAD\\Desktop\\DotNet_Project\\ProjetDotNet_Prod\\Micro-Plateforme-E-Learning\\E-learningProject.Services\\E-learningProject.Services.csproj"
-=======
-            "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj": {
-              "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Core\\E-learningProject.Core.csproj"
-            },
-            "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj": {
-              "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Data\\E-learningProject.Data.csproj"
-            },
-            "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj": {
-              "projectPath": "C:\\Users\\hugue\\IdeaProjects\\E-learningProject\\E-learningProject.Services\\E-learningProject.Services.csproj"
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
             }
           }
         }
@@ -4112,16 +3888,10 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-<<<<<<< HEAD
       }
-=======
-      },
-      "SdkAnalysisLevel": "10.0.300"
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
     },
     "frameworks": {
       "net8.0": {
-        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": {
@@ -4150,24 +3920,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.27, 8.0.27]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.27, 8.0.27]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -4176,11 +3928,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
       }
     }
   }

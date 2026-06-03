@@ -112,12 +112,7 @@ public class QuizController : Controller
             TotalQuestions = quiz.Questions.Count
         };
 
-<<<<<<< HEAD
         ResetStoredAnswers(quiz.Id, userId.Value.ToString());
-=======
-        // Démarrer chaque tentative avec un état de session propre pour une correction déterministe.
-        ResetStoredAnswers(quiz.Id, studentId);
->>>>>>> 860b19364261ed14ea4aea4c4dd58788263dcf9d
 
         return View(viewModel);
     }
